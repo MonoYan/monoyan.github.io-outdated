@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      223 字
+      341 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        分钟
     </span>
   
@@ -218,7 +218,17 @@
 
 wage = 700 //将700再次赋值给wage，此时不会报错</code></pre>
 
-<h2 id="变量和常量的命名规则"><a href="#变量和常量的命名规则" class="headerlink" title="变量和常量的命名规则"></a>变量和常量的命名规则</h2><script>
+<h2 id="变量和常量的命名规则"><a href="#变量和常量的命名规则" class="headerlink" title="变量和常量的命名规则"></a>变量和常量的命名规则</h2><p>没有一个有效的命名，回过头来就很可能忘了这个变量或者常量是做什么使用的，所以这时候我们需要<code>命名规范</code></p>
+<p><code>小驼峰命名</code> 除了首个单词,其他单词首字母大写,拼接起来</p>
+<pre><code class="hljs [Swift]">var currentBuildingHeight = 26</code></pre>
+
+<p><code>大驼峰命名</code>或者叫<code>帕斯卡命名</code> 所有的单词都首字母大写</p>
+<pre><code class="hljs [Swift]">var CurrentBuildingHeight = 26</code></pre>
+
+<p><code>/下划线命名法</code> 用下划线🔗所有单词</p>
+<pre><code class="hljs [Swift]">var current_building_height = 26</code></pre>
+
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
