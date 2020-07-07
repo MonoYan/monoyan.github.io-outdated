@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      177 字
+      223 字
     </span>
   
 
@@ -201,22 +201,24 @@
             <article class="markdown-body">
               <h2 id="期末考试周"><a href="#期末考试周" class="headerlink" title="期末考试周"></a>期末考试周</h2><p>整理一下考试用到的Swift的基本语法，权当复习，一共会有四篇。本篇包含了注释，变量，常量，声明方式，数据类型，元祖，数组，字典。</p>
 <a id="more"></a>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Swift有两种注释方式:<br>单行注释</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Swift有两种注释方式:<br><code>单行注释</code></p>
 <pre><code class="hljs [Swift]">// 我是单行注释</code></pre>
 
-<p>多行注释</p>
+<p><code>多行注释</code></p>
 <pre><code class="hljs [swift]">/* 
 我是多行注释
 我是第二行
 */</code></pre>
 
-<h2 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h2><p>变量关键字为 <strong>let</strong> 常量不支持再进行赋值操作</p>
-<pre><code class="hljs [Swift]">/* 
-我是多行注释
-我是第二行
-*/</code></pre>
+<h2 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h2><p>常量关键字为 <code>let</code> 常量不支持再进行赋值操作</p>
+<pre><code class="hljs [Swift]">let PI = 3.1415926</code></pre>
 
-<script>
+<p>此时如果再给PI赋值，就会报错，这时候我们可以使用变量 <code>var</code></p>
+<pre><code class="hljs [Swift]">var wage = 500
+
+wage = 700 //将700再次赋值给wage，此时不会报错</code></pre>
+
+<h2 id="变量和常量的命名规则"><a href="#变量和常量的命名规则" class="headerlink" title="变量和常量的命名规则"></a>变量和常量的命名规则</h2><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
