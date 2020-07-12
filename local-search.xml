@@ -4,6 +4,48 @@
   
   
   <entry>
+    <title>Unity学习（二）2020.07.11</title>
+    <link href="/2020/07/12/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%892020.07.12/"/>
+    <url>/2020/07/12/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%892020.07.12/</url>
+    
+    <content type="html"><![CDATA[<p>（题外话，早点起床会觉得一天特别充实！）<br>接上篇，今日学习为：</p><a id="more"></a><h2 id="预制体"><a href="#预制体" class="headerlink" title="预制体"></a>预制体</h2><ul><li>将某个游戏对象以文件的形式存储起来</li><li>作用：用来批量管理游戏对象；修改预制体的缩放，会对所有的游戏对象都产生影响；给预制体加上组件，所有的对象都会有添加组件</li></ul><p><code>Select</code> 快速找到这个对象对应的预制体</p><p><strong>Overrides</strong></p><p><code>Revert</code> 将游戏对象的组件及属性还原为预制体中的定义</p><p><code>Apply</code> 将对象的属性应用到预制体</p><h2 id="资源包"><a href="#资源包" class="headerlink" title="资源包"></a>资源包</h2><ul><li>可以把项目中的资源打包导出</li><li>如何打包Project下 → Export packages</li><li>如何导入Project下 → Import packages；拖进project；直接双击资源</li><li>标准资源包：Standard Assest 路径Unity/Editor/Standard</li></ul><h2 id="地形-Terrain"><a href="#地形-Terrain" class="headerlink" title="地形 Terrain"></a>地形 Terrain</h2><p>组件</p><ul><li>Raise/Lower Terrain——升高or下降的地形<ul><li>Brushes 笔刷</li><li><code>Opacity</code> 笔刷的硬度，决定一次抬高的高度</li><li>按住 <code>Shift</code> 可以降低，但最低是和terrain平行</li></ul></li><li>Paint Height——设置一个高度，然后将高于这个高度的部分刷低，将低于的这个高度的部分刷高<ul><li>Hold on <code>shift</code> 可以从已有高度选取高度</li><li>Flatten 将设定的高度应用给整个地形</li></ul></li><li>Smooth Height——平滑地形，使棱角分明的地方变得圆润平滑</li><li>Paint Texture——绘制地面纹理<ul><li>第一个添加的纹理会作用给全部的地形</li></ul></li><li>Place Trees<ul><li>Density 密度</li></ul></li><li>Paint Detail</li><li>Settings</li></ul><h2 id="钢体-Rigidbody"><a href="#钢体-Rigidbody" class="headerlink" title="钢体 Rigidbody"></a>钢体 Rigidbody</h2><p>模拟现实中的物理效果</p><ul><li>Mass 质量</li><li>Drag  拉力——运动方向的阻力</li><li>Angular Drag 旋转的拉力</li><li>Use Gravity 使用重力</li><li>Is Kinematic 开启运动学</li><li>Interpolate 插值</li><li>Collision Detection 碰撞检测</li><li>Constraints 约束<ul><li>Freeze Position</li><li>Freeze Potation</li></ul></li></ul><h2 id="碰撞体组件-Collider"><a href="#碰撞体组件-Collider" class="headerlink" title="碰撞体组件 Collider"></a>碰撞体组件 Collider</h2><p>两个物体发生碰撞，实际上产生的是两个碰撞体</p><h2 id="物理材质-Physics-Material"><a href="#物理材质-Physics-Material" class="headerlink" title="物理材质 Physics Material"></a>物理材质 Physics Material</h2><p>如果没有设置物理材质，摩擦力为无限大，弹力为0</p><ul><li>Dynamic Fricction 动态摩擦力</li><li>Static Friction 静态摩擦力 没有相对位移时候的摩擦力</li><li>Bounciness 弹力</li><li>Friction Combine 阻隔摩擦力</li><li>Bounce Combine</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>暑期学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Unity学习（一） 2020.07.11</title>
+    <link href="/2020/07/11/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%892020.07.11/"/>
+    <url>/2020/07/11/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%892020.07.11/</url>
+    
+    <content type="html"><![CDATA[<p>拿暑期的时间系统的学一下u3d和c#，之前都是用什么学什么，不是很系统。之前的swift复习就鸽了，因为整理到后面发现完全没必要写下来，最后考的也挺好，就不写了。</p><a id="more"></a><p>学习资料是看的千锋初级，讲了一段u3d基础页面后就开始c#的进阶课程了。<br>以下为本日所学：</p><h1 id="工具栏"><a href="#工具栏" class="headerlink" title="工具栏"></a>工具栏</h1><p><code>ducplicate</code>  复制 和 <code>copy</code>  拷贝 不一样</p><p><code>Edit</code> </p><p><code>Preference</code> 偏好设置</p><p><code>Assests</code> 资源</p><p><code>show in explorer</code> 在文件管理器这打开</p><p><code>import Package</code> 导入资源包</p><p><code>GameObject</code> 游戏对象</p><p><code>Component</code> 组件</p><p><code>Window</code>  unity 面板窗口</p><p><code>Help</code> </p><h1 id="面板"><a href="#面板" class="headerlink" title="面板"></a>面板</h1><p><code>Layout</code> 布局方式 </p><p><code>Revert Factory</code>  恢复出厂设置</p><p><code>Project</code> 项目面板——管理一个项目中用到的所有资源文件</p><p><code>Scene</code> 场景面板——用来编辑场景，列出场景中所有的对象</p><p><code>Game</code> 游戏面板——玩家看到的面板，由场景中的摄像机拍摄到的 </p><p><code>Hierarchy</code> 层级面板——管理所有中的游戏对象，将所有的游戏对象以层级的形式列举出来</p><p><code>Inspector</code> 检视面板——显示一个游戏对象身上的组件；显示组件中的属性</p><h1 id="空间坐标系"><a href="#空间坐标系" class="headerlink" title="空间坐标系"></a>空间坐标系</h1><p><code>坐标系</code>  unity：左手坐标系，数学：右手坐标系</p><h1 id="场景中的操作"><a href="#场景中的操作" class="headerlink" title="场景中的操作"></a>场景中的操作</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p><code>旋转</code>  alt+左键 or 右键</p><p><code>右上角的锁</code>  锁定旋转</p><h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p><code>缩放</code>  鼠标滚轮</p><h2 id="快速的在场景中找到指定的游戏对象"><a href="#快速的在场景中找到指定的游戏对象" class="headerlink" title="快速的在场景中找到指定的游戏对象"></a>快速的在场景中找到指定的游戏对象</h2><ul><li>在Hierarchy中找到对象，双击</li><li>在Hierarchy中单机选中，在场景中按F</li></ul><h2 id="拖动场景"><a href="#拖动场景" class="headerlink" title="拖动场景"></a>拖动场景</h2><p><code>拖动</code> 按住鼠标中键；Q</p><h2 id="左上角的工具——快捷键依次为QWERT"><a href="#左上角的工具——快捷键依次为QWERT" class="headerlink" title="左上角的工具——快捷键依次为QWERT"></a>左上角的工具——快捷键依次为QWERT</h2><p><code>手</code> 移动</p><p><code>Move tool</code> 移动物体 影响Transform.Position</p><p><code>Rotate Tool</code> 旋转 影响Transform.Rotation</p><p><code>Scale Tool</code> 缩放 影响Transform.Scale</p><p><code>Rect Tool</code> 缩放</p><h2 id="切换中心点"><a href="#切换中心点" class="headerlink" title="切换中心点"></a>切换中心点</h2><ul><li>Pivot 选中的游戏对象中心点</li><li>Center 所有选中的对象的计算出来的中心点</li><li>快捷键位：Z</li></ul><h2 id="切换坐标系"><a href="#切换坐标系" class="headerlink" title="切换坐标系"></a>切换坐标系</h2><ul><li>Global 采用世界坐标——东南西北</li><li>Local 采用自身坐标——前后左右</li><li>快捷键：X</li></ul><h1 id="GameObject"><a href="#GameObject" class="headerlink" title="GameObject"></a>GameObject</h1><h2 id="父子物体关系"><a href="#父子物体关系" class="headerlink" title="父子物体关系"></a>父子物体关系</h2><ul><li>一个游戏对象，只能有一个父物体</li><li>一个游戏对象，可以有无数个子物体</li><li>子物体的操作不会对父物体产生影响，反之则会</li><li>子物体的位置、旋转、缩放都是相对于父物体的</li></ul><h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><ul><li>具有一定功能的集合</li><li>如果希望游戏对象具有什么功能，只需要给这个游戏对象添加相应的组件即可</li></ul><h2 id="Mesh-Filter"><a href="#Mesh-Filter" class="headerlink" title="Mesh Filter"></a>Mesh Filter</h2><ul><li>网格过滤器，决定了一个对象的形状</li></ul><h2 id="Mesh-Renderer"><a href="#Mesh-Renderer" class="headerlink" title="Mesh Renderer"></a>Mesh Renderer</h2><ul><li>决定了一个游戏对象的外观展示</li></ul><h1 id="材质-Material"><a href="#材质-Material" class="headerlink" title="材质 Material"></a>材质 Material</h1><ul><li>决定一个对象的外观</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>暑期学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Swift基础语法（一）</title>
     <link href="/2020/07/07/Swift%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <url>/2020/07/07/Swift%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89/</url>

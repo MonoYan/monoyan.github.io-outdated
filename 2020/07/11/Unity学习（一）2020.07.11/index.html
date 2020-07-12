@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>Swift基础语法（一） - YanCC&#39;s Blog</title>
+  <title>Unity学习（一） 2020.07.11 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -147,8 +147,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-07 15:29">
-      2020年7月7日 下午
+    <time datetime="2020-07-11 20:00">
+      2020年7月11日 晚上
     </time>
   </div>
 
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      735 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      8
        分钟
     </span>
   
@@ -199,158 +199,69 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="期末考试周"><a href="#期末考试周" class="headerlink" title="期末考试周"></a>期末考试周</h2><p>整理一下考试用到的Swift的基本语法，权当复习，一共会有四篇。本篇包含了注释，变量，常量，声明方式，数据类型，元祖，数组，字典。</p>
+              <p>拿暑期的时间系统的学一下u3d和c#，之前都是用什么学什么，不是很系统。之前的swift复习就鸽了，因为整理到后面发现完全没必要写下来，最后考的也挺好，就不写了。</p>
 <a id="more"></a>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>Swift有两种注释方式:<br><code>单行注释</code></p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-comment">// 我是单行注释</span></code></pre></div>
-
-<p><code>多行注释</code></p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-comment">/* 
-我是多行注释
-我是第二行
-*/</span></code></pre></div>
-
-<h2 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h2><p>常量关键字为 <code>let</code> 常量不支持再进行赋值操作</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">let</span> <span class="hljs-type">PI</span> = <span class="hljs-number">3.1415926</span></code></pre></div>
-
-<p>此时如果再给PI赋值，就会报错，这时候我们可以使用变量 <code>var</code></p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> wage = <span class="hljs-number">500</span>
-
-wage = <span class="hljs-number">700</span> <span class="hljs-comment">//将700再次赋值给wage，此时不会报错</span></code></pre></div>
-
-<p>##声明方式：</p>
-<p><code>隐式声明变量</code></p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> name = value</code></pre></div>
-
-<p><code>显示声明变量</code></p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> name:type = value</code></pre></div>
-
-<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><p>如果没有一个有效的命名，回过头来就很可能忘了这个变量或者常量是做什么使用的，所以这时候我们需要<strong>命名规范</strong></p>
-<p><code>小驼峰命名</code> 除了首个单词,其他单词首字母大写,拼接起来</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> currentBuildingHeight = <span class="hljs-number">26</span></code></pre></div>
-
-<p><code>大驼峰命名</code>或者叫<code>帕斯卡命名</code> 所有的单词都首字母大写</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> <span class="hljs-type">CurrentBuildingHeight</span> = <span class="hljs-number">26</span></code></pre></div>
-
-<p><code>下划线命名法</code> 用下划线🔗 所有单词</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> current_building_height = <span class="hljs-number">26</span></code></pre></div>
-
-<p><code>常量的命名方式</code><br>所有字母全部大些，并皆适用下划线连接单词，用尽可能的名称描述出常量的意义</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">let</span> <span class="hljs-type">BUILDING_LEVEL_HEIGHT</span> = <span class="hljs-number">3</span> <span class="hljs-comment">//使用常量 描述层高</span></code></pre></div>
-
-<h2 id="打印方式"><a href="#打印方式" class="headerlink" title="打印方式"></a>打印方式</h2><div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">let</span> <span class="hljs-type">BUILDING_LEVEL_HEIGHT</span> = <span class="hljs-number">3</span>
-
-<span class="hljs-built_in">print</span>(<span class="hljs-type">BUILDING_LEVEL_HEIGHT</span>)
-<span class="hljs-built_in">debugPrint</span>(<span class="hljs-type">BUILDING_LEVEL_HEIGHT</span>)
-<span class="hljs-built_in">dump</span>(<span class="hljs-type">BUILDING_LEVEL_HEIGHT</span>)   <span class="hljs-comment">//dump在打印class的时候，会输出class中的全部属性</span></code></pre></div>
-
-<h2 id="基本的数据类型"><a href="#基本的数据类型" class="headerlink" title="基本的数据类型"></a>基本的数据类型</h2><p><strong>1、布尔类型 Bool</strong></p>
-<p><code>Bool类型</code>用来表示true和false，不过和c语言中<strong>不一样</strong>的是，swift对于bool的定义只有true和false，不能通过1和0来代替。</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> bol:<span class="hljs-type">Bool</span> = <span class="hljs-literal">true</span> <span class="hljs-comment">//使用显式声明变量 bol，bol为true</span>
-
-<span class="hljs-keyword">if</span>(bol)
-{
-	<span class="hljs-built_in">print</span>(<span class="hljs-string">"1"</span>) <span class="hljs-comment">//因为bol为true，所以执行语句print，输出1</span>
-}</code></pre></div>
-
-<p><strong>2、整形 Int</strong></p>
-<p><code>Int类型</code>用来表示整数</p>
-<p>在32位系统中,Int类型代表了Int32,表示在内存中他存储的是32位长.<br>在64位系统中,Int类型代表了Int64,表示在内存中他存储的是64位长.</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> <span class="hljs-type">Interg</span>:<span class="hljs-type">Int</span> = <span class="hljs-type">Int</span>.<span class="hljs-built_in">max</span>
-<span class="hljs-keyword">var</span> <span class="hljs-type">Max</span>:<span class="hljs-type">Int64</span> = <span class="hljs-type">Int64</span>.<span class="hljs-built_in">max</span> <span class="hljs-comment">//显示64位内存中储存的Int64长度 9223372036854775807</span></code></pre></div>
-
-<p>以Int8为例，Int8的最大值应该是128，但因为会有来表示的符号的最高位，所以最大值为127</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> num:<span class="hljs-type">Int8</span> = <span class="hljs-type">Int8</span>.<span class="hljs-built_in">max</span> <span class="hljs-comment">//127</span></code></pre></div>
-
-<p>无符号Int8,没有位数限制，故为255</p>
-<div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> num:<span class="hljs-type">UInt8</span> = <span class="hljs-type">UInt8</span>.<span class="hljs-built_in">max</span> <span class="hljs-comment">//255</span></code></pre></div>
-
-<p><strong>3、浮点型 Float\Double</strong></p>
-<p><code>浮点型</code>用来存放小数，其中Float为单精度，存放32位；Double为双精度，存放64位<br>Double可以保证15位小数京都，Float保证6位小数精度，如果超出精确度会有问题</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> float:<span class="hljs-type">Float</span> = <span class="hljs-number">0.123456</span>
-<span class="hljs-keyword">var</span> double:<span class="hljs-type">Double</span> = <span class="hljs-number">0.012345678912345</span></code></pre></div>
-
-<p><strong>4、字符与字符串 String\Char</strong><br><code>String</code>用来存放一串字符，可以是字母，数字，符号等，使用<code>“”</code>双引号赋值。</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> str:<span class="hljs-type">String</span> = <span class="hljs-string">"hello，world！"</span></code></pre></div>
-
-<p><code>Char</code>用来存放字符，是Charactor的缩写,同样用双引号赋值</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> char:<span class="hljs-type">String</span> = <span class="hljs-string">"H"</span></code></pre></div>
-
-<p><strong>部分转义</strong><br>因为在一些情况下，直接使用符号可能会造成混乱导致编译失败，或者我们要实现别的功能，我们可以使用\来进行转义</p>
-<div class="hljs"><pre><code class="hljs swift">\t 制表
-\r 回车
-\n 换行
-\' 单引号
-\'' 双引号
-\\ 反斜杠
-\<span class="hljs-number">0</span> 空字符</code></pre></div>
-
-<h2 id="元祖-Tuple"><a href="#元祖-Tuple" class="headerlink" title="元祖 Tuple"></a>元祖 Tuple</h2><p><code>元祖</code>是多个元素相关联的一个对象，Tuple（Type1,Type2,…）</p>
-<p><code>匿名元祖</code></p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> tuple1:(<span class="hljs-type">String</span>,<span class="hljs-type">Int</span>,<span class="hljs-type">Bool</span>) = (<span class="hljs-string">"张三"</span>,<span class="hljs-number">23</span>,<span class="hljs-literal">true</span>)
-
-<span class="hljs-comment">//匿名元祖只能点下标来取值</span>
-tuple1.<span class="hljs-number">0</span> 
-
-<span class="hljs-comment">//输出为张三</span></code></pre></div>
-
-<p><code>非匿名元祖</code> 优先使用</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> tuple2:(name:<span class="hljs-type">String</span>,age:<span class="hljs-type">Int</span>,gender:<span class="hljs-type">Bool</span>) = (name:<span class="hljs-string">"李四"</span>,age:<span class="hljs-number">24</span>,gender:<span class="hljs-literal">true</span>)
-
-tuple2.name
-
-<span class="hljs-comment">//输出为李四</span></code></pre></div>
-
-<h2 id="数组-Array"><a href="#数组-Array" class="headerlink" title="数组 Array"></a>数组 Array</h2><p><code>数组</code>是一个同种类型的集合<br>数组的一种声明方式</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> array:<span class="hljs-type">Array</span><<span class="hljs-type">Int</span>> = <span class="hljs-type">Array</span><<span class="hljs-type">Int</span>>()</code></pre></div>
-
-<p>数组的声明方式2</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> array2:[<span class="hljs-type">Int</span>] = [<span class="hljs-type">Int</span>]()</code></pre></div>
-
-<p>直接声明</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> array3 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]</code></pre></div>
-
-<p>数组如何添加</p>
-<div class="hljs"><pre><code class="hljs swift">array.append(<span class="hljs-number">0</span>)
-array.append(<span class="hljs-number">6</span>)
-array.append(<span class="hljs-number">8</span>)
-array.append(<span class="hljs-number">5</span>)</code></pre></div>
-
-<p><strong>数组的下标(索引) 是从0开始计算的</strong></p>
-<p>数组的访问</p>
-<div class="hljs"><pre><code class="hljs swift">array[<span class="hljs-number">0</span>]
-array[<span class="hljs-number">1</span>]
-array[<span class="hljs-number">3</span>]</code></pre></div>
-
-<p>数组的插入</p>
-<div class="hljs"><pre><code class="hljs swift">array.insert(<span class="hljs-number">3</span>, at: <span class="hljs-number">0</span>) <span class="hljs-comment">//把数字3插入下标0</span></code></pre></div>
-
-<p>数组删除</p>
-<div class="hljs"><pre><code class="hljs swift">array.remove(at: <span class="hljs-number">3</span>)</code></pre></div>
-
-<p>数组的排序</p>
-<div class="hljs"><pre><code class="hljs swift">array.<span class="hljs-built_in">sort</span>(by:>)</code></pre></div>
-
-<p><strong>多维数组</strong><br>声明方式1:</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> multiArray:[[<span class="hljs-type">Int</span>]] = [[<span class="hljs-type">Int</span>]]()</code></pre></div>
-
-<p>声明方式2:</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> multiArray2 = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>]]</code></pre></div>
-
-<h2 id="字典-Dictionary"><a href="#字典-Dictionary" class="headerlink" title="字典 Dictionary"></a>字典 Dictionary</h2><p><code>Dictionary</code>是以键值对的方式存储数据</p>
-<div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> dic:<span class="hljs-type">Dictionary</span><<span class="hljs-type">String</span>,<span class="hljs-type">Int</span>> = <span class="hljs-type">Dictionary</span><<span class="hljs-type">String</span>,<span class="hljs-type">Int</span>>()
-
-<span class="hljs-comment">//新华字典 用名字找页号的例子</span>
-dic[<span class="hljs-string">"安"</span>] = <span class="hljs-number">7</span>
-dic[<span class="hljs-string">"周"</span>] = <span class="hljs-number">361</span></code></pre></div>
-
-<p>字典如何移除</p>
-<div class="hljs"><pre><code class="hljs swift">dic.remove(at: dic.index(forKey: <span class="hljs-string">"周"</span>)!)</code></pre></div>
-
-<p>显示字典的键、值</p>
-<div class="hljs"><pre><code class="hljs swift">dic.values
-dic.keys</code></pre></div>
-
+<p>学习资料是看的千锋初级，讲了一段u3d基础页面后就开始c#的进阶课程了。<br>以下为本日所学：</p>
+<h1 id="工具栏"><a href="#工具栏" class="headerlink" title="工具栏"></a>工具栏</h1><p><code>ducplicate</code>  复制 和 <code>copy</code>  拷贝 不一样</p>
+<p><code>Edit</code> </p>
+<p><code>Preference</code> 偏好设置</p>
+<p><code>Assests</code> 资源</p>
+<p><code>show in explorer</code> 在文件管理器这打开</p>
+<p><code>import Package</code> 导入资源包</p>
+<p><code>GameObject</code> 游戏对象</p>
+<p><code>Component</code> 组件</p>
+<p><code>Window</code>  unity 面板窗口</p>
+<p><code>Help</code> </p>
+<h1 id="面板"><a href="#面板" class="headerlink" title="面板"></a>面板</h1><p><code>Layout</code> 布局方式 </p>
+<p><code>Revert Factory</code>  恢复出厂设置</p>
+<p><code>Project</code> 项目面板——管理一个项目中用到的所有资源文件</p>
+<p><code>Scene</code> 场景面板——用来编辑场景，列出场景中所有的对象</p>
+<p><code>Game</code> 游戏面板——玩家看到的面板，由场景中的摄像机拍摄到的 </p>
+<p><code>Hierarchy</code> 层级面板——管理所有中的游戏对象，将所有的游戏对象以层级的形式列举出来</p>
+<p><code>Inspector</code> 检视面板——显示一个游戏对象身上的组件；显示组件中的属性</p>
+<h1 id="空间坐标系"><a href="#空间坐标系" class="headerlink" title="空间坐标系"></a>空间坐标系</h1><p><code>坐标系</code>  unity：左手坐标系，数学：右手坐标系</p>
+<h1 id="场景中的操作"><a href="#场景中的操作" class="headerlink" title="场景中的操作"></a>场景中的操作</h1><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p><code>旋转</code>  alt+左键 or 右键</p>
+<p><code>右上角的锁</code>  锁定旋转</p>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p><code>缩放</code>  鼠标滚轮</p>
+<h2 id="快速的在场景中找到指定的游戏对象"><a href="#快速的在场景中找到指定的游戏对象" class="headerlink" title="快速的在场景中找到指定的游戏对象"></a>快速的在场景中找到指定的游戏对象</h2><ul>
+<li>在Hierarchy中找到对象，双击</li>
+<li>在Hierarchy中单机选中，在场景中按F</li>
+</ul>
+<h2 id="拖动场景"><a href="#拖动场景" class="headerlink" title="拖动场景"></a>拖动场景</h2><p><code>拖动</code> 按住鼠标中键；Q</p>
+<h2 id="左上角的工具——快捷键依次为QWERT"><a href="#左上角的工具——快捷键依次为QWERT" class="headerlink" title="左上角的工具——快捷键依次为QWERT"></a>左上角的工具——快捷键依次为QWERT</h2><p><code>手</code> 移动</p>
+<p><code>Move tool</code> 移动物体 影响Transform.Position</p>
+<p><code>Rotate Tool</code> 旋转 影响Transform.Rotation</p>
+<p><code>Scale Tool</code> 缩放 影响Transform.Scale</p>
+<p><code>Rect Tool</code> 缩放</p>
+<h2 id="切换中心点"><a href="#切换中心点" class="headerlink" title="切换中心点"></a>切换中心点</h2><ul>
+<li>Pivot 选中的游戏对象中心点</li>
+<li>Center 所有选中的对象的计算出来的中心点</li>
+<li>快捷键位：Z</li>
+</ul>
+<h2 id="切换坐标系"><a href="#切换坐标系" class="headerlink" title="切换坐标系"></a>切换坐标系</h2><ul>
+<li>Global 采用世界坐标——东南西北</li>
+<li>Local 采用自身坐标——前后左右</li>
+<li>快捷键：X</li>
+</ul>
+<h1 id="GameObject"><a href="#GameObject" class="headerlink" title="GameObject"></a>GameObject</h1><h2 id="父子物体关系"><a href="#父子物体关系" class="headerlink" title="父子物体关系"></a>父子物体关系</h2><ul>
+<li>一个游戏对象，只能有一个父物体</li>
+<li>一个游戏对象，可以有无数个子物体</li>
+<li>子物体的操作不会对父物体产生影响，反之则会</li>
+<li>子物体的位置、旋转、缩放都是相对于父物体的</li>
+</ul>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><ul>
+<li>具有一定功能的集合</li>
+<li>如果希望游戏对象具有什么功能，只需要给这个游戏对象添加相应的组件即可</li>
+</ul>
+<h2 id="Mesh-Filter"><a href="#Mesh-Filter" class="headerlink" title="Mesh Filter"></a>Mesh Filter</h2><ul>
+<li>网格过滤器，决定了一个对象的形状</li>
+</ul>
+<h2 id="Mesh-Renderer"><a href="#Mesh-Renderer" class="headerlink" title="Mesh Renderer"></a>Mesh Renderer</h2><ul>
+<li>决定了一个游戏对象的外观展示</li>
+</ul>
+<h1 id="材质-Material"><a href="#材质-Material" class="headerlink" title="材质 Material"></a>材质 Material</h1><ul>
+<li>决定一个对象的外观</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -379,7 +290,9 @@ dic.keys</code></pre></div>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Swift/">Swift</a>
+                      <a class="hover-with-bg" href="/tags/Unity/">Unity</a>
+                    
+                      <a class="hover-with-bg" href="/tags/暑期学习/">暑期学习</a>
                     
                   </div>
                 
@@ -392,9 +305,9 @@ dic.keys</code></pre></div>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/11/Unity学习（一）2020.07.11/">
+                      <a href="/2020/07/12/Unity学习（二）2020.07.12/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity学习（一） 2020.07.11</span>
+                        <span class="hidden-mobile">Unity学习（二）2020.07.11</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -402,8 +315,8 @@ dic.keys</code></pre></div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/24/联想小新Pro13 更换开机页面/">
-                        <span class="hidden-mobile">联想小新13Pro 更换开机页面</span>
+                      <a href="/2020/07/07/Swift基础语法（一）/">
+                        <span class="hidden-mobile">Swift基础语法（一）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -591,7 +504,7 @@ dic.keys</code></pre></div>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Swift基础语法（一）&nbsp;",
+        "Unity学习（一） 2020.07.11&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
