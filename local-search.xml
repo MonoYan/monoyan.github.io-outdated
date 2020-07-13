@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>Unity学习（三） 2020.07.13</title>
+    <link href="/2020/07/13/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%892020.07.13/"/>
+    <url>/2020/07/13/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%892020.07.13/</url>
+    
+    <content type="html"><![CDATA[<p>基础的unity功能看完了，明天开始要开始C#的进阶了。</p><a id="more"></a><h2 id="fbx-模型文件"><a href="#fbx-模型文件" class="headerlink" title=".fbx 模型文件"></a>.fbx 模型文件</h2><ul><li>模型文件最好Z轴指向的是前方</li></ul><h2 id="人物控制"><a href="#人物控制" class="headerlink" title="人物控制"></a>人物控制</h2><p>获取<em>水平轴</em>的偏移量，<em>垂直轴</em>的偏移量</p><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">float</span> horizontal = Input.GetAxis(<span class="hljs-string">"Horiziontal"</span>);<span class="hljs-keyword">float</span> vertical = Input.GetAxis(<span class="hljs-string">"Vertical"</span>);</code></pre></div><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-comment">// 判断是否有位移</span>        <span class="hljs-keyword">if</span> (direction != Vector3.zero)        {            <span class="hljs-comment">//将角色旋转至指定的方向</span>            transform.rotation = Quaternion.LookRotation(direction);            <span class="hljs-comment">//角色移动</span>            transform.Translate(Vector3.forward * <span class="hljs-number">1</span> * Time.deltaTime);        }</code></pre></div><h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>具有大小和方向的，如果只有大小没有方向为标量</p><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-comment">//算出方向向量</span>Vector3 direction = <span class="hljs-keyword">new</span> Vector3(horizontal,<span class="hljs-number">0</span>,vertical);</code></pre></div><h1 id="back-to-C"><a href="#back-to-C" class="headerlink" title="back to C"></a>back to C</h1><h2 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h2><ul><li>十进制 逢十进一 数字由0~9来表示</li><li>二进制 逢二进一 数字由0~1来表示</li><li>八进制 逢八进一 数字由0~7来表示</li><li>十六进制 逢十六进一 数字由0<del>9 A</del>F 来表示</li></ul><ul><li>对于二进制来说，每进一位相当于乘2，对于十进制来说，每进一位相对于乘10，以此类推</li></ul><h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul><li>十进制与其他进制转换<ul><li>转其他进制 <code>辗转相除法</code> 用这个数字除想<em>要转换的进制</em>，再用商除进制，一直到商为0，结束，将每一步的余数倒着连起来</li><li>转十进制 用某位的数字，乘进制的位数-1次方</li></ul></li><li>二进制与八进制、十六进制的转换<ul><li>二进制与八进制 一个八进制位 == 三个二进制位</li><li>二进制与十六进制 一个十六进制位 == 四个二进制位</li></ul></li></ul><h2 id="常用单位转换"><a href="#常用单位转换" class="headerlink" title="常用单位转换"></a>常用单位转换</h2><ul><li>把每一个二进制位称作一个比特位 ⇒ bit</li><li>8bit ⇒ 1byte</li><li>1024byte ⇒ 1kb</li><li>1024kb ⇒ 1Mb</li><li>1024Mb ⇒ 1Gb</li><li>1024Gb ⇒ 1Tb</li><li>1024Tb ⇒ 1Pb</li></ul><h2 id="表示负数"><a href="#表示负数" class="headerlink" title="表示负数"></a>表示负数</h2><ul><li>把一个二进制最左边一位叫做最高位</li><li>如果需要表示负数，最高位为符号位，表示一个数字的大小，表示一个数字的正负性</li><li>如果最高位为1是负数，最高位为0为正数</li></ul><h2 id="原码，反码，补码"><a href="#原码，反码，补码" class="headerlink" title="原码，反码，补码"></a>原码，反码，补码</h2><ul><li>意义：所有数据在计算中存储和运算都是以补码的形式进行的</li><li>如果计算结果出现了溢出，则溢出的位全部舍去</li><li>由一个负数的补码求原码：对这个数字再求一次补码</li></ul><p>————————————————————————————</p><ul><li>原码：直接由其他进制计算过来的结果</li><li>反码：对原码符号位不变，其他位按位取反</li><li>补码：反码加1</li></ul><ul><li>以上规则仅限负数</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>暑期学习</tag>
+      
+      <tag>C#</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity学习（二） 2020.07.12</title>
     <link href="/2020/07/12/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%892020.07.12/"/>
     <url>/2020/07/12/Unity%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%892020.07.12/</url>
