@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>Unity学习（三） 2020.07.13 - YanCC&#39;s Blog</title>
+  <title>Unity学习Plus 镜头绑定和角色控制 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -147,7 +147,7 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-13 21:38">
+    <time datetime="2020-07-13 23:55">
       2020年7月13日 晚上
     </time>
   </div>
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      662 字
+      558 字
     </span>
   
 
@@ -199,77 +199,74 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>基础的unity功能看完了，明天开始要开始C#的进阶了。</p>
+              <p>找了找资源，最后发现Unity中文社区的内容也在蓬勃发展，于是打算双线操作，一边学习C#的进阶特性，一遍开始跟着官方的课搞一搞，本篇是关于镜头绑定以及移动控制，当然，还会有一点小tips。</p>
 <a id="more"></a>
-<h2 id="fbx-模型文件"><a href="#fbx-模型文件" class="headerlink" title=".fbx 模型文件"></a>.fbx 模型文件</h2><ul>
-<li>模型文件最好Z轴指向的是前方</li>
+<h2 id="Unity-官方课程-Unit-1"><a href="#Unity-官方课程-Unit-1" class="headerlink" title="Unity 官方课程 Unit 1"></a>Unity 官方课程 Unit 1</h2><h2 id="一点微小的知识"><a href="#一点微小的知识" class="headerlink" title="一点微小的知识"></a>一点微小的知识</h2><ul>
+<li>按 <code>CTRL</code> 可以对transform进行微调，缺省值为0.25，可以再Grid and Snap中设置</li>
+<li>按 <code>鼠标右键</code> 使用 <code>WASD</code> 可以进行视角移动，很方便</li>
+<li>在 <code>Preferences</code> 中，Colors → Playmode tint，可以设置游戏在unity运行中系统页面的变化，已达到提高辨识度的效果</li>
 </ul>
-<h2 id="人物控制"><a href="#人物控制" class="headerlink" title="人物控制"></a>人物控制</h2><p>获取<em>水平轴</em>的偏移量，<em>垂直轴</em>的偏移量</p>
-<div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">float</span> horizontal = Input.GetAxis(<span class="hljs-string">"Horiziontal"</span>);
-<span class="hljs-keyword">float</span> vertical = Input.GetAxis(<span class="hljs-string">"Vertical"</span>);</code></pre></div>
+<h2 id="镜头绑定"><a href="#镜头绑定" class="headerlink" title="镜头绑定"></a>镜头绑定</h2><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CameraFollow</span> : <span class="hljs-title">MonoBehaviour</span>
+{
+    <span class="hljs-keyword">public</span> GameObject player;
+    <span class="hljs-keyword">private</span> Vector3 offset = <span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">-10</span>);
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
+    {
+        
+    }    
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>) <span class="hljs-comment">//每一帧都会被调用</span>
+    
+    }
 
-<div class="hljs"><pre><code class="hljs csharp"><span class="hljs-comment">// 判断是否有位移</span>
-        <span class="hljs-keyword">if</span> (direction != Vector3.zero)
-        {
-            <span class="hljs-comment">//将角色旋转至指定的方向</span>
-            transform.rotation = Quaternion.LookRotation(direction);
-            <span class="hljs-comment">//角色移动</span>
-            transform.Translate(Vector3.forward * <span class="hljs-number">1</span> * Time.deltaTime);
-        }</code></pre></div>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LateUpdate</span>(<span class="hljs-params"></span>)</span>
+    {
+        transform.position = player.transform.position + offset;
+    }
+}</code></pre></div>
 
-<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>具有大小和方向的，如果只有大小没有方向为标量</p>
-<div class="hljs"><pre><code class="hljs csharp"><span class="hljs-comment">//算出方向向量</span>
-Vector3 direction = <span class="hljs-keyword">new</span> Vector3(horizontal,<span class="hljs-number">0</span>,vertical);</code></pre></div>
-
-<h1 id="back-to-Csharp"><a href="#back-to-Csharp" class="headerlink" title="back to Csharp"></a>back to Csharp</h1><h2 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h2><ul>
-<li>十进制 逢十进一 数字由0~9来表示</li>
-<li>二进制 逢二进一 数字由0~1来表示</li>
-<li>八进制 逢八进一 数字由0~7来表示</li>
-<li>十六进制 逢十六进一 数字由0<del>9 A</del>F 来表示</li>
-</ul>
-<ul>
-<li>对于二进制来说，每进一位相当于乘2，对于十进制来说，每进一位相对于乘10，以此类推</li>
-</ul>
-<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul>
-<li>十进制与其他进制转换<ul>
-<li>转其他进制 <code>辗转相除法</code> 用这个数字除想<em>要转换的进制</em>，再用商除进制，一直到商为0，结束，将每一步的余数倒着连起来</li>
-<li>转十进制 用某位的数字，乘进制的位数-1次方</li>
+<h2 id="Update-与-lateUpdate-的区别"><a href="#Update-与-lateUpdate-的区别" class="headerlink" title="Update() 与 lateUpdate()的区别"></a>Update() 与 lateUpdate()的区别</h2><ul>
+<li>LateUpdate是在所有Update函数调用后被调用。这可用于调整脚本执行顺序。<ul>
+<li><del>人话：lateUpadate晚于Update执行</del></li>
+<li>即使在统一帧中执行，但是Update会先执行，lateUpdate后执行</li>
 </ul>
 </li>
-<li>二进制与八进制、十六进制的转换<ul>
-<li>二进制与八进制 一个八进制位 == 三个二进制位</li>
-<li>二进制与十六进制 一个十六进制位 == 四个二进制位</li>
+<li>通过这个可以解决相机绑定gameObject造成的抖动效果</li>
 </ul>
-</li>
+<h2 id="Player移动"><a href="#Player移动" class="headerlink" title="Player移动"></a>Player移动</h2><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PlayerController</span> : <span class="hljs-title">MonoBehaviour</span>
+{
+   
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> speed; <span class="hljs-comment">//private 变量在unity中不可见</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> turnSpeed;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> verticalInput;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> horizontalInput;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
+    {
+        
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span>
+    {
+        verticalInput = Input.GetAxis(<span class="hljs-string">"Vertical"</span>);<span class="hljs-comment">//-1 1</span>
+        horizontalInput = Input.GetAxis(<span class="hljs-string">"Horizontal"</span>);
+
+        <span class="hljs-comment">//Vector3.forward 决定方向 Time.deltaTime 决定在不同设备速度一样</span>
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+        transform.Rotate(Vector3.up,Time.deltaTime * turnSpeed * horizontalInput);<span class="hljs-comment">//0 1 0 </span>
+    }
+}</code></pre></div>
+
+<h2 id="获得输入的方法——以“前后，左右”为例"><a href="#获得输入的方法——以“前后，左右”为例" class="headerlink" title="获得输入的方法——以“前后，左右”为例"></a>获得输入的方法——以“前后，左右”为例</h2><h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><ul>
+<li>通过在 <strong>Project Settings</strong> 中的 <strong>Input Manager</strong> 可以获取每个输入的值，在脚本里就可以通过Input.GGetAxis(“String”)来获取。</li>
 </ul>
-<h2 id="常用单位转换"><a href="#常用单位转换" class="headerlink" title="常用单位转换"></a>常用单位转换</h2><ul>
-<li>把每一个二进制位称作一个比特位 ⇒ bit</li>
-<li>8bit ⇒ 1byte</li>
-<li>1024byte ⇒ 1kb</li>
-<li>1024kb ⇒ 1Mb</li>
-<li>1024Mb ⇒ 1Gb</li>
-<li>1024Gb ⇒ 1Tb</li>
-<li>1024Tb ⇒ 1Pb</li>
+<h3 id="Horizontal"><a href="#Horizontal" class="headerlink" title="Horizontal"></a>Horizontal</h3><ul>
+<li>在input中决定了方向，可以通过Input.GGetAxis(“Horizontal”)获取后，用transform.Rotate()来更改方向。</li>
+<li>值为0 1 0，以float方式存储。</li>
 </ul>
-<h2 id="表示负数"><a href="#表示负数" class="headerlink" title="表示负数"></a>表示负数</h2><ul>
-<li>把一个二进制最左边一位叫做最高位</li>
-<li>如果需要表示负数，最高位为符号位，表示一个数字的大小，表示一个数字的正负性</li>
-<li>如果最高位为1是负数，最高位为0为正数</li>
+<h3 id="Vertical"><a href="#Vertical" class="headerlink" title="Vertical"></a>Vertical</h3><ul>
+<li>在input中决定了前进or后退，可以通过Input.GetAxis(“Vertical”)获取后，用transform.Translate()来更改前后。</li>
+<li>值为-1 1，以float方式存储。</li>
 </ul>
-<h2 id="原码，反码，补码"><a href="#原码，反码，补码" class="headerlink" title="原码，反码，补码"></a>原码，反码，补码</h2><ul>
-<li>意义：所有数据在计算中存储和运算都是以补码的形式进行的</li>
-<li>如果计算结果出现了溢出，则溢出的位全部舍去</li>
-<li>由一个负数的补码求原码：对这个数字再求一次补码</li>
-</ul>
-<p>————————————————————————————</p>
-<ul>
-<li>原码：直接由其他进制计算过来的结果</li>
-<li>反码：对原码符号位不变，其他位按位取反</li>
-<li>补码：反码加1</li>
-</ul>
-<ul>
-<li>以上规则仅限负数</li>
-</ul>
+<h3 id="Time-deltaTime"><a href="#Time-deltaTime" class="headerlink" title="Time.deltaTime"></a>Time.deltaTime</h3><p>留坑，第二天再写</p>
+<h3 id="Vertical3"><a href="#Vertical3" class="headerlink" title="Vertical3"></a>Vertical3</h3><p>留坑</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -315,18 +312,12 @@ Vector3 direction = <span class="hljs-keyword">new</span> Vector3(horizontal,<sp
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/13/2020-07-13/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity学习Plus 镜头绑定和角色控制</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/12/Unity学习（二）2020.07.12/">
-                        <span class="hidden-mobile">Unity学习（二） 2020.07.12</span>
+                      <a href="/2020/07/13/Unity学习（三）2020.07.13/">
+                        <span class="hidden-mobile">Unity学习（三） 2020.07.13</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -514,7 +505,7 @@ Vector3 direction = <span class="hljs-keyword">new</span> Vector3(horizontal,<sp
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Unity学习（三） 2020.07.13&nbsp;",
+        "Unity学习Plus 镜头绑定和角色控制&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
