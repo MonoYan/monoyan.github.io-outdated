@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>Unity学习Plus 镜头绑定和角色控制 - YanCC&#39;s Blog</title>
+  <title>Chrome下载文件变成html的解决方案 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -147,8 +147,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-13 23:55">
-      2020年7月13日 晚上
+    <time datetime="2020-07-14 12:06">
+      2020年7月14日 中午
     </time>
   </div>
 
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      558 字
+      105 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      1
        分钟
     </span>
   
@@ -199,74 +199,9 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>找了找资源，最后发现Unity中文社区的内容也在蓬勃发展，于是打算双线操作，一边学习C#的进阶特性，一遍开始跟着官方的课搞一搞，本篇是关于镜头绑定以及移动控制，当然，还会有一点小tips。</p>
+              <p>最近发现windows那台电脑上的Chrome无论下载什么都会变成xxx.html，即便是另存为也是一样的情况。</p>
 <a id="more"></a>
-<h2 id="Unity-官方课程-Unit-1"><a href="#Unity-官方课程-Unit-1" class="headerlink" title="Unity 官方课程 Unit 1"></a>Unity 官方课程 Unit 1</h2><h2 id="一点微小的知识"><a href="#一点微小的知识" class="headerlink" title="一点微小的知识"></a>一点微小的知识</h2><ul>
-<li>按 <code>CTRL</code> 可以对transform进行微调，缺省值为0.25，可以再Grid and Snap中设置</li>
-<li>按 <code>鼠标右键</code> 使用 <code>WASD</code> 可以进行视角移动，很方便</li>
-<li>在 <code>Preferences</code> 中，Colors → Playmode tint，可以设置游戏在unity运行中系统页面的变化，已达到提高辨识度的效果</li>
-</ul>
-<h2 id="镜头绑定"><a href="#镜头绑定" class="headerlink" title="镜头绑定"></a>镜头绑定</h2><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CameraFollow</span> : <span class="hljs-title">MonoBehaviour</span>
-{
-    <span class="hljs-keyword">public</span> GameObject player;
-    <span class="hljs-keyword">private</span> Vector3 offset = <span class="hljs-keyword">new</span> Vector3(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">-10</span>);
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
-    {
-        
-    }    
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>) <span class="hljs-comment">//每一帧都会被调用</span>
-    
-    }
-
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">LateUpdate</span>(<span class="hljs-params"></span>)</span>
-    {
-        transform.position = player.transform.position + offset;
-    }
-}</code></pre></div>
-
-<h2 id="Update-与-lateUpdate-的区别"><a href="#Update-与-lateUpdate-的区别" class="headerlink" title="Update() 与 lateUpdate()的区别"></a>Update() 与 lateUpdate()的区别</h2><ul>
-<li>LateUpdate是在所有Update函数调用后被调用。这可用于调整脚本执行顺序。<ul>
-<li><del>人话：lateUpadate晚于Update执行</del></li>
-<li>即使在统一帧中执行，但是Update会先执行，lateUpdate后执行</li>
-</ul>
-</li>
-<li>通过这个可以解决相机绑定gameObject造成的抖动效果</li>
-</ul>
-<h2 id="Player移动"><a href="#Player移动" class="headerlink" title="Player移动"></a>Player移动</h2><div class="hljs"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PlayerController</span> : <span class="hljs-title">MonoBehaviour</span>
-{
-   
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> speed; <span class="hljs-comment">//private 变量在unity中不可见</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> turnSpeed;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> verticalInput;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> horizontalInput;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
-    {
-        
-    }
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"></span>)</span>
-    {
-        verticalInput = Input.GetAxis(<span class="hljs-string">"Vertical"</span>);<span class="hljs-comment">//-1 1</span>
-        horizontalInput = Input.GetAxis(<span class="hljs-string">"Horizontal"</span>);
-
-        <span class="hljs-comment">//Vector3.forward 决定方向 Time.deltaTime 决定在不同设备速度一样</span>
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
-        transform.Rotate(Vector3.up,Time.deltaTime * turnSpeed * horizontalInput);<span class="hljs-comment">//0 1 0 </span>
-    }
-}</code></pre></div>
-
-<h2 id="获得输入的方法——以“前后，左右”为例"><a href="#获得输入的方法——以“前后，左右”为例" class="headerlink" title="获得输入的方法——以“前后，左右”为例"></a>获得输入的方法——以“前后，左右”为例</h2><h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><ul>
-<li>通过在 <strong>Project Settings</strong> 中的 <strong>Input Manager</strong> 可以获取每个输入的值，在脚本里就可以通过Input.GGetAxis(“String”)来获取。</li>
-</ul>
-<h3 id="Horizontal"><a href="#Horizontal" class="headerlink" title="Horizontal"></a>Horizontal</h3><ul>
-<li>在input中决定了方向，可以通过Input.GGetAxis(“Horizontal”)获取后，用transform.Rotate()来更改方向。</li>
-<li>值为0 1 0，以float方式存储。</li>
-</ul>
-<h3 id="Vertical"><a href="#Vertical" class="headerlink" title="Vertical"></a>Vertical</h3><ul>
-<li>在input中决定了前进or后退，可以通过Input.GetAxis(“Vertical”)获取后，用transform.Translate()来更改前后。</li>
-<li>值为-1 1，以float方式存储。</li>
-</ul>
-<h3 id="Time-deltaTime"><a href="#Time-deltaTime" class="headerlink" title="Time.deltaTime"></a>Time.deltaTime</h3><p>留坑，第二天再写</p>
-<h3 id="Vertical3"><a href="#Vertical3" class="headerlink" title="Vertical3"></a>Vertical3</h3><p>留坑</p>
+<p>解决方案：按住<code>Alt</code>键位再点击下载就可以了。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -295,11 +230,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Unity/">Unity</a>
+                      <a class="hover-with-bg" href="/tags/小技巧/">小技巧</a>
                     
-                      <a class="hover-with-bg" href="/tags/暑期学习/">暑期学习</a>
-                    
-                      <a class="hover-with-bg" href="/tags/C/">C#</a>
+                      <a class="hover-with-bg" href="/tags/问题解决/">问题解决</a>
                     
                   </div>
                 
@@ -316,8 +249,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/13/Unity学习（三）2020.07.13/">
-                        <span class="hidden-mobile">Unity学习（三） 2020.07.13</span>
+                      <a href="/2020/07/13/Unity学习Plus（一） 镜头绑定和角色控制/">
+                        <span class="hidden-mobile">Unity学习Plus（一） 镜头绑定和角色控制</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -505,7 +438,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Unity学习Plus 镜头绑定和角色控制&nbsp;",
+        "Chrome下载文件变成html的解决方案&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
