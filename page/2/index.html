@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>标签 - YanCC&#39;s Blog</title>
+  <title>YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -37,7 +37,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -138,6 +138,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -147,16 +151,55 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="text-center tagcloud">
-  <a href="/tags/C/" style="font-size: 15px; color: #bbe">C#</a> <a href="/tags/Swift/" style="font-size: 15px; color: #bbe">Swift</a> <a href="/tags/Unity/" style="font-size: 30px; color: #337ab7">Unity</a> <a href="/tags/小技巧/" style="font-size: 25px; color: #6090c9">小技巧</a> <a href="/tags/日常/" style="font-size: 20px; color: #8ea5dc">日常</a> <a href="/tags/暑期学习/" style="font-size: 30px; color: #337ab7">暑期学习</a> <a href="/tags/问题解决/" style="font-size: 15px; color: #bbe">问题解决</a>
-</div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/07/18/hello-world/">Hello World</a>
+
+      <a href="/2019/07/18/hello-world/" class="index-excerpt">
+        
+        
+          
+        
+        <div>花了3个晚上终于把这个鬼东西整的差不多了。不知道写点儿啥，就先这样子。</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-07-18
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
 
               </div>
             </div>
@@ -273,7 +316,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "嘿嘿，来啦？&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
