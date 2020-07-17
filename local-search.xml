@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>Unity学习Plus（五） 阶段性小测试</title>
+    <link href="/2020/07/17/2020-07-17/"/>
+    <url>/2020/07/17/2020-07-17/</url>
+    
+    <content type="html"><![CDATA[<p>今天的课和之前一样，属于对现有场景进行修补的，没什么难度就不写了，分享一下10道官方题</p><a id="more"></a><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p><img src="/img/cst1.png" srcset="/img/loading.gif" alt="测试题1"></p><h3 id="答案：B"><a href="#答案：B" class="headerlink" title="答案：B"></a>答案：B</h3><h3 id="解析：如果不设置权限的话，默认为private。"><a href="#解析：如果不设置权限的话，默认为private。" class="headerlink" title="解析：如果不设置权限的话，默认为private。"></a>解析：如果不设置权限的话，默认为private。</h3><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p><img src="/img/cst2.png" srcset="/img/loading.gif" alt="测试题2"></p><h3 id="答案：C"><a href="#答案：C" class="headerlink" title="答案：C"></a>答案：C</h3><h3 id="解析：一眼看出答案。"><a href="#解析：一眼看出答案。" class="headerlink" title="解析：一眼看出答案。"></a>解析：一眼看出答案。</h3><h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p><img src="/img/cst3.png" srcset="/img/loading.gif" alt="测试题3"></p><h3 id="答案：A"><a href="#答案：A" class="headerlink" title="答案：A"></a>答案：A</h3><h3 id="解析：只有A选项让Speed-f-gt-0-25，触发动画。"><a href="#解析：只有A选项让Speed-f-gt-0-25，触发动画。" class="headerlink" title="解析：只有A选项让Speed_f>0.25，触发动画。"></a>解析：只有A选项让Speed_f>0.25，触发动画。</h3><h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p><img src="/img/cst4.png" srcset="/img/loading.gif" alt="测试题4"></p><h3 id="答案：A-1"><a href="#答案：A-1" class="headerlink" title="答案：A"></a>答案：A</h3><h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p><img src="/img/cst5.png" srcset="/img/loading.gif" alt="测试题5"></p><h3 id="答案：D"><a href="#答案：D" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p><img src="/img/cst6.png" srcset="/img/loading.gif" alt="测试题6"></p><h3 id="答案：C-1"><a href="#答案：C-1" class="headerlink" title="答案：C"></a>答案：C</h3><h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p><img src="/img/cst7.png" srcset="/img/loading.gif" alt="测试题7"></p><h3 id="答案：B-1"><a href="#答案：B-1" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p><img src="/img/cst8.png" srcset="/img/loading.gif" alt="测试题8"></p><h3 id="答案：D-1"><a href="#答案：D-1" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="9"><a href="#9" class="headerlink" title="9"></a>9</h2><p><img src="/img/cst9.png" srcset="/img/loading.gif" alt="测试题9"></p><h3 id="答案：B-2"><a href="#答案：B-2" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p><img src="/img/cst10.png" srcset="/img/loading.gif" alt="测试题10"></p><h3 id="答案：A-2"><a href="#答案：A-2" class="headerlink" title="答案：A"></a>答案：A</h3><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>暑期学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity学习Plus（四） 跑酷游戏</title>
     <link href="/2020/07/16/2020-07-16/"/>
     <url>/2020/07/16/2020-07-16/</url>
