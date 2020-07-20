@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>Unity学习Plus（七） 阶段性小测试</title>
+    <link href="/2020/07/20/2020-07-20/"/>
+    <url>/2020/07/20/2020-07-20/</url>
+    
+    <content type="html"><![CDATA[<h2 id="官方课程"><a href="#官方课程" class="headerlink" title="官方课程"></a>官方课程</h2><h2 id="游戏实现"><a href="#游戏实现" class="headerlink" title="游戏实现"></a>游戏实现</h2><ul><li>滚动操作球，把对方的球踢入它的球门</li><li>敌人全部消失后进入下一个场，每场多一个</li><li>滚动冲刺</li><li>粒子效果</li><li>增益buff</li></ul><h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/img/u4c0.gif" srcset="/img/loading.gif" alt="效果图"></p><h2 id="Debug方式"><a href="#Debug方式" class="headerlink" title="Debug方式"></a>Debug方式</h2><ul><li>优先运行游戏运行时控制台的报错，再讨论机制问题</li></ul><h2 id="官方测试题"><a href="#官方测试题" class="headerlink" title="官方测试题"></a>官方测试题</h2><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p><img src="/img/u4c1.png" srcset="/img/loading.gif" alt="1"></p><h3 id="答案：D"><a href="#答案：D" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p><img src="/img/u4c2.png" srcset="/img/loading.gif" alt="2"></p><h3 id="答案：B"><a href="#答案：B" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p><img src="/img/u4c3.png" srcset="/img/loading.gif" alt="3"></p><h3 id="答案：A"><a href="#答案：A" class="headerlink" title="答案：A"></a>答案：A</h3><h3 id="解析：b里面的-变成-，vector3中只可以使用乘，唯有A可以解决报错"><a href="#解析：b里面的-变成-，vector3中只可以使用乘，唯有A可以解决报错" class="headerlink" title="解析：b里面的=变成+，vector3中只可以使用乘，唯有A可以解决报错"></a>解析：b里面的=变成+，vector3中只可以使用乘，唯有A可以解决报错</h3><h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p><img src="/img/u4c4.png" srcset="/img/loading.gif" alt="4"></p><h3 id="答案：A-1"><a href="#答案：A-1" class="headerlink" title="答案：A"></a>答案：A</h3><h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p><img src="/img/u4c5.png" srcset="/img/loading.gif" alt="5"></p><h3 id="答案：C"><a href="#答案：C" class="headerlink" title="答案：C"></a>答案：C</h3><h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p><img src="/img/u4c6.png" srcset="/img/loading.gif" alt="6"></p><h3 id="答案：D-1"><a href="#答案：D-1" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p><img src="/img/u4c7.png" srcset="/img/loading.gif" alt="7"></p><h3 id="答案：B-1"><a href="#答案：B-1" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p><img src="/img/u4c8.png" srcset="/img/loading.gif" alt="8"></p><h3 id="答案：B-2"><a href="#答案：B-2" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="9"><a href="#9" class="headerlink" title="9"></a>9</h2><p><img src="/img/u4c9.png" srcset="/img/loading.gif" alt="9"></p><h3 id="答案：D-2"><a href="#答案：D-2" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p><img src="/img/u4cX.png" srcset="/img/loading.gif" alt="10"></p><h3 id="答案：E"><a href="#答案：E" class="headerlink" title="答案：E"></a>答案：E</h3><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Unity</tag>
+      
+      <tag>暑期学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity学习Plus（六） 滚动小球儿</title>
     <link href="/2020/07/19/2020-07-18/"/>
     <url>/2020/07/19/2020-07-18/</url>
