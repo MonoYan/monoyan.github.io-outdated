@@ -245,7 +245,7 @@ wage = <span class="hljs-number">700</span> <span class="hljs-comment">//将700�
 <span class="hljs-built_in">dump</span>(<span class="hljs-type">BUILDING_LEVEL_HEIGHT</span>)   <span class="hljs-comment">//dump在打印class的时候，会输出class中的全部属性</span></code></pre></div>
 
 <h2 id="基本的数据类型"><a href="#基本的数据类型" class="headerlink" title="基本的数据类型"></a>基本的数据类型</h2><p><strong>1、布尔类型 Bool</strong></p>
-<p><code>Bool类型</code>用来表示true和false，不过和c语言中<strong>不一样</strong>的是，swift对于bool的定义只有true和false，不能通过1和0来代替。</p>
+<p><code>Bool类型</code>用来表示true和false，不过和c语言中<strong>不一样</strong>的是，swift对于bool的定义只有true和false，不能通过1和0来代替</p>
 <div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> bol:<span class="hljs-type">Bool</span> = <span class="hljs-literal">true</span> <span class="hljs-comment">//使用显式声明变量 bol，bol为true</span>
 
 <span class="hljs-keyword">if</span>(bol)
@@ -255,7 +255,7 @@ wage = <span class="hljs-number">700</span> <span class="hljs-comment">//将700�
 
 <p><strong>2、整形 Int</strong></p>
 <p><code>Int类型</code>用来表示整数</p>
-<p>在32位系统中,Int类型代表了Int32,表示在内存中他存储的是32位长.<br>在64位系统中,Int类型代表了Int64,表示在内存中他存储的是64位长.</p>
+<p>在32位系统中,Int类型代表了Int32,表示在内存中他存储的是32位长<br>在64位系统中,Int类型代表了Int64,表示在内存中他存储的是64位长</p>
 <div class="hljs"><pre><code class="hljs Swift"><span class="hljs-keyword">var</span> <span class="hljs-type">Interg</span>:<span class="hljs-type">Int</span> = <span class="hljs-type">Int</span>.<span class="hljs-built_in">max</span>
 <span class="hljs-keyword">var</span> <span class="hljs-type">Max</span>:<span class="hljs-type">Int64</span> = <span class="hljs-type">Int64</span>.<span class="hljs-built_in">max</span> <span class="hljs-comment">//显示64位内存中储存的Int64长度 9223372036854775807</span></code></pre></div>
 
@@ -270,13 +270,13 @@ wage = <span class="hljs-number">700</span> <span class="hljs-comment">//将700�
 <div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">var</span> float:<span class="hljs-type">Float</span> = <span class="hljs-number">0.123456</span>
 <span class="hljs-keyword">var</span> double:<span class="hljs-type">Double</span> = <span class="hljs-number">0.012345678912345</span></code></pre></div>
 
-<p><strong>4、字符与字符串 String\Char</strong><br><code>String</code>用来存放一串字符，可以是字母，数字，符号等，使用<code>“”</code>双引号赋值。</p>
+<p><strong>4、字符与字符串 String\Char</strong><br><code>String</code>用来存放一串字符，可以是字母，数字，符号等，使用<code>“”</code>双引号赋值</p>
 <div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> str:<span class="hljs-type">String</span> = <span class="hljs-string">"hello，world！"</span></code></pre></div>
 
 <p><code>Char</code>用来存放字符，是Charactor的缩写,同样用双引号赋值</p>
 <div class="hljs"><pre><code class="hljs swift"><span class="hljs-keyword">let</span> char:<span class="hljs-type">String</span> = <span class="hljs-string">"H"</span></code></pre></div>
 
-<p><strong>部分转义</strong><br>因为在一些情况下，直接使用符号可能会造成混乱导致编译失败，或者我们要实现别的功能，我们可以使用\来进行转义</p>
+<p><strong>部分转义</strong><br>因为在一些情况下，直接使用符号可能会造成混乱导致编译失败，或者我们要实现别的功能,我们可以使用\来进行转义</p>
 <div class="hljs"><pre><code class="hljs swift">\t 制表
 \r 回车
 \n 换行
