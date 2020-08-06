@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>siki C#查缺补漏（持续更新）</title>
+    <link href="/2020/08/06/C-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <url>/2020/08/06/C-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<p>暑假还剩20多天，虽然不知道能不能正常开学，也得把编程捡起来了，再all in英语就废了= =#，这是我打算开始系统地学习c#的一个新开始，会更新一些之前我学习中漏掉的东西，或者没记牢的东西。（当然每天的学习时间不会太长）</p><a id="more"></a><p>2020.08.06 更新：</p><h2 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h2><div class="hljs"><pre><code class="hljs csharp">Console.WriteLine(<span class="hljs-string">"{0}+{1}={2}"</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);</code></pre></div><h2 id="使用-不识别转义字符"><a href="#使用-不识别转义字符" class="headerlink" title="使用@不识别转义字符"></a>使用@不识别转义字符</h2><p>如果不想识别字符串中的转义字符，可以在字符串前面加一个@符号（除双引号外，如果表一个双引号则需要两个）</p><ul><li>使用场景多在表示路径</li><li>把一个字符串定义在多行</li></ul><h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul><li>ctrl+k ctrl+c 注释选中行</li><li>ctrl+k ctrl+u 取消注释选中行</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>暑期学习</tag>
+      
+      <tag>C#</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Unity学习Plus（九） 完结</title>
     <link href="/2020/07/22/2020-07-22/"/>
     <url>/2020/07/22/2020-07-22/</url>
