@@ -6,7 +6,7 @@
   <link href="http://yancc.cc/atom.xml" rel="self"/>
   
   <link href="http://yancc.cc/"/>
-  <updated>2020-08-08T14:12:44.000Z</updated>
+  <updated>2020-09-11T04:58:46.329Z</updated>
   <id>http://yancc.cc/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TEST</title>
+    <link href="http://yancc.cc/2020/09/11/TEST/"/>
+    <id>http://yancc.cc/2020/09/11/TEST/</id>
+    <published>2020-09-11T04:58:20.000Z</published>
+    <updated>2020-09-11T04:58:46.329Z</updated>
+    
+    <content type="html"><![CDATA[<p>TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTT</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>SIKI C#查缺补漏（持续更新）</title>
