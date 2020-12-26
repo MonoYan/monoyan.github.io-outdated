@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>Unity学习Plus（八） 类水果忍者游戏原型 - YanCC&#39;s Blog</title>
+  <title>Unity官方课程学习记录 2020.07.20-22 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -148,8 +148,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-21 21:03">
-      2020年7月21日 晚上
+    <time datetime="2020-07-20 14:16">
+      2020年7月20日 下午
     </time>
   </div>
 
@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.4k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      17
        分钟
     </span>
   
@@ -200,9 +200,35 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>今天开发的是一个水果忍者游戏的原型，马上这个系列的课就学完了，终于要开始下一阶段的学习了！</p>
+              <p>老阶段性测试了。</p>
 <a id="more"></a>
-<h2 id="游戏实现"><a href="#游戏实现" class="headerlink" title="游戏实现"></a>游戏实现</h2><ul>
+
+<h1 id="Day-7-踢足球-阶段性测试"><a href="#Day-7-踢足球-阶段性测试" class="headerlink" title="Day 7 踢足球 + 阶段性测试"></a>Day 7 踢足球 + 阶段性测试</h1><h2 id="游戏实现"><a href="#游戏实现" class="headerlink" title="游戏实现"></a>游戏实现</h2><ul>
+<li>滚动操作球，把对方的球踢入它的球门</li>
+<li>敌人全部消失后进入下一个场，每场多一个</li>
+<li>滚动冲刺</li>
+<li>粒子效果</li>
+<li>增益buff</li>
+</ul>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/img/u4c0.gif" srcset="/img/loading.gif" alt="效果图"></p>
+<h2 id="Debug方式"><a href="#Debug方式" class="headerlink" title="Debug方式"></a>Debug方式</h2><ul>
+<li>优先运行游戏运行时控制台的报错，再讨论机制问题</li>
+</ul>
+<h2 id="官方测试题"><a href="#官方测试题" class="headerlink" title="官方测试题"></a>官方测试题</h2><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p><img src="/img/u4c1.png" srcset="/img/loading.gif" alt="1"></p>
+<h3 id="答案：D"><a href="#答案：D" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p><img src="/img/u4c2.png" srcset="/img/loading.gif" alt="2"></p>
+<h3 id="答案：B"><a href="#答案：B" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p><img src="/img/u4c3.png" srcset="/img/loading.gif" alt="3"></p>
+<h3 id="答案：A"><a href="#答案：A" class="headerlink" title="答案：A"></a>答案：A</h3><h3 id="解析：b里面的-变成-，vector3中只可以使用乘，唯有A可以解决报错"><a href="#解析：b里面的-变成-，vector3中只可以使用乘，唯有A可以解决报错" class="headerlink" title="解析：b里面的=变成+，vector3中只可以使用乘，唯有A可以解决报错"></a>解析：b里面的=变成+，vector3中只可以使用乘，唯有A可以解决报错</h3><h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p><img src="/img/u4c4.png" srcset="/img/loading.gif" alt="4"></p>
+<h3 id="答案：A-1"><a href="#答案：A-1" class="headerlink" title="答案：A"></a>答案：A</h3><h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p><img src="/img/u4c5.png" srcset="/img/loading.gif" alt="5"></p>
+<h3 id="答案：C"><a href="#答案：C" class="headerlink" title="答案：C"></a>答案：C</h3><h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p><img src="/img/u4c6.png" srcset="/img/loading.gif" alt="6"></p>
+<h3 id="答案：D-1"><a href="#答案：D-1" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p><img src="/img/u4c7.png" srcset="/img/loading.gif" alt="7"></p>
+<h3 id="答案：B-1"><a href="#答案：B-1" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><p><img src="/img/u4c8.png" srcset="/img/loading.gif" alt="8"></p>
+<h3 id="答案：B-2"><a href="#答案：B-2" class="headerlink" title="答案：B"></a>答案：B</h3><h2 id="9"><a href="#9" class="headerlink" title="9"></a>9</h2><p><img src="/img/u4c9.png" srcset="/img/loading.gif" alt="9"></p>
+<h3 id="答案：D-2"><a href="#答案：D-2" class="headerlink" title="答案：D"></a>答案：D</h3><h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p><img src="/img/u4cX.png" srcset="/img/loading.gif" alt="10"></p>
+<h3 id="答案：E"><a href="#答案：E" class="headerlink" title="答案：E"></a>答案：E</h3><hr>
+<h1 id="Day-8-水果忍者原型实现"><a href="#Day-8-水果忍者原型实现" class="headerlink" title="Day 8 水果忍者原型实现"></a>Day 8 水果忍者原型实现</h1><p>今天开发的是一个水果忍者游戏的原型，马上这个系列的课就学完了，终于要开始下一阶段的学习了！</p>
+<!-- more -->
+
+<h2 id="游戏实现-1"><a href="#游戏实现-1" class="headerlink" title="游戏实现"></a>游戏实现</h2><ul>
 <li>一个简易的开始菜单，可以选择难度</li>
 <li>一个简易的Game Over菜单</li>
 <li>会从屏幕下方弹出水果和炸弹，点到水果会加分，点到炸弹会扣分</li>
@@ -423,6 +449,18 @@
 <li>添加prefeb不能一起添加，只能一个一个添加</li>
 <li>更改变量类型后要回到面板看看数值有没有丢失</li>
 </ul>
+<hr>
+<h1 id="Day-9-修修补补，课程完结"><a href="#Day-9-修修补补，课程完结" class="headerlink" title="Day 9 修修补补，课程完结"></a>Day 9 修修补补，课程完结</h1><h2 id="游戏实现-2"><a href="#游戏实现-2" class="headerlink" title="游戏实现"></a>游戏实现</h2><ul>
+<li>有倒计时，获得尽可能高的分数</li>
+<li>当忘记点了good物体则游戏失败</li>
+<li>难度选择以及重新开始</li>
+</ul>
+<h2 id="Mathf-Round"><a href="#Mathf-Round" class="headerlink" title="Mathf.Round"></a>Mathf.Round</h2><ul>
+<li>四舍六入五取偶数</li>
+</ul>
+<h2 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>在Hierarchy面板中，按住 <code>Alt</code> 可以打开一个物体的所有的子目录</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -466,9 +504,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/22/2020-07-22/">
+                      <a href="/2020/08/06/C#查缺补漏（持续更新）/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Unity学习Plus（九） 完结</span>
+                        <span class="hidden-mobile">C#查缺补漏（持续更新）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -476,8 +514,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/20/2020-07-20/">
-                        <span class="hidden-mobile">Unity学习Plus（七） 阶段性小测试</span>
+                      <a href="/2020/07/16/Unity官方课程学习记录 2020.07.16-19/">
+                        <span class="hidden-mobile">Unity官方课程学习记录 2020.07.16-19</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -674,7 +712,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Unity学习Plus（八） 类水果忍者游戏原型&nbsp;",
+        "Unity官方课程学习记录 2020.07.20-22&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
