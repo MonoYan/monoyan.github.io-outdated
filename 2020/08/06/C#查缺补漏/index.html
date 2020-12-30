@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>C#查缺补漏（持续更新） - YanCC&#39;s Blog</title>
+  <title>C#查缺补漏 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      313 字
+      519 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        分钟
     </span>
   
@@ -227,6 +227,18 @@
 <li>和程序访问的局部性原理相违背</li>
 </ul>
 <h1 id="2020-12-30"><a href="#2020-12-30" class="headerlink" title="2020.12.30"></a>2020.12.30</h1><p>今天又忘了C#里没有Convert.ToFloat，只有Convet.ToSingle。</p>
+<h1 id="2020-12-31"><a href="#2020-12-31" class="headerlink" title="2020.12.31"></a>2020.12.31</h1><h2 id="属性和字段的比较"><a href="#属性和字段的比较" class="headerlink" title="属性和字段的比较"></a>属性和字段的比较</h2><ul>
+<li>属性可以实现只读或只写，字段不行</li>
+<li>属性的set方法可以对用户指定的value，进行有效检查，从而保证只有正确的状态才会得到设置，字段不行</li>
+<li>属性的get方法不仅可以返回字段变量的值，可以返回一些经过计算或处理过的数据</li>
+<li>由于属性在实现时，实际上是方法，所以可以具有方法的一些优点</li>
+</ul>
+<h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><ul>
+<li>在类的内部记录事物的状态信息，则用字段变量</li>
+<li>字段变量一般用private修饰，以防止对外使用</li>
+<li>对外公布事物的状态信息，则使用属性</li>
+<li>属性一般与某个或某几个字段变量有对应关系</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -478,7 +490,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "C#查缺补漏（持续更新）&nbsp;",
+        "C#查缺补漏&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
