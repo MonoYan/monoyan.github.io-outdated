@@ -6,7 +6,7 @@
   <link href="http://yancc.cc/atom.xml" rel="self"/>
   
   <link href="http://yancc.cc/"/>
-  <updated>2020-12-30T15:24:23.424Z</updated>
+  <updated>2021-01-01T04:21:35.755Z</updated>
   <id>http://yancc.cc/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Year</title>
+    <link href="http://yancc.cc/2021/01/01/Year/"/>
+    <id>http://yancc.cc/2021/01/01/Year/</id>
+    <published>2021-01-01T04:21:35.000Z</published>
+    <updated>2021-01-01T04:21:35.755Z</updated>
+    
+    <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return; }
+        </summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>C# 查缺补漏</title>
