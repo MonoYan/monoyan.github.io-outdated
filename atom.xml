@@ -6,7 +6,7 @@
   <link href="http://yancc.cc/atom.xml" rel="self"/>
   
   <link href="http://yancc.cc/"/>
-  <updated>2021-01-01T04:21:35.755Z</updated>
+  <updated>2021-01-03T13:19:55.098Z</updated>
   <id>http://yancc.cc/</id>
   
   <author>
@@ -17,26 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Year</title>
+    <title>2021新年</title>
     <link href="http://yancc.cc/2021/01/01/Year/"/>
     <id>http://yancc.cc/2021/01/01/Year/</id>
     <published>2021-01-01T04:21:35.000Z</published>
-    <updated>2021-01-01T04:21:35.755Z</updated>
+    <updated>2021-01-03T13:19:55.098Z</updated>
     
-    <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<h1 id="新年愿望"><a href="#新年愿望" class="headerlink" title="新年愿望"></a>新年愿望</h1><ul><li>希望可以健健康康的度过2021年。</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     
       
       
-    <summary type="html">&lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return; }
-        </summary>
+    <summary type="html">&lt;h1 id=&quot;新年愿望&quot;&gt;&lt;a href=&quot;#新年愿望&quot; class=&quot;headerlink&quot; title=&quot;新年愿望&quot;&gt;&lt;/a&gt;新年愿望&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;希望可以健健康康的度过2021年。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+        document.q</summary>
       
     
     
     
+    
+    <category term="日常" scheme="http://yancc.cc/tags/日常/"/>
     
   </entry>
   
