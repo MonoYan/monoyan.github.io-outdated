@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      438 字
+      970 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      11
        分钟
     </span>
   
@@ -245,6 +245,80 @@
 </li>
 <li><p>Sorting Layer 、Order in Layer</p>
 <p>同上</p>
+</li>
+</ul>
+<h2 id="Canvas-Scaler"><a href="#Canvas-Scaler" class="headerlink" title="Canvas Scaler"></a>Canvas Scaler</h2><h4 id="Ui-Scale-Mode"><a href="#Ui-Scale-Mode" class="headerlink" title="Ui Scale Mode"></a>Ui Scale Mode</h4><ul>
+<li><p>Constant Pixel Size 根据画布的UI元素比例和像素密度来设置，会影响画布内的所有元素</p>
+<ul>
+<li><p>Scale Factor </p>
+<p>UI缩放的系数</p>
+</li>
+<li><p>Refence Pixels Per Unit</p>
+<p>标准单位的像素数</p>
+</li>
+</ul>
+</li>
+<li><p>Scale With Screen Size 根据分辨率来创建UI</p>
+<ul>
+<li><p>Reference Resolution</p>
+<p> 设置缩创建UI的标准分辨率</p>
+</li>
+<li><p>Screen Match Mode</p>
+<p>设置画布宽高比不同时的缩放</p>
+</li>
+<li><p>Match Width Or Height | Match值为（0.0-1.0）</p>
+<p>结合分辨率的宽高缩放画布</p>
+</li>
+<li><p>Expand</p>
+<p>扩展画布，但分辨率不降低</p>
+</li>
+<li><p>Shrink</p>
+<p>收缩画布的区域、画布的宽高同时收缩，均不超过参照分辨率</p>
+</li>
+<li><p>Reference Pixels Per Unit</p>
+<p>设置画布上，每个单位的标准像素数</p>
+</li>
+</ul>
+</li>
+<li><p>World 当画布渲染模式为World Space时，Ui Scale Mode属性的固定值</p>
+<ul>
+<li><p>Dynamic Pixels Per Unit</p>
+<p>与文本一样，设置UI上动态生成图形的每单位像素数</p>
+</li>
+<li><p>Reference Pixels Per Unit</p>
+<p>设置画布上，每个单位的标准像素数</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Graphic-Raycaster"><a href="#Graphic-Raycaster" class="headerlink" title="Graphic Raycaster"></a>Graphic Raycaster</h2><p>EventSystem的核心是Raycasting机制</p>
+<p>本质是从某个坐标到其他坐标渲染的一条假象的直线，称为Ray，起作用是检测与场景上对象之间冲突的机制</p>
+<p>通过Graphic Raycaster可以判断用户操作的UI元素是画布上的哪个UI元素</p>
+<h3 id="Ignore-Reversed-Graphics"><a href="#Ignore-Reversed-Graphics" class="headerlink" title="Ignore Reversed Graphics"></a>Ignore Reversed Graphics</h3><p>忽略反转并显示了背面的图形</p>
+<h3 id="Blocking-Objects"><a href="#Blocking-Objects" class="headerlink" title="Blocking Objects"></a>Blocking Objects</h3><p>指定阻挡光线投射的对象</p>
+<ul>
+<li>None</li>
+<li>2D</li>
+<li>3D</li>
+<li>ALL</li>
+</ul>
+<h3 id="Blocking-Mask"><a href="#Blocking-Mask" class="headerlink" title="Blocking Mask"></a>Blocking Mask</h3><p>指定阻挡光线投射的对象的层</p>
+<h2 id="Canvas-Renderer"><a href="#Canvas-Renderer" class="headerlink" title="Canvas Renderer"></a>Canvas Renderer</h2><p>画布中所有图形元素都附加了~组件，作用是元素渲染到画布 </p>
+<h2 id="Canvas-Group"><a href="#Canvas-Group" class="headerlink" title="Canvas Group"></a>Canvas Group</h2><p>通过画布组将多个UI元素分组，统一设定或修改某个属性</p>
+<ul>
+<li><p>Alpha</p>
+<p>设置不透明度(0~1.0)</p>
+<p>如果UI元素一又Alpha值，就会使用相乘后所得的值</p>
+</li>
+<li><p>Interactable</p>
+<p>设置画布组内的UI元素是有效还是无效状态</p>
+</li>
+<li><p>Blocks Raycasts</p>
+<p>设置画布组内的所有UI元素是否阻挡管线投射（判断碰撞）</p>
+<p>多适用于HUD上的状态显示或指示器</p>
+</li>
+<li><p>Ignore Parent Groups</p>
+<p>画布被嵌套时，忽略在父级画布组的属性</p>
 </li>
 </ul>
 <script>
