@@ -6,7 +6,7 @@
   <link href="http://yancc.cc/atom.xml" rel="self"/>
   
   <link href="http://yancc.cc/"/>
-  <updated>2021-01-05T10:40:38.261Z</updated>
+  <updated>2021-01-04T15:52:52.478Z</updated>
   <id>http://yancc.cc/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://yancc.cc/2021/01/05/test/"/>
-    <id>http://yancc.cc/2021/01/05/test/</id>
-    <published>2021-01-05T10:40:38.261Z</published>
-    <updated>2021-01-05T10:40:38.261Z</updated>
-    
-    <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return; }
-        </summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>UGUI 学习笔记</title>
@@ -66,14 +42,12 @@
     <link href="http://yancc.cc/2021/01/01/Year/"/>
     <id>http://yancc.cc/2021/01/01/Year/</id>
     <published>2021-01-01T04:21:35.000Z</published>
-    <updated>2021-01-04T04:51:55.369Z</updated>
+    <updated>2021-01-05T10:50:06.248Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="新年愿望"><a href="#新年愿望" class="headerlink" title="新年愿望"></a>新年愿望</h1><ul><li>希望可以健健康康的度过2021年。</li></ul><a id="more"></a><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<h1 id="新年愿望"><a href="#新年愿望" class="headerlink" title="新年愿望"></a>新年愿望</h1><p>希望可以健健康康的度过2021年。</p><a id="more"></a><p>[]找到一份满意的实习</p><p>[]可以一个人生活</p><p>[]维系社交关系</p><p>[]学会Lua或者Python</p><p>[]认真的记录生活</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     
-    <summary type="html">&lt;h1 id=&quot;新年愿望&quot;&gt;&lt;a href=&quot;#新年愿望&quot; class=&quot;headerlink&quot; title=&quot;新年愿望&quot;&gt;&lt;/a&gt;新年愿望&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;希望可以健健康康的度过2021年。&lt;/li&gt;
-&lt;/ul&gt;</summary>
+    <summary type="html">&lt;h1 id=&quot;新年愿望&quot;&gt;&lt;a href=&quot;#新年愿望&quot; class=&quot;headerlink&quot; title=&quot;新年愿望&quot;&gt;&lt;/a&gt;新年愿望&lt;/h1&gt;&lt;p&gt;希望可以健健康康的度过2021年。&lt;/p&gt;</summary>
     
     
     
