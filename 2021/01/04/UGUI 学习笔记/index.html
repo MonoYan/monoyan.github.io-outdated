@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.1k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      24
        分钟
     </span>
   
@@ -337,7 +337,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>按住shift拖拽旋转，以按住shift的角度妹15°旋转一下</p>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>按住shift拖拽旋转，以按住shift的角度每15°旋转一下</p>
 <h3 id="Transform-Gizmo-Toggles"><a href="#Transform-Gizmo-Toggles" class="headerlink" title="Transform Gizmo Toggles"></a>Transform Gizmo Toggles</h3><ul>
 <li>Center 和 Pivot 模式<ul>
 <li>center下不可以移动枢轴，pivot可以</li>
@@ -379,15 +379,32 @@
 <h3 id="移动-1"><a href="#移动-1" class="headerlink" title="移动"></a>移动</h3><p>按住shift拖拽锚点时候，Rect Transform控制柄也保持对锚点控制柄相同距离移动</p>
 <h3 id="用锚点布局"><a href="#用锚点布局" class="headerlink" title="用锚点布局"></a>用锚点布局</h3><p>锚点控制柄表示在父元素领域内的相对位置，因此会随着父元素的大小调整而移动</p>
 <p>4个锚点控制柄分别对应了Rect Transform四个角上控制柄，移动时会保持锚点控制柄与Rect Transform控制柄之间的距离。</p>
-<p>如果UI元素的大小调整好就把锚点固定父级元素上，父级元素缩放被打了锚点的UI元素就会被拖拽着同比例缩放</p>
-<p>将4个锚点都设置为父元素的右下角，UI元素与父元素右侧和下方边的边距就固定了。可以将UI元素放在父元素右下角为基准位置</p>
-<p>如果锚点控制位左右各两个，分别在父元素左端和右端，结合父元素的宽度，UI元素的宽度也随之变化，由于锚点设置为父元素的上下的中央位置，所以UI元素的高度不会发生变化</p>
-<p>如果锚点设置为Rect Transform相同位置的时候，控制柄的对父元素的大小比例就固定了，随着父元素的变化，UI元素大小也会发生变化</p>
+<ul>
+<li><p>如果UI元素的大小调整好就把锚点固定父级元素上，父级元素缩放被打了锚点的UI元素就会被拖拽着同比例缩放</p>
+</li>
+<li><p>将4个锚点都设置为父元素的右下角，UI元素与父元素右侧和下方边的边距就固定了。可以将UI元素放在父元素右下角为基准位置</p>
+</li>
+<li><p>如果锚点控制位左右各两个，分别在父元素左端和右端，结合父元素的宽度，UI元素的宽度也随之变化，由于锚点设置为父元素的上下的中央位置，所以UI元素的高度不会发生变化</p>
+</li>
+<li><p>如果锚点设置为Rect Transform相同位置的时候，控制柄的对父元素的大小比例就固定了，随着父元素的变化，UI元素大小也会发生变化</p>
+</li>
+</ul>
 <h3 id="预制的锚点"><a href="#预制的锚点" class="headerlink" title="预制的锚点"></a>预制的锚点</h3><p>在Anchor Presets中，按住shift选择就可以在设置锚点的同时移动枢轴，如果按住alt的同时就i可以设置UI元素的位置和大小</p>
 <h3 id="Inspector中的Anchors面板"><a href="#Inspector中的Anchors面板" class="headerlink" title="Inspector中的Anchors面板"></a>Inspector中的Anchors面板</h3><p>Min表示的是左下角的锚点位置，Max表示的是右上角的锚点位置</p>
 <p>锚点控制关闭时：PosX和PosY显示锚点距离枢纽的相对位置，Width和Height表示的是UI元素的宽和高</p>
 <p>锚点控制开启时：会变为Left 、Right  、Top 、 Bottom</p>
-<h2 id="Blueprint模式与Raw-edit模式"><a href="#Blueprint模式与Raw-edit模式" class="headerlink" title="Blueprint模式与Raw edit模式"></a>Blueprint模式与Raw edit模式</h2><script>
+<h2 id="Blueprint模式与Raw-edit模式"><a href="#Blueprint模式与Raw-edit模式" class="headerlink" title="Blueprint模式与Raw edit模式"></a>Blueprint模式与Raw edit模式</h2><p>Blueprint：</p>
+<ul>
+<li>开启后可以利用未经旋转或缩放的状态来调整UI大小</li>
+</ul>
+<p>Raw edit：</p>
+<ul>
+<li>更改锚点属性的值时候，会同时保持锚点与控制手柄同时执行动作，会改变UI元素的大小</li>
+<li>如果更改Pivot属性的值，UI元素上的枢纽位置也会变化，但因为在保持枢轴坐标的基础上执行的动作 ，所以UI元素的外观位置不会改变</li>
+</ul>
+<h2 id="游戏对象与Rect-Transform"><a href="#游戏对象与Rect-Transform" class="headerlink" title="游戏对象与Rect Transform"></a>游戏对象与Rect Transform</h2><p>Shift+Ctrl+N创建的Empty Object不是画布的子元素，也不会自动附加Rect Transform</p>
+<p>Alt+Shift+N创建的游戏对象（菜单中为Create Empty Child）会自动附加</p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
