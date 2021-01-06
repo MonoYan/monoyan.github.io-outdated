@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      974 字
+      2k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      22
        分钟
     </span>
   
@@ -321,7 +321,73 @@
 <p>画布被嵌套时，忽略在父级画布组的属性</p>
 </li>
 </ul>
-<script>
+<h1 id="Rect-Transform"><a href="#Rect-Transform" class="headerlink" title="Rect Transform"></a>Rect Transform</h1><p>Canvas上附加的为Rect Transform组件</p>
+<h2 id="Rect工具"><a href="#Rect工具" class="headerlink" title="Rect工具"></a>Rect工具</h2><h3 id="枢轴（Pivot）"><a href="#枢轴（Pivot）" class="headerlink" title="枢轴（Pivot）"></a>枢轴（Pivot）</h3><p>已选矩形的中央位置，显示蓝色标志的就是Pivot</p>
+<p>Pivot是所选UI元素调整或旋转的基准点，Rect Transform组件中的Pos X和Pox Y显示数周位置的坐标</p>
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><p>按住shift可以只横纵移动</p>
+<h3 id="调整尺寸-Resize和scale的区别"><a href="#调整尺寸-Resize和scale的区别" class="headerlink" title="调整尺寸 - Resize和scale的区别"></a>调整尺寸 - Resize和scale的区别</h3><ul>
+<li>Resize <ul>
+<li>虽然能改变UI元素的宽度和高度，但是Scale属性的值不变，不影响UI元素内设置了字体大小于slice的spirit边界部分的宽度</li>
+<li></li>
+</ul>
+</li>
+<li>Scale<ul>
+<li>比起改变UI元素的尺寸，更要的是扩大、缩小的功能，所以会改变UI元素内的字体与边界的外观尺寸</li>
+<li>可以把值设为1.0就可以恢复原有尺寸，相比Resize还需要记住原本尺寸更有效</li>
+</ul>
+</li>
+</ul>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>按住shift拖拽旋转，以按住shift的角度妹15°旋转一下</p>
+<h3 id="Transform-Gizmo-Toggles"><a href="#Transform-Gizmo-Toggles" class="headerlink" title="Transform Gizmo Toggles"></a>Transform Gizmo Toggles</h3><ul>
+<li>Center 和 Pivot 模式<ul>
+<li>center下不可以移动枢轴，pivot可以</li>
+</ul>
+</li>
+<li>Global 和 Local 模式<ul>
+<li>在local模式下，旋转UI元素，所选矩形也随之旋转，保持旋转方向时，使UI元素发生变形</li>
+</ul>
+</li>
+</ul>
+<h2 id="Rect-Transform组件属性"><a href="#Rect-Transform组件属性" class="headerlink" title="Rect Transform组件属性"></a>Rect Transform组件属性</h2><ul>
+<li><p>Pos X Pos Y</p>
+<p>设置UI元素的位置。以象具锚点的相对坐标表示枢轴的坐标位置</p>
+</li>
+<li><p>Width Height</p>
+<p>设置UI元素的宽度和高度</p>
+</li>
+<li><p>Left Top Right Bottom</p>
+<p>分别设置从父元素的左上右下到UI元素的左上右下的距离</p>
+<p>打开锚点控制柄时，可以分别代替Pos X、Pos Y、Width、Height</p>
+</li>
+<li><p>Pos Z</p>
+<p>设置UI元素的Z坐标</p>
+</li>
+<li><p>Anchors</p>
+<p>设置锚点位置</p>
+</li>
+<li><p>Pivot</p>
+<p>设置枢轴的位置</p>
+<p>X，Y的有效范围0.0~1.0，这是对于Rect Transform的宽度与高度的相对位置</p>
+<p>e.g. X=0.0、Y=0.0的话就显示Rect Transform的左下方，如果1.0就显示在右上方</p>
+</li>
+<li><p>Scale</p>
+<p>UI元素的缩放</p>
+</li>
+</ul>
+<h2 id="锚点"><a href="#锚点" class="headerlink" title="锚点"></a>锚点</h2><p>将Rect Transform的控制柄与父UI元素的某个特定位置链接的功能</p>
+<p>通过锚点就可以让UI适应各种设备的屏幕分辨率</p>
+<h3 id="移动-1"><a href="#移动-1" class="headerlink" title="移动"></a>移动</h3><p>按住shift拖拽锚点时候，Rect Transform控制柄也保持对锚点控制柄相同距离移动</p>
+<h3 id="用锚点布局"><a href="#用锚点布局" class="headerlink" title="用锚点布局"></a>用锚点布局</h3><p>锚点控制柄表示在父元素领域内的相对位置，因此会随着父元素的大小调整而移动</p>
+<p>4个锚点控制柄分别对应了Rect Transform四个角上控制柄，移动时会保持锚点控制柄与Rect Transform控制柄之间的距离。</p>
+<p>如果UI元素的大小调整好就把锚点固定父级元素上，父级元素缩放被打了锚点的UI元素就会被拖拽着同比例缩放</p>
+<p>将4个锚点都设置为父元素的右下角，UI元素与父元素右侧和下方边的边距就固定了。可以将UI元素放在父元素右下角为基准位置</p>
+<p>如果锚点控制位左右各两个，分别在父元素左端和右端，结合父元素的宽度，UI元素的宽度也随之变化，由于锚点设置为父元素的上下的中央位置，所以UI元素的高度不会发生变化</p>
+<p>如果锚点设置为Rect Transform相同位置的时候，控制柄的对父元素的大小比例就固定了，随着父元素的变化，UI元素大小也会发生变化</p>
+<h3 id="预制的锚点"><a href="#预制的锚点" class="headerlink" title="预制的锚点"></a>预制的锚点</h3><p>在Anchor Presets中，按住shift选择就可以在设置锚点的同时移动枢轴，如果按住alt的同时就i可以设置UI元素的位置和大小</p>
+<h3 id="Inspector中的Anchors面板"><a href="#Inspector中的Anchors面板" class="headerlink" title="Inspector中的Anchors面板"></a>Inspector中的Anchors面板</h3><p>Min表示的是左下角的锚点位置，Max表示的是右上角的锚点位置</p>
+<p>锚点控制关闭时：PosX和PosY显示锚点距离枢纽的相对位置，Width和Height表示的是UI元素的宽和高</p>
+<p>锚点控制开启时：会变为Left 、Right  、Top 、 Bottom</p>
+<h2 id="Blueprint模式与Raw-edit模式"><a href="#Blueprint模式与Raw-edit模式" class="headerlink" title="Blueprint模式与Raw edit模式"></a>Blueprint模式与Raw edit模式</h2><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
