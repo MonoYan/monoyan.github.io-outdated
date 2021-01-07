@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      3.2k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      36
        分钟
     </span>
   
@@ -404,6 +404,102 @@
 </ul>
 <h2 id="游戏对象与Rect-Transform"><a href="#游戏对象与Rect-Transform" class="headerlink" title="游戏对象与Rect Transform"></a>游戏对象与Rect Transform</h2><p>Shift+Ctrl+N创建的Empty Object不是画布的子元素，也不会自动附加Rect Transform</p>
 <p>Alt+Shift+N创建的游戏对象（菜单中为Create Empty Child）会自动附加</p>
+<h1 id="三、Event-System（运行机制）"><a href="#三、Event-System（运行机制）" class="headerlink" title="三、Event System（运行机制）"></a>三、Event System（运行机制）</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+<li>事件系统通过场景中EventSystem对象所附加的”Event System”, “Standalone Input Module”, “Touch Input Module”组件发挥功能</li>
+<li>EventSystem通常会随着Canvas创建而创建，一个场景中唯一</li>
+<li>基本作用<ul>
+<li>管理已选游戏对象</li>
+<li>管理活动的输入模块</li>
+<li>管理所有的输入模块</li>
+<li>通过光线投射判断对象</li>
+</ul>
+</li>
+</ul>
+<p>*EventSystem以及输入模块的累实在UnityEngine.EventSystem命名空间中定义的</p>
+<h2 id="Event-System组件的动作"><a href="#Event-System组件的动作" class="headerlink" title="Event System组件的动作"></a>Event System组件的动作</h2><p>Event System与各个输入模块联合执行动作，向State或特定覆盖的组件传递信息</p>
+<p>执行流程</p>
+<ol>
+<li>动作开始时找出游戏对象附加的输入模块，添加到内部列表</li>
+<li>每当调用Update方法，所附加的各个输入模块的UpdateModule就会被调用，各个输入模块，通过UpdateModule方法可以改变内部状态</li>
+<li>调用所有输入模块的UpdateModule方法后，调用活动的输入模块的Process方法，实现独立处理写在此</li>
+</ol>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul>
+<li>First Selected</li>
+<li>Send Navigation Events （发送当前输入器发生的导航事件 OnMove、OnSubmit、OnCancel事件）</li>
+<li>Drag Threshold（以像素单位来设置判定拖拽已经开始的移动距离）</li>
+</ul>
+<h2 id="Input-Module"><a href="#Input-Module" class="headerlink" title="Input Module"></a>Input Module</h2><p>让事件系统执行什么动作的组件，被用于接受输入，管理事件状态，向场景中的东西发送事件等</p>
+<p>由于Event System组件时对于输入模块采取处理，所以输入模块也要附加在游戏对象</p>
+<p>输入模块每次只会有一个处于活动状态，活动的输入模块是根据操作环境来决定的</p>
+<p>Event System对象一般会有Standalone Input Module和Touch Input Module组件</p>
+<h3 id="Standalone-Input-Module组件"><a href="#Standalone-Input-Module组件" class="headerlink" title="Standalone Input Module组件"></a>Standalone Input Module组件</h3><p>用于追踪鼠标光标正指向哪里，检测鼠标、键盘、手柄的哪个按键或键被按下</p>
+<h4 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h4><ul>
+<li><p>Horizontal Axis</p>
+<p>指定横轴按钮对应的Input Manager的设置</p>
+<p>Project Settings中的input可以定义项目中所有输入以及输入相对应的游戏中的动作</p>
+</li>
+<li><p>Vertical Axis</p>
+<p>指定纵轴按钮对应的Input Manager的设置</p>
+</li>
+<li><p>Submit Button</p>
+</li>
+<li><p>Cancel Button</p>
+</li>
+<li><p>Input Actions Per Second</p>
+<p>设置每秒可以接受多少次键盘或手柄的输入动作</p>
+</li>
+<li><p>Repeat Delay</p>
+<p>设置连续输入起止之间延迟的事件，避免无意识的输入</p>
+</li>
+<li><p>Allow Activation On Mobile Device</p>
+</li>
+</ul>
+<h3 id="Touch-Input-Module组件"><a href="#Touch-Input-Module组件" class="headerlink" title="Touch Input Module组件"></a>Touch Input Module组件</h3><p>负责在手机、Pad、电脑等设备的输入</p>
+<h4 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>Allow Activation On Standalone</li>
+</ul>
+<h2 id="光线投射"><a href="#光线投射" class="headerlink" title="光线投射"></a>光线投射</h2><p>输入模块通过Raycaster组件检测应该为场景内哪个对象发送输入事件，光想投射根据指定的屏幕坐标对场景内的对象进行光线投射，返回最进阶画面的对象</p>
+<p>在Unity中标准的Raycaster有以下组件</p>
+<ul>
+<li><p>针对图像元素的Graphic Raycaster</p>
+</li>
+<li><p>针对3D对象的Physics Raycaster</p>
+<ul>
+<li><p>需要设置为目标的3D对象Collider</p>
+<ul>
+<li><p>通过Event Mask属性可以设置作为光线投射对象的3D对象的层</p>
+</li>
+<li><p>需要Camera组件，如果没有Camera组件，会自动附加。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>针对2D对象的Physics Raycaster</p>
+<ul>
+<li>需要设置为目标的2D对象Collider</li>
+<li>通过Event Mask属性可以设置作为光线投射对象的2D对象的层</li>
+<li>需要Camera组件，如果没有Camera组件，会自动附加。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>每单位的移动和缩放如果想要标准化数值时可以按住Ctrl或者Command来移动和缩放，移动会以每一个单位捕捉，缩放为0.1个单位</p>
+<h2 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h2><ul>
+<li><p>世界坐标系</p>
+<p>场景3D空间中的绝对坐标系，游戏对象的位置并不受层次构造影响，以距离场景坐标点的坐标来表示的</p>
+</li>
+<li><p>屏幕坐标系</p>
+<p>以Game视图的左下角为原点的坐标系，一单位为一像素</p>
+</li>
+<li><p>视口坐标系</p>
+<p>将屏幕坐标系的坐标转换为0.0~1.0的标准坐标系</p>
+</li>
+<li><p>本地坐标系</p>
+<p>以父游戏对象的原地为标准的i昂对坐标系。</p>
+<p>画布内的UI元素，将锚点的位置为标准坐标</p>
+<p>Transform和Rect Transform组的Inspector面板上显示的坐标就属于该坐标</p>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
