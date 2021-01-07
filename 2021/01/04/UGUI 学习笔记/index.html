@@ -461,25 +461,17 @@
 <h2 id="光线投射"><a href="#光线投射" class="headerlink" title="光线投射"></a>光线投射</h2><p>输入模块通过Raycaster组件检测应该为场景内哪个对象发送输入事件，光想投射根据指定的屏幕坐标对场景内的对象进行光线投射，返回最进阶画面的对象</p>
 <p>在Unity中标准的Raycaster有以下组件</p>
 <ul>
-<li><p>针对图像元素的Graphic Raycaster</p>
-</li>
-<li><p>针对3D对象的Physics Raycaster</p>
-<ul>
-<li><p>需要设置为目标的3D对象Collider</p>
-<ul>
-<li><p>通过Event Mask属性可以设置作为光线投射对象的3D对象的层</p>
-</li>
-<li><p>需要Camera组件，如果没有Camera组件，会自动附加。</p>
-</li>
+<li>针对图像元素的Graphic Raycaster</li>
+<li>针对3D对象的Physics Raycaster<ul>
+<li>需要设置为目标的3D对象Collider</li>
+<li>通过Event Mask属性可以设置作为光线投射对象的3D对象的层</li>
+<li>需要Camera组件，如果没有Camera组件，会自动附加</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>针对2D对象的Physics Raycaster</p>
-<ul>
+<li>针对2D对象的Physics Raycaster<ul>
 <li>需要设置为目标的2D对象Collider</li>
 <li>通过Event Mask属性可以设置作为光线投射对象的2D对象的层</li>
-<li>需要Camera组件，如果没有Camera组件，会自动附加。</li>
+<li>需要Camera组件，如果没有Camera组件，会自动附加</li>
 </ul>
 </li>
 </ul>
