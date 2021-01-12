@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.3k 字
+      4.4k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48
+      50
        分钟
     </span>
   
@@ -571,6 +571,29 @@
 <p>Sprite的纹理需要用到多个图形的时候，从纹理的Import Settings下的Sprite Mode中选择”multiple”</p>
 <h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><p>当Sprite Mode为Multiple时，在编辑器中选择一个Sprite中，就可以正常调整大小或移动范围</p>
 <p>拖拽绿色的手柄就可以设置Sprite的切片，设置了切片的Sprite就可以运用在Image Type属性为Sliced或Tiled的图像中</p>
+<p>在右下角可以看到编辑中过的Sprite的属性</p>
+<ul>
+<li>Name</li>
+<li>Position</li>
+<li>Border</li>
+<li>Pivot *</li>
+</ul>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>当Sprite Mode为Multiple时，在编辑中拖拽就可以创建Sprite</p>
+<p>在编辑器上方的Slice中可以设置自动从纹理裁剪出多少个Sprtie</p>
+<h3 id="Slice"><a href="#Slice" class="headerlink" title="Slice"></a>Slice</h3><ul>
+<li><p>Automatic</p>
+<p>基于纹理的阿尔法值，裁剪阿尔法值不为0的范围作为Sprite</p>
+<ul>
+<li>Pivot</li>
+<li>Method<ul>
+<li>Delete Existing</li>
+<li>Smart 保留已有Sprite的Name、Border、Pivot的设置，基于阿尔法的值对范围内进行再设置，创建新的精灵</li>
+<li>Safe 保留包括已有Sprite范围内的所有设置，创建新的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
