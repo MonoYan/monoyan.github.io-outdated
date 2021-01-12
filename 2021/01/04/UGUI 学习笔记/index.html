@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.2k 字
+      4.1k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36
+      47
        分钟
     </span>
   
@@ -327,7 +327,7 @@
 <h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><p>按住shift可以只横纵移动</p>
 <h3 id="调整尺寸-Resize和scale的区别"><a href="#调整尺寸-Resize和scale的区别" class="headerlink" title="调整尺寸 - Resize和scale的区别"></a>调整尺寸 - Resize和scale的区别</h3><ul>
 <li>Resize <ul>
-<li>虽然能改变UI元素的宽度和高度，但是Scale属性的值不变，不影响UI元素内设置了字体大小于slice的spirit边界部分的宽度</li>
+<li>虽然能改变UI元素的宽度和高度，但是Scale属性的值不变，不影响UI元素内设置了字体大小于slice的sprite边界部分的宽度</li>
 <li></li>
 </ul>
 </li>
@@ -487,15 +487,84 @@
 <p>将屏幕坐标系的坐标转换为0.0~1.0的标准坐标系</p>
 </li>
 <li><p>本地坐标系</p>
-<p>以父游戏对象的原地为标准的i昂对坐标系。</p>
+<p>以父游戏对象的原地为标准的i昂对坐标系</p>
 <p>画布内的UI元素，将锚点的位置为标准坐标</p>
 <p>Transform和Rect Transform组的Inspector面板上显示的坐标就属于该坐标</p>
 </li>
 </ul>
 <h1 id="四、Image"><a href="#四、Image" class="headerlink" title="四、Image"></a>四、Image</h1><p>UI元素的组件构成由 <code>Visual Component</code> 和 <code>Interaction Component</code> 构成</p>
-<ul>
-<li>休息一天 OvO</li>
+<h2 id="与2D-Sprite的不同"><a href="#与2D-Sprite的不同" class="headerlink" title="与2D Sprite的不同"></a>与2D Sprite的不同</h2><ul>
+<li>2D Sprite是通过Sprite Renderer组件在3D空间上渲染的，附加的组件是Transform，通过Scale属性来调整比例改变大小</li>
+<li>image为canvas的子元素由Canvas Renderer组件渲染，附加的组件为Rect Transform，可以通过Width/Height进行像素单位的调整，也可以通过Scale来调整比例的大小</li>
 </ul>
+<h2 id="Image-组件的属性"><a href="#Image-组件的属性" class="headerlink" title="Image 组件的属性"></a>Image 组件的属性</h2><ul>
+<li>Scource Image</li>
+<li>Color</li>
+<li>Material</li>
+<li>Image Type</li>
+</ul>
+<h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><p>Image包括Simple、Sliced、Tiled、Filled四种种类，对应的显示方法也各不相同</p>
+<h3 id="Simple"><a href="#Simple" class="headerlink" title="Simple"></a>Simple</h3><p>适应Rect Transform的范围来显示Sprite</p>
+<ul>
+<li><p>Preserve Aspect Ratio</p>
+<p>勾选后Sprite讲无视横纵比例铺满现实在Image的Rect Transform范围内</p>
+<p>为勾选则会保持Sprite原始的横纵比例以最大的尺寸显示在~范围内</p>
+</li>
+<li><p>Set Native Size</p>
+<p>按等倍像素重新调整图像中的精灵大小</p>
+</li>
+</ul>
+<h3 id="Sliced"><a href="#Sliced" class="headerlink" title="Sliced"></a>Sliced</h3><p>Sliced的图像所显示的是切片后的精灵</p>
+<ul>
+<li><p>切片手法</p>
+<p>将一个图像分割成横3x纵3这个9个区域，4角的尺寸保持不变，上边和下边横向拉伸，左边和右边纵向拉伸，即使调整了大小也会显得很美观，适合用做窗口的边框和按钮等的显示</p>
+</li>
+<li><p>Fill Center</p>
+<p>勾选状态后Sprite的中间部分也会被渲染，去掉勾选则不渲染中央部分</p>
+</li>
+</ul>
+<h3 id="Tiled"><a href="#Tiled" class="headerlink" title="Tiled"></a>Tiled</h3><p>Tiled是以Sprite作为一个图样，像瓷砖一样在Rect Transform范围内铺满排列显示，基准点为Rect Transform左下方</p>
+<ul>
+<li><p>如果所显示的Sprite设置了切片时，Sliced设置切片时，将介于Tlied和Sliced之间显示，保持4角尺寸不变，上边下边横向延伸，中央部分将纵横覆盖图样。基准点为中央部分的左下方</p>
+</li>
+<li><p>Fill Center</p>
+<p>同Sliced的Fill Center</p>
+</li>
+</ul>
+<h3 id="Filled"><a href="#Filled" class="headerlink" title="Filled"></a>Filled</h3><p>和Simple图像同样是适应Rect Transform来显示Sprite的，可以通过Fill Method属性和Fill Amount属性对如何涂抹、涂抹多少来显示进行设置</p>
+<ul>
+<li><p>Fill Method</p>
+<p>有以下五种涂抹方式，Fill Amount属性下可以设置0.0 ~ 1.0的涂抹量，Fill Amount属性设1.0时，Filled和Simple图像外观完全相同</p>
+<p>与Simple图像一样，都可以设置Preserve Aspect Ratio属性</p>
+<p>可以通过Set Native Size来重新调整图像中Sprite的大小</p>
+<ul>
+<li><p>Horizontal</p>
+<p>横向涂抹，通过Fill Origin属性可以设置涂抹的基准点</p>
+</li>
+<li><p>Vertical</p>
+<p>纵向涂抹，通过Fill Origin属性可以设置涂抹的基准点</p>
+</li>
+<li><p>Radial 90</p>
+<p>以Rect Transform范围4角的任意一角为基准点进行扇形涂抹，通过Fill Origin属性可以设置涂抹的基准点</p>
+</li>
+<li><p>Radial 180</p>
+<p>以Rect Transform范围4角的任意中点为基准点进行扇形涂抹，通过Fill Origin属性可以设置涂抹的基准点</p>
+<p>可以通过Clockwise设置顺时针逆时针</p>
+</li>
+<li><p>Radial 360</p>
+<p>以Rect Transform范围的中央为基准点进行扇形涂抹，通过Fill Origin属性可以设置涂抹的基准点</p>
+<p>可以通过Clockwise设置顺时针逆时针</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Sprite-动画"><a href="#Sprite-动画" class="headerlink" title="Sprite 动画 *"></a>Sprite 动画 *</h2><p>将Project面板钟大哥多个Sprite拖放至Hierarchy面板中，就可以逐帧显示2D Sprite的动画</p>
+<p>如果要创建以Image显示的Sprite动画就需要通过手动为各个关键帧设置精灵，但更为方便的还是通过脚本来实现</p>
+<p>*各个Sprite的名字末尾要加上表示顺序的编号</p>
+<div class="hljs"><pre><code class="hljs undefined">代码3-1 [<span class="hljs-string">代码</span>](<span class="hljs-link">https://github.com/wikibook/ugui</span>)</code></pre></div>
+
+<p>创建的Sprite动画即使替换了图像的Sprite，其尺寸也不会发生变化，因此Sprite动画后的精灵尺寸不想同时，将无法渲染</p>
+<p>为图像附加Content Size Fitter就可以结合Sprite的变更来修改图像的尺寸，将 Horizontal Fit 和 Vertical Fit 设置为Preferred Size</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
