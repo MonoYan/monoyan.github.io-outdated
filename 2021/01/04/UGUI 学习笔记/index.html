@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.4k 字
+      4.6k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      50
+      52
        分钟
     </span>
   
@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录，目前：画布、Rect Transform 组件、Event System组件；</p>
+              <p>UGUI 相关学习记录，目前：画布、Rect Transform 组件、Event System组件；Image；Sprite Editor；</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -564,7 +564,7 @@
 <p>代码3-1 <a href="https://github.com/wikibook/ugui" target="_blank" rel="noopener">代码</a></p>
 <p>创建的Sprite动画即使替换了图像的Sprite，其尺寸也不会发生变化，因此Sprite动画后的精灵尺寸不想同时，将无法渲染</p>
 <p>为图像附加Content Size Fitter就可以结合Sprite的变更来修改图像的尺寸，将 Horizontal Fit 和 Vertical Fit 设置为Preferred Size</p>
-<h1 id="Sprite-Editor"><a href="#Sprite-Editor" class="headerlink" title="Sprite Editor"></a>Sprite Editor</h1><p>在Sprite Editor中设置显示的Sprite，在~中可设置从纹理中所进行的Sprite裁剪和切片</p>
+<h1 id="五、Sprite-Editor"><a href="#五、Sprite-Editor" class="headerlink" title="五、Sprite Editor"></a>五、Sprite Editor</h1><p>在Sprite Editor中设置显示的Sprite，在~中可设置从纹理中所进行的Sprite裁剪和切片</p>
 <p>*纹理的Texture Type必须为Sprite(2D and UI)</p>
 <p>*需要提前在Windwo -> Package Manager 里导入 2D Sprite</p>
 <h2 id="Sprite-Mode"><a href="#Sprite-Mode" class="headerlink" title="Sprite Mode"></a>Sprite Mode</h2><p>将多个图形汇总到一个纹理的称为Texture atlas</p>
@@ -594,7 +594,16 @@
 </ul>
 </li>
 </ul>
-<script>
+<h3 id="Grid"><a href="#Grid" class="headerlink" title="Grid"></a>Grid</h3><p>是以所设置的宽度喝高度等间隔排列的方格辣裁剪Sprite</p>
+<ul>
+<li>Pixel Size</li>
+<li>Offset 纹理左上方起始的相对坐标来设置方格的开始位置</li>
+<li>Padding 以像素为单位设置方格的间隔</li>
+<li>Pivot</li>
+</ul>
+<h2 id="Sprite-Editor的其他功能"><a href="#Sprite-Editor的其他功能" class="headerlink" title="Sprite Editor的其他功能"></a>Sprite Editor的其他功能</h2><h3 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h3><p>对选中的Sprite不透明部分进行裁剪，可以使用Shift+T</p>
+<h3 id="Revert、Apply"><a href="#Revert、Apply" class="headerlink" title="Revert、Apply"></a>Revert、Apply</h3><h3 id="颜色条按钮"><a href="#颜色条按钮" class="headerlink" title="颜色条按钮"></a>颜色条按钮</h3><p>切换纹理图片的显示和阿尔法水平的显示</p>
+<h3 id="缩放滑块"><a href="#缩放滑块" class="headerlink" title="缩放滑块"></a>缩放滑块</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
