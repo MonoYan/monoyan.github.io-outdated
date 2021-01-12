@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.1k 字
+      4.3k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46
+      48
        分钟
     </span>
   
@@ -564,6 +564,13 @@
 <p>代码3-1 <a href="https://github.com/wikibook/ugui" target="_blank" rel="noopener">代码</a></p>
 <p>创建的Sprite动画即使替换了图像的Sprite，其尺寸也不会发生变化，因此Sprite动画后的精灵尺寸不想同时，将无法渲染</p>
 <p>为图像附加Content Size Fitter就可以结合Sprite的变更来修改图像的尺寸，将 Horizontal Fit 和 Vertical Fit 设置为Preferred Size</p>
+<h1 id="Sprite-Editor"><a href="#Sprite-Editor" class="headerlink" title="Sprite Editor"></a>Sprite Editor</h1><p>在Sprite Editor中设置显示的Sprite，在~中可设置从纹理中所进行的Sprite裁剪和切片</p>
+<p>*纹理的Texture Type必须为Sprite(2D and UI)</p>
+<p>*需要提前在Windwo -> Package Manager 里导入 2D Sprite</p>
+<h2 id="Sprite-Mode"><a href="#Sprite-Mode" class="headerlink" title="Sprite Mode"></a>Sprite Mode</h2><p>将多个图形汇总到一个纹理的称为Texture atlas</p>
+<p>Sprite的纹理需要用到多个图形的时候，从纹理的Import Settings下的Sprite Mode中选择”multiple”</p>
+<h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><p>当Sprite Mode为Multiple时，在编辑器中选择一个Sprite中，就可以正常调整大小或移动范围</p>
+<p>拖拽绿色的手柄就可以设置Sprite的切片，设置了切片的Sprite就可以运用在Image Type属性为Sliced或Tiled的图像中</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
