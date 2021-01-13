@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.6k 字
+      5.5k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      63
        分钟
     </span>
   
@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录，目前：画布、Rect Transform 组件、Event System组件；Image；Sprite Editor；</p>
+              <p>UGUI 相关学习记录，目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -603,7 +603,97 @@
 </ul>
 <h2 id="Sprite-Editor的其他功能"><a href="#Sprite-Editor的其他功能" class="headerlink" title="Sprite Editor的其他功能"></a>Sprite Editor的其他功能</h2><h3 id="Trim"><a href="#Trim" class="headerlink" title="Trim"></a>Trim</h3><p>对选中的Sprite不透明部分进行裁剪，可以使用Shift+T</p>
 <h3 id="Revert、Apply"><a href="#Revert、Apply" class="headerlink" title="Revert、Apply"></a>Revert、Apply</h3><h3 id="颜色条按钮"><a href="#颜色条按钮" class="headerlink" title="颜色条按钮"></a>颜色条按钮</h3><p>切换纹理图片的显示和阿尔法水平的显示</p>
-<h3 id="缩放滑块"><a href="#缩放滑块" class="headerlink" title="缩放滑块"></a>缩放滑块</h3><script>
+<h3 id="缩放滑块"><a href="#缩放滑块" class="headerlink" title="缩放滑块"></a>缩放滑块</h3><h1 id="六、Sprite-Packer-（legacy-version）"><a href="#六、Sprite-Packer-（legacy-version）" class="headerlink" title="六、Sprite Packer （legacy version）"></a>六、Sprite Packer （legacy version）</h1><p>为了解决单独纹理加载造成的内存浪费，需要将多个纹理汇总到一个纹理图集中，通过Sprite Packer就可以将一个个的纹理生成纹理图集，纹理图集的生成再Play模式和构建模式下是自动进行的</p>
+<h2 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h2><p>Project Setting -> Editor ->Sprite Packer -> Mode 中开启</p>
+<ul>
+<li>Enabled For Builds</li>
+<li>Always Enabled</li>
+<li>Disable</li>
+</ul>
+<p>设置好模式后，再Project面板选择纹理，设置Import Settings的Packing Tag，设置相同的了相同的Packing Tag纹理会被汇总到同一个纹理图集中</p>
+<p>Sprite Packer所生成的纹理图最大为2048*2048像素，覆盖Import Settings中混合有多种Format时，会分别为各格式生成纹理图集</p>
+<p>虽然集中生成了所有的纹理图集，但实际上只要加载必要的纹理图集。生成的纹理图集缓存于项目的Library/AtlasCache文件夹中</p>
+<h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><p>Windwos菜单中可以打开Sprite Packer的窗口</p>
+<ul>
+<li>Pack \ Repack</li>
+</ul>
+<p>单击Pack会生成纹理图集，已生成的无变动不会更新，Repack在单独的封装视泽中使用</p>
+<ul>
+<li>纹理图集选择下拉菜单</li>
+</ul>
+<p>选择所显示的纹理图集，精灵未能全部归纳到一个纹理图集时，可以进行换页显示</p>
+<ul>
+<li><p>封装规则选择下拉菜单</p>
+<ul>
+<li><p>封装规则</p>
+<p>如何将Sprite放置到纹理图集中</p>
+</li>
+<li><p>DefaultPackerPolicy</p>
+<p>标准的封装规则，设置Tag时，可以在开头加入[TIGHT]，这样就可以只为该Sprite以用TightPackerPolicy，同理还有[RECT]</p>
+</li>
+<li><p>TightPackerPolicy</p>
+<p>基于渲染时实际的多边形罗坤，吧Sprite放在精灵图集中</p>
+</li>
+</ul>
+</li>
+<li><p>颜色条按钮</p>
+</li>
+<li><p>缩放</p>
+</li>
+</ul>
+<h2 id="单独的封装规则"><a href="#单独的封装规则" class="headerlink" title="单独的封装规则"></a>单独的封装规则</h2><p>创建一个实现IPackerPolicy接口类的编辑器脚本来实现单独的封装规则，~需要实现以下两个函数</p>
+<ul>
+<li><p>Public int GetVersion</p>
+<p>返回单独的封装规则的版本号，掌握SP的纹理图集生成逻辑是否发生了变化</p>
+</li>
+<li><p>Public void OnGroupAtlases(BuildTarget target,Packer Job job,int[] texturelmporterinstanceIDs)</p>
+<p>在此函数实现单独的纹理图集生成逻辑</p>
+</li>
+</ul>
+<h1 id="七、Sprite-Atlas"><a href="#七、Sprite-Atlas" class="headerlink" title="七、Sprite Atlas"></a>七、Sprite Atlas</h1><p>Sprite Atlas对于Sprite Packer全面改善，将更多控制权交给了用户</p>
+<p>（以下内容来自官方手册）</p>
+<h2 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h2><p>在Project面板create创建</p>
+<h2 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h2><h3 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h3><h4 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h4><h4 id="Variant"><a href="#Variant" class="headerlink" title="Variant"></a>Variant</h4><ul>
+<li><p>Master Atlas</p>
+<p>Variant Atlas会复制Main Altas的副本，当成自己的副本，需要分配一个Main Altas给Variant Atlas，Main Altas本身不能是Viriant Atlas</p>
+</li>
+<li><p>Include in Build</p>
+</li>
+<li><p>Scale</p>
+<p>设置Variant Sprite Atlas的比例因子，范围从0.1-1.0</p>
+<p>Variant Atlas Texture的大小是Master Atlas的Texture乘以<strong>Scale</strong>值的结</p>
+</li>
+<li><p>Include in Build </p>
+<p>将Sprite Atlas Assests 包括在当前版本中</p>
+</li>
+<li><p>Allow Rotation</p>
+<p>以允许将Unity打包到Sprite Atlas中时Sprite旋转，如果Sprite Atlas包含<a href="UICanvas.html">Canvas UI</a>元素Textures，请禁用此选项</p>
+</li>
+<li><p>Tight Packing</p>
+<p>选中此框可根据Sprite轮廓而不是默认的矩形轮廓打包Sprite</p>
+</li>
+<li><p>Padding</p>
+<p>定义多少像素在Sprite Atlas中的各个Sprite纹理之间。这是一个缓冲区，用于防止在Sprite Atlas中彼此相邻的Sprite之间出现像素重叠。默认值为4像素</p>
+</li>
+<li><p>Read/Write Enabled</p>
+<p>选中此框以启用从脚本函数（例如<a href="../ScriptReference/Texture2D.SetPixels.html">Texture2D.SetPixels</a>和其他<a href="../ScriptReference/Texture2D.html">Texture2D</a>函数）对Texture数据的访问。如果启用此属性，则Unity将创建纹理数据的副本。这会使纹理资产所需的内存量增加一倍，并且可能会对性能产生负面影响。默认情况下禁用此属性。该属性仅对未压缩或DXT压缩纹理有效，因为Unity无法读取其他类型的压缩纹理。</p>
+</li>
+<li><p>Gqenerate Mip Maps</p>
+</li>
+<li><p>sRGB</p>
+<p>可将纹理存储在伽玛空间中</p>
+</li>
+<li><p>Filter Mode</p>
+<p>Unity在转换过程中拉伸时如何过滤打包的Textures</p>
+</li>
+<li><p>Default</p>
+<p>为Sprite Atlas的每个目标平台设置分辨率，文件大小以及相关的内存大小要求，像素大小和纹理质量。</p>
+</li>
+<li><p>Objects For Packing</p>
+<p>Unity将此列表中的所有项目打包到当前选定的Sprite Atlas中</p>
+</li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
