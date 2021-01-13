@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.8k 字
+      6.4k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      66
+      73
        分钟
     </span>
   
@@ -716,6 +716,116 @@
 <li><p>Set Native Size</p>
 </li>
 </ul>
+<h1 id="九、Text"><a href="#九、Text" class="headerlink" title="九、Text"></a>九、Text</h1><h2 id="组件属性-1"><a href="#组件属性-1" class="headerlink" title="组件属性"></a>组件属性</h2><ul>
+<li><p>Text</p>
+</li>
+<li><p>Font</p>
+</li>
+<li><p>Font Style</p>
+</li>
+<li><p>Font Size</p>
+</li>
+<li><p>Line Spacing</p>
+</li>
+<li><p>Rich Text</p>
+</li>
+<li><p>Alignment</p>
+</li>
+<li><p>Horizontal Overflow</p>
+<ul>
+<li><p>Wrap</p>
+<p>将字符串超出文本范围宽度的部分自动换行显示。但是可能会有出现标点符号等行头禁止字符放置到行头，左括号等行尾今只字符放置到行尾的情况</p>
+</li>
+<li><p>Overflow</p>
+<p>字符不做换行显示</p>
+</li>
+</ul>
+</li>
+<li><p>Vertical Hoverflow</p>
+<p>设置因字符串过长而无法容纳于文本范围的高度时的换行方法</p>
+<ul>
+<li><p>Truncate</p>
+<p>不显示超出范围的字符串</p>
+</li>
+<li><p>Overflow</p>
+<p>仍显示超出范围的字符串</p>
+</li>
+</ul>
+</li>
+<li><p>Best Fit</p>
+<p>自动调整大小以使字符串在文本范围内显示</p>
+<p>勾选后会忽略在Font Size中设定的值，二十介于MinSize中最小和MaxSize中最大值来显示字符串</p>
+</li>
+<li><p>Color</p>
+</li>
+<li><p>Material</p>
+</li>
+</ul>
+<h2 id="Rich-Text"><a href="#Rich-Text" class="headerlink" title="Rich Text"></a>Rich Text</h2><p>勾选了Rich Text后可以使用与HTML相似的语法格式修饰字符串</p>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag"><<span class="hljs-name">b</span>></span><span class="hljs-tag"></<span class="hljs-name">b</span>></span>
+<span class="hljs-tag"><<span class="hljs-name">i</span>></span><span class="hljs-tag"></<span class="hljs-name">i</span>></span>
+<span class="hljs-tag"><<span class="hljs-name">color=</span> ></span><span class="hljs-tag"></<span class="hljs-name">color</span>></span>
+<span class="hljs-tag"><<span class="hljs-name">size=</span> ></span><span class="hljs-tag"></<span class="hljs-name">size</span>></span>
+etc.</code></pre></div>
+
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><h3 id="TrueType和OpenType"><a href="#TrueType和OpenType" class="headerlink" title="TrueType和OpenType"></a>TrueType和OpenType</h3><ul>
+<li><p>Font Size</p>
+</li>
+<li><p>Rendering Mode</p>
+<ul>
+<li><p>Smooth</p>
+</li>
+<li><p>Hinted Smooth</p>
+</li>
+<li><p>Hinted Raster</p>
+<p>确保小字号的可读性</p>
+</li>
+<li><p>OS Default</p>
+</li>
+</ul>
+</li>
+<li><p>Character</p>
+<ul>
+<li><p>Dynamic</p>
+<p>实现不生产字体纹理，需要的时候动态生成</p>
+</li>
+<li><p>Unicode</p>
+</li>
+<li><p>ASCII default set</p>
+</li>
+<li><p>ASCII upper case</p>
+</li>
+<li><p>ASCII lower case</p>
+</li>
+<li><p>Custom set</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义字体"><a href="#自定义字体" class="headerlink" title="自定义字体"></a>自定义字体</h3><h1 id="十、遮罩"><a href="#十、遮罩" class="headerlink" title="十、遮罩"></a>十、遮罩</h1><p>使用Mask组件后，可将附加的图像或文本作为这招，将其他的图形元素按照他们的形状来进行显示</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在Inspector面板中的Add Component中添加UI - Mask来创建这招</p>
+<p>将要创建遮罩的元素图形作为已遮罩的图形元素的子元素后，将仅显示已遮罩的图形元素的形状的内测，它以外的部分将不做显示</p>
+<ul>
+<li><p>Show Mask Graphic</p>
+<p>保持遮罩功能而不显示已遮罩的图像本身</p>
+</li>
+</ul>
+<h2 id="纹理的格式-（另）"><a href="#纹理的格式-（另）" class="headerlink" title="纹理的格式 （另）"></a>纹理的格式 （另）</h2><p>Unity中使用的纹理，格式有JPEG,PNG,PSD等，发布时将作为纹理资源的Import Settings的Format中指定的格式。纹理的格式大致分为以下4类</p>
+<ul>
+<li><p>压缩格式</p>
+<p>通过将图像压缩而所辖文件的大小的一种格式</p>
+</li>
+<li><p>16位格式</p>
+<p>体积相比压缩格式文件较大，是一种适用于没有色阶图形的外观较好的格式</p>
+</li>
+<li><p>真彩色格式</p>
+<p>以24位或32位来表现颜色的一种格式，画质最最好，文件最大，内存消耗高</p>
+</li>
+<li><p>Crunch压缩格式</p>
+<p>通过Crunch压缩的一种画质较好，体积较小的DXT格式，仅在桌面平台使用</p>
+</li>
+</ul>
+<p>*如果纹理是通过WWW类来下载的，一般会将JPEG转为RGB 24bit，PNG图像处理为ARGB 32bit，如果十通过WWW.LoadImageIntoTexture方法，则将JPEG处理位DXT1，PNG处理为DXT5</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
