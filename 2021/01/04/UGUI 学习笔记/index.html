@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7k 字
+      8k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      79
+      90
        分钟
     </span>
   
@@ -834,16 +834,16 @@ etc.</code></pre></div>
 <li>Use Graphic Alpha</li>
 </ul>
 <h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>为图形元素应用轮廓特效</p>
-<p>Outline组件的类继承了Shadow组件的类，通过在四个方向应用Shadow来实现轮廓特效。</p>
+<p>Outline组件的类继承了Shadow组件的类，通过在四个方向应用Shadow来实现轮廓特效</p>
 <ul>
 <li>属性同上</li>
 </ul>
 <h2 id="Position-As-UV1"><a href="#Position-As-UV1" class="headerlink" title="Position As UV1"></a>Position As UV1</h2><p>Position As UV1组件是将图形元素顶点的坐标设置为各顶点的UV1*属性，通过着色器进行处理，据此就可以创建基于顶点坐标的自定义着色器</p>
-<p>所构建的UI/Unlit/Detail着色器使用的就是该结构，可重叠显示材质Detail中设置的纹理进行显示。</p>
-<p>*Unity一共支持4套uv，在shader编程中，分别叫UV0, UV1, UV2, UV3，而在C#编程中分别叫UV, UV2, UV3, UV4。</p>
-<p>*UV0用于主纹理, UV1用于光照贴图, UV2用于实时动态光照, UV3可进行自定义。</p>
-<h2 id="协同程序（另）"><a href="#协同程序（另）" class="headerlink" title="协同程序（另）"></a>协同程序（另）</h2><p>方法执行通常都是在一帧内完成的，使用Coroutine的话就可以在方法执行过程中等待一定的时间或非同步处理完成。</p>
-<p>协同程序是通过一种返回值的类型为IEnumerator饼切在方法内还包括有yield return声明的方法，运行后在yield return声明的位置暂时重点处理，在满足一定的条件后再从终端的位置继续处理。</p>
+<p>所构建的UI/Unlit/Detail着色器使用的就是该结构，可重叠显示材质Detail中设置的纹理进行显示</p>
+<p>*Unity一共支持4套uv，在shader编程中，分别叫UV0, UV1, UV2, UV3，而在C#编程中分别叫UV, UV2, UV3, UV4</p>
+<p>*UV0用于主纹理, UV1用于光照贴图, UV2用于实时动态光照, UV3可进行自定义</p>
+<h2 id="协同程序（另）"><a href="#协同程序（另）" class="headerlink" title="协同程序（另）"></a>协同程序（另）</h2><p>方法执行通常都是在一帧内完成的，使用Coroutine的话就可以在方法执行过程中等待一定的时间或非同步处理完成</p>
+<p>协同程序是通过一种返回值的类型为IEnumerator饼切在方法内还包括有yield return声明的方法，运行后在yield return声明的位置暂时重点处理，在满足一定的条件后再从终端的位置继续处理</p>
 <p>e.g.</p>
 <div class="hljs"><pre><code class="hljs C#">void Start()
 {
@@ -864,6 +864,66 @@ IEnumerator WaitAndGo(float duration)
 <ul>
 <li>tield return的生命中，除了可以通过WaitForSeconds类，还可以通过WaitForEndOfFrame类（等待帧）、WaitForFixedUpdate类（等待FixedUpdate方法被调用）的对象，等来恢复方法的处理</li>
 </ul>
+<h1 id="十二、UI元素的渲染与性能"><a href="#十二、UI元素的渲染与性能" class="headerlink" title="十二、UI元素的渲染与性能"></a>十二、UI元素的渲染与性能</h1><p>为了将对象渲染到画面中，Unity的渲染引擎对OpenGL，Direct3D等图形API发行了Draw Call</p>
+<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><p>Unity可按特定的顺序再一帧内渲染多个多边形网络，由于渲染多边形网格分别依靠材质纹理等，会造成负荷变高，使用相同资源的多边形分组，尽量一次渲染调用来进行渲染，就可以大大提升效率，这种处理成为批处理（Batching）</p>
+<p>资源变更中材质的变更伴随着色器的变更还需要重新构建内部的渲染状态，所以是非常缓慢的处理，这样的处理成为SetPass</p>
+<ul>
+<li>纹理的变更中着色器属性更新的部分其内部渲染状态并没有改变，只是增加了一次渲染调用，因此说并不像材质变更那样处理显得较为缓慢</li>
+</ul>
+<p>UI元素得批处理是分别再各自的Canvas（包括嵌套）中进行的</p>
+<p>使用相同材质、相同纹理的元素被批处理了，但再渲染两个相同材质和纹理的元素期间还渲染了不同材质和纹理的元素时不进行批处理</p>
+<p>如果各个元素没有重叠，可以通过Batch sorting结构进行优化处理，批量排序是可以集中渲染的没有重叠的UI元素的渲染顺寻进行自动变更，以使材质和纹理发生最低限度的变更的一种优化批处理的结构</p>
+<h2 id="渲染的优化"><a href="#渲染的优化" class="headerlink" title="渲染的优化"></a>渲染的优化</h2><p>如上，变更材质与纹理时的负载较高，因此尽量减少变更次数才能实现性能的优化，例如仅为需要特殊效果的内容使用特别的材质，为众多的UI元素使用一种材质、Sprite也尽量集中于一个纹理图集中、不同字体的使用上要增加渲染调用等这些管控方法</p>
+<p>Canvas上所有的图形元素都附加有Canvas Renderer组件，通过该组件就可以控制渲染。对图形元素所进行变更</p>
+<p>层次结构变更也是一种复合负荷较高的处理，需要对画布上的所有图形元素进行重新计算，也伴随着批处理的重新计算。包括同一层级中的排序，也要尽力避免</p>
+<h2 id="优化工具"><a href="#优化工具" class="headerlink" title="优化工具"></a>优化工具</h2><p>Unity中附带有助于优化和提高性能的编写工具</p>
+<h3 id="渲染统计窗口"><a href="#渲染统计窗口" class="headerlink" title="渲染统计窗口"></a>渲染统计窗口</h3><p>Game视图中的Stats就可以显示渲染统计信息的重叠窗口</p>
+<ul>
+<li><p>帧滞后</p>
+<p>显示当前的帧滞后（Frames Per Second/FPS）以及渲染Game识图一帧所需要的时间</p>
+</li>
+<li><p>Batches</p>
+<p>显示批处理的最终渲染的调用次数，右侧显示由于批处理而减少使用渲染调用的次数</p>
+</li>
+<li><p>Tris、Verts</p>
+<p>显示渲染的多边形与顶点数</p>
+</li>
+<li><p>Screen</p>
+<p>显示画面的分辨率与内存的使用量</p>
+</li>
+<li><p>SetPass calls</p>
+<p>显示材质变更的次数</p>
+</li>
+<li><p>Shader casters</p>
+<p>显示渲染阴影处理的次数</p>
+</li>
+<li><p>Visible skinned meshes</p>
+<p>先是通过Skinned Mesh Renderer进行渲染的蒙皮的次数</p>
+</li>
+<li><p>Animations</p>
+<p>显示播放的动画的次数</p>
+</li>
+</ul>
+<h3 id="Profiler"><a href="#Profiler" class="headerlink" title="Profiler"></a>Profiler</h3><p>在Windows菜单中可以打开Profiler显示性能分析</p>
+<ul>
+<li>CPU Usage</li>
+<li>GPU Usage</li>
+<li>Rendering</li>
+<li>Memory</li>
+<li>Audio</li>
+<li>Physics</li>
+<li>Physics 2D</li>
+</ul>
+<p>Rendering分析器中</p>
+<ul>
+<li>Batches （批处理次数）</li>
+<li>SetPass calls （SetPass次数）</li>
+<li>Triangles （多边形的数量）</li>
+<li>Vertices （顶点的数量）</li>
+</ul>
+<h3 id="Frame-Debugger"><a href="#Frame-Debugger" class="headerlink" title="Frame Debugger"></a>Frame Debugger</h3><p>使用Frame Debugger可以对特定帧的渲染中所发生的所有渲染调用的详细信息进行单独确认</p>
+<p>在Frame Debugger左侧有渲染调用和帧缓冲重置序列，可以确认渲染调用在何处以声明顺序发生，从左侧的列表选中渲染调用后，该通过的渲染调用多边形网格以及所使用的着色器等会显示与面板右侧，与此同时，在Game视图将会显示场景中所渲染调用是如何进行渲染的</p>
+<p>上方的滑块和左右箭头按钮可以逐步前进或后退来对列表中序列的渲染顺序进行确认</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
