@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.5k 字
+      5.8k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      63
+      66
        分钟
     </span>
   
@@ -691,6 +691,29 @@
 </li>
 <li><p>Objects For Packing</p>
 <p>Unity将此列表中的所有项目打包到当前选定的Sprite Atlas中</p>
+</li>
+</ul>
+<h1 id="八、Raw-Image"><a href="#八、Raw-Image" class="headerlink" title="八、Raw Image"></a>八、Raw Image</h1><p>Raw Image与Image一样适用于显示图形的UI元素</p>
+<ul>
+<li><p>Image用于显示Sprite</p>
+</li>
+<li><p>Raw Image用于显示纹理吗，无法使用切片和平铺等Sprite的特有功能</p>
+</li>
+</ul>
+<p>绝大多数情况下，图像显示使用Image就足够了，但是例如显示照片图像和使用WWW类所下载的纹理就要使用Raw Image了</p>
+<h2 id="组件属性"><a href="#组件属性" class="headerlink" title="组件属性"></a>组件属性</h2><ul>
+<li><p>Texture</p>
+</li>
+<li><p>Color</p>
+</li>
+<li><p>Material</p>
+</li>
+<li><p>UV Rect</p>
+<p>设置原始图像范围内的纹理的偏移值与尺寸，X,Y是以原始图像范围的左下方为原点的坐标，W与H分别相对于原始图像的宽和高，各值范围为0.0~1.0</p>
+<p>e.g. X=0.25，则纹理宽度的仅1/4处偏移至左侧，另外如果设置W=0.5 H=0.5，则纹理会刚考扩大两倍显示</p>
+<p>通过控制UV Rect属性，就可以仅显示大纹理的一部分或缩放显示</p>
+</li>
+<li><p>Set Native Size</p>
 </li>
 </ul>
 <script>
