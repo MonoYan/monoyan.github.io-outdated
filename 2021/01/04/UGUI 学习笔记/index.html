@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      7k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      73
+      79
        分钟
     </span>
   
@@ -826,6 +826,44 @@ etc.</code></pre></div>
 </li>
 </ul>
 <p>*如果纹理是通过WWW类来下载的，一般会将JPEG转为RGB 24bit，PNG图像处理为ARGB 32bit，如果十通过WWW.LoadImageIntoTexture方法，则将JPEG处理位DXT1，PNG处理为DXT5</p>
+<h1 id="十一、特效"><a href="#十一、特效" class="headerlink" title="十一、特效"></a>十一、特效</h1><p>渲染UI元素时，在传递顶点list给Canvas Renderer之前，通过对这些特效组件加以变更来应用特效</p>
+<h2 id="Shadow"><a href="#Shadow" class="headerlink" title="Shadow"></a>Shadow</h2><p>使图形元素上浮并出现影子</p>
+<ul>
+<li>Effect Color</li>
+<li>Effect Distance</li>
+<li>Use Graphic Alpha</li>
+</ul>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline"></a>Outline</h2><p>为图形元素应用轮廓特效</p>
+<p>Outline组件的类继承了Shadow组件的类，通过在四个方向应用Shadow来实现轮廓特效。</p>
+<ul>
+<li>属性同上</li>
+</ul>
+<h2 id="Position-As-UV1"><a href="#Position-As-UV1" class="headerlink" title="Position As UV1"></a>Position As UV1</h2><p>Position As UV1组件是将图形元素顶点的坐标设置为各顶点的UV1*属性，通过着色器进行处理，据此就可以创建基于顶点坐标的自定义着色器</p>
+<p>所构建的UI/Unlit/Detail着色器使用的就是该结构，可重叠显示材质Detail中设置的纹理进行显示。</p>
+<p>*Unity一共支持4套uv，在shader编程中，分别叫UV0, UV1, UV2, UV3，而在C#编程中分别叫UV, UV2, UV3, UV4。</p>
+<p>*UV0用于主纹理, UV1用于光照贴图, UV2用于实时动态光照, UV3可进行自定义。</p>
+<h2 id="协同程序（另）"><a href="#协同程序（另）" class="headerlink" title="协同程序（另）"></a>协同程序（另）</h2><p>方法执行通常都是在一帧内完成的，使用Coroutine的话就可以在方法执行过程中等待一定的时间或非同步处理完成。</p>
+<p>协同程序是通过一种返回值的类型为IEnumerator饼切在方法内还包括有yield return声明的方法，运行后在yield return声明的位置暂时重点处理，在满足一定的条件后再从终端的位置继续处理。</p>
+<p>e.g.</p>
+<div class="hljs"><pre><code class="hljs C#">void Start()
+{
+	// コルーチンの実行を開始する
+	StartCoroutine(WaitAndGo(1.0f));
+	Debug.Log("Waiting...");	// ②
+}
+
+IEnumerator WaitAndGo(float duration)
+{
+	Debug.Log("Ready");			// ①
+	// 等待duration所指定的秒数
+	yield return new WaitForSeconds(duration);
+	Debug.Log("Go!");			// ③
+}</code></pre></div>
+
+<p>调用MonoBehavior的类的StartCoroutine方法，来开始运行协同程序。通过在yield return生命中返回 WaitForSeconds类的对象来暂时中断处理，等待指定的秒数后再继续进行处理，本实例中，将在控制台按照123顺序输入log</p>
+<ul>
+<li>tield return的生命中，除了可以通过WaitForSeconds类，还可以通过WaitForEndOfFrame类（等待帧）、WaitForFixedUpdate类（等待FixedUpdate方法被调用）的对象，等来恢复方法的处理</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
