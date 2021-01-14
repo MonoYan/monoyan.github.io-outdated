@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.2k 字
+      8.9k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      92
+      100
        分钟
     </span>
   
@@ -924,7 +924,7 @@ IEnumerator WaitAndGo(float duration)
 <h3 id="Frame-Debugger"><a href="#Frame-Debugger" class="headerlink" title="Frame Debugger"></a>Frame Debugger</h3><p>使用Frame Debugger可以对特定帧的渲染中所发生的所有渲染调用的详细信息进行单独确认</p>
 <p>在Frame Debugger左侧有渲染调用和帧缓冲重置序列，可以确认渲染调用在何处以声明顺序发生，从左侧的列表选中渲染调用后，该通过的渲染调用多边形网格以及所使用的着色器等会显示与面板右侧，与此同时，在Game视图将会显示场景中所渲染调用是如何进行渲染的</p>
 <p>上方的滑块和左右箭头按钮可以逐步前进或后退来对列表中序列的渲染顺序进行确认</p>
-<h1 id="十三、交互UI元素的状态"><a href="#十三、交互UI元素的状态" class="headerlink" title="十三、交互UI元素的状态"></a>十三、交互UI元素的状态</h1><p>交互UI元素有“Normal”、“Highlighted”、“Pressed”、“Disabled”的4种状态</p>
+<h1 id="十三、交互UI元素"><a href="#十三、交互UI元素" class="headerlink" title="十三、交互UI元素"></a>十三、交互UI元素</h1><h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><p>交互UI元素有“Normal”、“Highlighted”、“Pressed”、“Disabled”的4种状态</p>
 <ul>
 <li><p>Normal</p>
 <p>通常的状态，用户可以对次状态的UI元素进行选择或操作</p>
@@ -940,6 +940,61 @@ IEnumerator WaitAndGo(float duration)
 <p>需要在交互组件的Inspector面板种，将Interactable属性取消勾选</p>
 </li>
 </ul>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>对UI元素采取操作时候，trigger会执行预先设置好的动作，我们将触发行为称为Event，将使之执行的动作称为Event Listener或者直接简称为Listener</p>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Listener可以通过交互组件的Inspector面板设置，交互组件的Inspector面板下方有可以出发的事件监听器一览表， 加号就可以添加事件监听器的Entry</p>
+<h4 id="事件监听器的运行模式"><a href="#事件监听器的运行模式" class="headerlink" title="事件监听器的运行模式"></a>事件监听器的运行模式</h4><ul>
+<li><p>Off</p>
+<p>不运行事件监听器</p>
+</li>
+<li><p>Editor And Runtime</p>
+<p>无论Linstener在Edit模式还是Play模式都运行</p>
+</li>
+<li><p>Runtime Only</p>
+<p>仅在Play模式中运行</p>
+</li>
+</ul>
+<h4 id="对象字段"><a href="#对象字段" class="headerlink" title="对象字段"></a>对象字段</h4><p>拖拽并释放或运用对象拾取器设置运行某动作的对象</p>
+<p>设置对象时，该对象所附加组件的类一览表会显示在Function List中</p>
+<h4 id="功能列表"><a href="#功能列表" class="headerlink" title="功能列表"></a>功能列表</h4><p>显示对象字段中的对象所附加的组件的类一览表，选择类名称，即会显示该类定义的可执行动作列表</p>
+<h4 id="参数字段"><a href="#参数字段" class="headerlink" title="参数字段"></a>参数字段</h4><p>当在功能列表中所选择的动作是带有参数的方法或属性时，设置传递给动作数值</p>
+<hr>
+<p>通过设置事件监听器，无需编写脚本可以运行事件对应的动作</p>
+<p>如果设置了多个事件监听器，运行是按照从上到下的顺序</p>
+<h2 id="自定义组件的事件监听器"><a href="#自定义组件的事件监听器" class="headerlink" title="自定义组件的事件监听器"></a>自定义组件的事件监听器</h2><p>可以内置组件类中定义的方法或属性，设置为事件监听器</p>
+<p>在独立创建的自定义组件类中定义的方法火属性，也可以设置为事件监听器</p>
+<h2 id="事件监听器的定义"><a href="#事件监听器的定义" class="headerlink" title="事件监听器的定义"></a>事件监听器的定义</h2><p>作为事件监听器设置方法或属性，需要符合以下条件中的任意一项</p>
+<ul>
+<li><p>没有参数，void public方法</p>
+</li>
+<li><p>有一个参数，void public方法</p>
+<p>但是参数类型属于bool、int、float、string或者继承了含有GameObject或MonoBeHaviour的Object类</p>
+</li>
+<li><p>不是专门读取的public属性</p>
+<p>但是，属性类型属于bool、int、float、string或者继承了含有GameObject或MonoBeHaviour的Object类</p>
+</li>
+</ul>
+<p>不符合以上条件的方法或属性，不能显示在功能列表中，因此不能设置为事件监听器</p>
+<p>静态的方法或属性也不能作为事件监听器设置的</p>
+<p>示例</p>
+<div class="hljs"><pre><code class="hljs C#">//可以设置为事件监听器的属性
+public bool BoolExample { get; set;}
+public int IntExample { get; set;}
+public float FloatExample { get; set;}
+public string StringExample { get; set;}
+public RectTransform RectTransformExample { get; set;}
+
+//可以设置为事件监听器的方法
+public void OnExample(){}
+public void OnExample(bool param){}
+public void OnExample(int param){}
+public void OnExample(float param){}
+public void OnExample(String param){}
+public void OnExample(RectTransform param){}
+
+//不能设置为事件监听器的属性
+public int IntReadOnlyExample  { get; set;}
+public int[] IntArrayExample  { get; set;}</code></pre></div>
+
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
