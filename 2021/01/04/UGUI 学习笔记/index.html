@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8k 字
+      8.2k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      90
+      92
        分钟
     </span>
   
@@ -924,6 +924,22 @@ IEnumerator WaitAndGo(float duration)
 <h3 id="Frame-Debugger"><a href="#Frame-Debugger" class="headerlink" title="Frame Debugger"></a>Frame Debugger</h3><p>使用Frame Debugger可以对特定帧的渲染中所发生的所有渲染调用的详细信息进行单独确认</p>
 <p>在Frame Debugger左侧有渲染调用和帧缓冲重置序列，可以确认渲染调用在何处以声明顺序发生，从左侧的列表选中渲染调用后，该通过的渲染调用多边形网格以及所使用的着色器等会显示与面板右侧，与此同时，在Game视图将会显示场景中所渲染调用是如何进行渲染的</p>
 <p>上方的滑块和左右箭头按钮可以逐步前进或后退来对列表中序列的渲染顺序进行确认</p>
+<h1 id="十三、交互UI元素的状态"><a href="#十三、交互UI元素的状态" class="headerlink" title="十三、交互UI元素的状态"></a>十三、交互UI元素的状态</h1><p>交互UI元素有“Normal”、“Highlighted”、“Pressed”、“Disabled”的4种状态</p>
+<ul>
+<li><p>Normal</p>
+<p>通常的状态，用户可以对次状态的UI元素进行选择或操作</p>
+</li>
+<li><p>Highlighted</p>
+<p>鼠标指向UI元素时，UI元素被选中</p>
+</li>
+<li><p>Pressed</p>
+<p>在UI元素上单机鼠标按钮或UI元素被触碰时的状态。通常情况下下UI元素会从Highlighted转化为Pressed状态，松开后恢复Highlighted</p>
+</li>
+<li><p>Disable</p>
+<p>UI元素不能被选择或操作的状态</p>
+<p>需要在交互组件的Inspector面板种，将Interactable属性取消勾选</p>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
