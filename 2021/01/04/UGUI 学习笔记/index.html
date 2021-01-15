@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.3k 字
+      10.8k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      118
+      123
        分钟
     </span>
   
@@ -1126,6 +1126,58 @@ public void OnToggle(bool value)
     yield return new WaitForSeconds(1.0f);
     //最初等待一秒钟，显示“Start”
     Debug.Log("Start");
+}</code></pre></div>
+
+<h2 id="Slider"><a href="#Slider" class="headerlink" title="Slider"></a>Slider</h2><p>Slider是用于调整BGM或效果音的音量等连续数值</p>
+<h3 id="构造-1"><a href="#构造-1" class="headerlink" title="构造"></a>构造</h3><p>滑块是附加了Slider组件的Slider对象，包含了Background对象、Fill Area对象和Handle Slide Area对象</p>
+<ul>
+<li><p>Background</p>
+<p>是作为滑块背景的图像</p>
+</li>
+<li><p>FillArea</p>
+<p>包含了Fill对象，通过操作滑块，在拖动手柄与最小值一侧顶端伸缩的图像</p>
+</li>
+<li><p>Handle Slide Area</p>
+<p>包含了Handle对象，用户可以操作的拖动手柄，定义拖动手柄可移动的范围</p>
+</li>
+</ul>
+<h3 id="属性-6"><a href="#属性-6" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>Fill Rect</p>
+<p>在Fill Rect中，指定通过滑块操作拖动手柄与最小侧一端之间伸缩的对象(Rect Transform)。指定为None则可以设置为没有Fill Rect的滑块</p>
+</li>
+<li><p>Handle Rect</p>
+<p>设置作为拖动手柄的对象(Rect Transform)。指定为None，则可以设置为没有拖动手柄的滑块（即使没有拖动手柄也能进行操作）</p>
+<p>多用于显示进度，生命值，经验值等计量仪使用，所以关闭interactable</p>
+</li>
+<li><p>Direction</p>
+<ul>
+<li>Left To Right</li>
+<li>Right To Left</li>
+<li>Bottom To Top</li>
+<li>Top To Bottom</li>
+</ul>
+</li>
+<li><p>Min Value\Max Value</p>
+</li>
+<li><p>Whole Numbers </p>
+<p>只会获得整数</p>
+</li>
+<li><p>Value</p>
+<p>初始值，值得范围来自Min Value 和 Max Value</p>
+</li>
+</ul>
+<h3 id="事件-2"><a href="#事件-2" class="headerlink" title="事件"></a>事件</h3><p>当操作滑块时，导致Value属性的值发生变化，就出发了On Value Changed(single)事件，只能处理0.5或1.0这样的实数值</p>
+<h4 id="事件监听器的设置"><a href="#事件监听器的设置" class="headerlink" title="事件监听器的设置"></a>事件监听器的设置</h4><p>On Value Changed(single)列表分为Dynamic float和Static Parameters两类，在Dynamic float的一览表中，显示着处理float的方法和属性，将使用Dynamic float的方法和属性设置为事件监听器的话就能自动传递Value属性的值</p>
+<h4 id="运用脚本设置事件监听器-1"><a href="#运用脚本设置事件监听器-1" class="headerlink" title="运用脚本设置事件监听器"></a>运用脚本设置事件监听器</h4><p>同样使用AddListener方法</p>
+<p>使用此方法，可以将带有浮点型参数的方法设置为事件监听器</p>
+<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Slider slider;
+
+void Start(){
+    slider.onValueChanged.AddListener(OnSlide);
+}
+public void OnSlide(float value)
+{
+    Debug.Log("Slider value is " + value.ToString());
 }</code></pre></div>
 
 <script>
