@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.9k 字
+      9.1k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      100
+      102
        分钟
     </span>
   
@@ -992,8 +992,31 @@ public void OnExample(String param){}
 public void OnExample(RectTransform param){}
 
 //不能设置为事件监听器的属性
-public int IntReadOnlyExample  { get; set;}
-public int[] IntArrayExample  { get; set;}</code></pre></div>
+public int IntReadOnlyExample  { get{ return 1; }} //读取专用
+public int[] IntArrayExample  { get; set;} //数组
+public double DoubleExample { get; set;} //double形
+public Rect RectExample { get; set;} //结构体
+public KeyCode KeyCodeExample { get; set;} //列举形
+public System.Array ArrayExample { get; set;} //不继承Object类
+
+//不能设置为事件监听器的方法
+public int OnExampleInt() { return 1;} //有返回值
+public void OnExample(Int[] param){} //参数为数组
+public void OnExample(int param1,int param2){} //参数为数组
+public void OnExample(Rect param){} //参数为结构体
+public void OnExample(KeyCode param){} //参数为列举形
+public void OnExample(System.Array param){} //参数是没有继承Object类的类</code></pre></div>
+
+<h2 id="通过脚本设置事件"><a href="#通过脚本设置事件" class="headerlink" title="通过脚本设置事件"></a>通过脚本设置事件</h2><p>通过脚本设置事件需要使用交互组件事件属性中定义的AddListener方法，例如Button组件需要通过Button类的onClick属性的AddListener方法添加事件监听器</p>
+<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Button button;
+void Start()
+{
+    button.onClick.AddListener(OnClickButton);
+}
+public void OnClickButton()
+{
+	Debug.Log("Button is clicked.");    
+}</code></pre></div>
 
 <script>
         document.querySelectorAll('.github-emoji')
