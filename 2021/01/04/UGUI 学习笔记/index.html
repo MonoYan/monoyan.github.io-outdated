@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.1k 字
+      10.3k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      102
+      118
        分钟
     </span>
   
@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录（最后更新：1.14），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能</p>
+              <p>UGUI 相关学习记录（最后更新：1.15），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -1016,6 +1016,116 @@ void Start()
 public void OnClickButton()
 {
 	Debug.Log("Button is clicked.");    
+}</code></pre></div>
+
+<p>Button类的onClick属性是Button.ButtonClickedEvent类。在Button.ButtonClickedEvent类的AddListener方法中，不能将有参数的方法设置为事件监听器，如下</p>
+<div class="hljs"><pre><code class="hljs C#">//一个错误的示例
+[SerializeField] private Button button;
+void Start()
+{
+    button.onClick.AddListener(OnClickButton);
+}
+public void OnClickButton(Button sender)
+{
+	Debug.Log(sender.name + "is clicked");    
+}</code></pre></div>
+
+<p>在这种情况下，需要使用lambda表达式传递参数</p>
+<p>按照以下编写代码的话，有序lambda表达式本身没有参数，所以可以在Button.ButtonClickedEvent类的AddListener方法中，作为事件监听器设置，也能像有参数的方法传递参数了。</p>
+<div class="hljs"><pre><code class="hljs C#">//正确的示例
+[SerializeField] private Button button;
+void Start()
+{
+    button.onClick.AddListener(()=OnClickButton);
+}
+public void OnClickButton(Button sender)
+{
+	Debug.Log(sender.name + "is clicked");    
+}</code></pre></div>
+
+<p>而且，如陈述形式的lambda表达式编写，可以将运行的处理与AddListener方法编写在同一个区域里，虽然如果使用过多的话会让源代码看上去不那么清晰，但是可以让稍微复杂的处理编写简单</p>
+<div class="hljs"><pre><code class="hljs C#">//正确的示例
+[SerializeField] private Button button;
+void Start()
+{
+    button.onClick.AddListener(()=>{
+        Debug.Log(button.name + "is clicked.");
+    });
+}</code></pre></div>
+
+<h2 id="Event-Trigger"><a href="#Event-Trigger" class="headerlink" title="Event Trigger"></a>Event Trigger</h2><p>原本不是交互组件的不能设置为事件监听器，需要使用Event Trigger</p>
+<p>附加有Event Trigger组件的对象就可以接受事件系统发出的所有时间，出发该事件，就能执行预先设定好的动作了</p>
+<p>*附加了Event Trigger组件的对象，会补货所有的事件，因此事件无法发送到位于此对象背后的对象上</p>
+<p><strong>使用方法 略</strong></p>
+<h2 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h2><ul>
+<li>按钮的构造是，一个Button内部对象包含一个Text对象，附加了Button组件</li>
+<li>Button对象是作为背景图案的图形，Text对象是作为按钮标签的文本</li>
+</ul>
+<h3 id="Button的事件"><a href="#Button的事件" class="headerlink" title="Button的事件"></a>Button的事件</h3><p>当button被按下松开时，就会出发On Click()事件。只有当按下与松开都是在同一个按钮上进行的时候，才会触发OnClick()事件</p>
+<p>用脚本设置事件监听器的话，使用Button类的onClick属性(Button.ButtonClickedEvent 类)的AddListener方法。用~可以将没有参数的方法作为事件监听器来设置</p>
+<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Button button;
+void Start()
+{
+    button.onClick.AddListener(OnClickButton);
+}
+public void OnClickButton()
+{
+	Debug.Log("Button is clicked.");    
+}</code></pre></div>
+
+<h2 id="Toggle"><a href="#Toggle" class="headerlink" title="Toggle"></a>Toggle</h2><p>Toggle是一个很像按钮的UI元素，用户每次按压就会在ON和OFF两个状态之间切换，可以作为开关或者复选框</p>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><p>Toggle包含着Background对象和Label对象，同时附加了Toggle组件</p>
+<p>Background还包含着Checkmark对象，这是作为Toggle背景的图像</p>
+<p>Checkmark对象是重叠显示在Background对象上的复选框，与切换开关的ON/OFF状态联动切换显示/非现实</p>
+<h3 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>Is On</p>
+<p>当Is On属性为On时显示勾选，反之不勾选，从On -> OFF -> On的状态切换</p>
+</li>
+<li><p>Toggle Transition</p>
+<p>可以设置当前勾选符号切换时候的效果</p>
+<p>None就立即切换</p>
+<p>Fade会有淡入淡出的效果</p>
+</li>
+<li><p>Graphic</p>
+<p>与Is On属性联动，指定作为复选框显示/非显示的图像</p>
+</li>
+<li><p>Group</p>
+<p>指定切换开关所属的组</p>
+</li>
+</ul>
+<h3 id="事件-1"><a href="#事件-1" class="headerlink" title="事件"></a>事件</h3><p>当按下并松开Toggle时，就会触发On Value Changed(Boolean)</p>
+<h4 id="事件监听器设置"><a href="#事件监听器设置" class="headerlink" title="事件监听器设置"></a>事件监听器设置</h4><p>On Value Changed(Boolean)功能以列表有Dynamic bool（动态布尔型），和Static Parameters（静态参数形）两类（有的组件没有Dynamic bool）。Dynamic bool的一览表中，显示了处理真假值（布尔型）的方法属性</p>
+<ul>
+<li>真假值：True / False的值</li>
+</ul>
+<p>如果将使用Dynamic bool的方法或属性设置为事件监听器的话，会自动地将Is On属性的值传递过去，固入口处就不会显示参数字段了</p>
+<p>例如GameObject的SetActive设置为世家年同期，就可以和toggle的On/Off联动，切换目标对象活动或者不活动的状态</p>
+<p>即使是相同的GameObject的SetActive方法，如果将Static Parameters设置为事件监听器的话，向事件监听器传递的值就与Is On的属性无关，而是将参数字段中设置的值传递过去</p>
+<h4 id="运用脚本设置事件监听器"><a href="#运用脚本设置事件监听器" class="headerlink" title="运用脚本设置事件监听器"></a>运用脚本设置事件监听器</h4><p>需要使用Toggle的onValueChanged的AddListener方法，能够将带有布尔型参数的方法设置为事件监听器，Is On属性的值就传递给参数</p>
+<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Toggle toggle;
+
+void Start()
+{
+    toggle.onValueChanged.AddListener(OnToggle);
+}
+public void OnToggle(bool value)
+{
+    Debug.Log("Toggle value is " + value.ToString());
+}</code></pre></div>
+
+<h3 id="切换开关组"><a href="#切换开关组" class="headerlink" title="切换开关组"></a>切换开关组</h3><p>使用Toggle Group组件将切换开关设置为组的话，当组内的任意一个切换开关为On时，其他的切换开关全部处于Off状态，也就是单选按钮</p>
+<ul>
+<li>使用单选按钮</li>
+</ul>
+<p>船舰EmptyObject，命名为Toggle Group，然后为其附加toggle group组件</p>
+<p>船舰为单选钮的toggle，设置为Toggle Group对象的子元素，同时在组件里绑定这些对象</p>
+<h4 id="属性-5"><a href="#属性-5" class="headerlink" title="属性"></a>属性</h4><p>Allow Switch Off，如果属性为O女的话，唯一为On的切换开关可以自由关闭</p>
+<h2 id="作为协同程序的事件方法（另）"><a href="#作为协同程序的事件方法（另）" class="headerlink" title="作为协同程序的事件方法（另）"></a>作为协同程序的事件方法（另）</h2><p>Start和Update等事件方法，通过将返回值类型设置为IEnumerator，就能作为协同程序执行，此时没有必要调用StartCorountine方法，还有，Awake方法不能当做协同程序执行。</p>
+<div class="hljs"><pre><code class="hljs C#">IEnumerator Start()
+{
+    yield return new WaitForSeconds(1.0f);
+    //最初等待一秒钟，显示“Start”
+    Debug.Log("Start");
 }</code></pre></div>
 
 <script>
