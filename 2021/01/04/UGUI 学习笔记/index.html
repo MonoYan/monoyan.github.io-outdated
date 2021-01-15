@@ -845,19 +845,19 @@ etc.</code></pre></div>
 <h2 id="协同程序（另）"><a href="#协同程序（另）" class="headerlink" title="协同程序（另）"></a>协同程序（另）</h2><p>方法执行通常都是在一帧内完成的，使用Coroutine的话就可以在方法执行过程中等待一定的时间或非同步处理完成</p>
 <p>协同程序是通过一种返回值的类型为IEnumerator饼切在方法内还包括有yield return声明的方法，运行后在yield return声明的位置暂时重点处理，在满足一定的条件后再从终端的位置继续处理</p>
 <p>e.g.</p>
-<div class="hljs"><pre><code class="hljs C#">void Start()
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
-	// コルーチンの実行を開始する
-	StartCoroutine(WaitAndGo(1.0f));
-	Debug.Log("Waiting...");	// ②
+	<span class="hljs-comment">// コルーチンの実行を開始する</span>
+	StartCoroutine(WaitAndGo(<span class="hljs-number">1.0f</span>));
+	Debug.Log(<span class="hljs-string">"Waiting..."</span>);	<span class="hljs-comment">// ②</span>
 }
 
-IEnumerator WaitAndGo(float duration)
+<span class="hljs-function">IEnumerator <span class="hljs-title">WaitAndGo</span>(<span class="hljs-params"><span class="hljs-keyword">float</span> duration</span>)</span>
 {
-	Debug.Log("Ready");			// ①
-	// 等待duration所指定的秒数
-	yield return new WaitForSeconds(duration);
-	Debug.Log("Go!");			// ③
+	Debug.Log(<span class="hljs-string">"Ready"</span>);			<span class="hljs-comment">// ①</span>
+	<span class="hljs-comment">// 等待duration所指定的秒数</span>
+	<span class="hljs-function"><span class="hljs-keyword">yield</span> return new <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params">duration</span>)</span>;
+	Debug.Log(<span class="hljs-string">"Go!"</span>);			<span class="hljs-comment">// ③</span>
 }</code></pre></div>
 
 <p>调用MonoBehavior的类的StartCoroutine方法，来开始运行协同程序。通过在yield return生命中返回 WaitForSeconds类的对象来暂时中断处理，等待指定的秒数后再继续进行处理，本实例中，将在控制台按照123顺序输入log</p>
@@ -976,80 +976,80 @@ IEnumerator WaitAndGo(float duration)
 <p>不符合以上条件的方法或属性，不能显示在功能列表中，因此不能设置为事件监听器</p>
 <p>静态的方法或属性也不能作为事件监听器设置的</p>
 <p>示例</p>
-<div class="hljs"><pre><code class="hljs C#">//可以设置为事件监听器的属性
-public bool BoolExample { get; set;}
-public int IntExample { get; set;}
-public float FloatExample { get; set;}
-public string StringExample { get; set;}
-public RectTransform RectTransformExample { get; set;}
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-comment">//可以设置为事件监听器的属性</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> BoolExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> IntExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">float</span> FloatExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> StringExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;}
+<span class="hljs-keyword">public</span> RectTransform RectTransformExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;}
 
-//可以设置为事件监听器的方法
-public void OnExample(){}
-public void OnExample(bool param){}
-public void OnExample(int param){}
-public void OnExample(float param){}
-public void OnExample(String param){}
-public void OnExample(RectTransform param){}
+<span class="hljs-comment">//可以设置为事件监听器的方法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params"></span>)</span>{}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params"><span class="hljs-keyword">bool</span> param</span>)</span>{}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> param</span>)</span>{}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params"><span class="hljs-keyword">float</span> param</span>)</span>{}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">String param</span>)</span>{}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">RectTransform param</span>)</span>{}
 
-//不能设置为事件监听器的属性
-public int IntReadOnlyExample  { get{ return 1; }} //读取专用
-public int[] IntArrayExample  { get; set;} //数组
-public double DoubleExample { get; set;} //double形
-public Rect RectExample { get; set;} //结构体
-public KeyCode KeyCodeExample { get; set;} //列举形
-public System.Array ArrayExample { get; set;} //不继承Object类
+<span class="hljs-comment">//不能设置为事件监听器的属性</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> IntReadOnlyExample  { <span class="hljs-keyword">get</span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }} <span class="hljs-comment">//读取专用</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] IntArrayExample  { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;} <span class="hljs-comment">//数组</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> DoubleExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;} <span class="hljs-comment">//double形</span>
+<span class="hljs-keyword">public</span> Rect RectExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;} <span class="hljs-comment">//结构体</span>
+<span class="hljs-keyword">public</span> KeyCode KeyCodeExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;} <span class="hljs-comment">//列举形</span>
+<span class="hljs-keyword">public</span> System.Array ArrayExample { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>;} <span class="hljs-comment">//不继承Object类</span>
 
-//不能设置为事件监听器的方法
-public int OnExampleInt() { return 1;} //有返回值
-public void OnExample(Int[] param){} //参数为数组
-public void OnExample(int param1,int param2){} //参数为数组
-public void OnExample(Rect param){} //参数为结构体
-public void OnExample(KeyCode param){} //参数为列举形
-public void OnExample(System.Array param){} //参数是没有继承Object类的类</code></pre></div>
+<span class="hljs-comment">//不能设置为事件监听器的方法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">OnExampleInt</span>(<span class="hljs-params"></span>)</span> { <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;} <span class="hljs-comment">//有返回值</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">Int[] param</span>)</span>{} <span class="hljs-comment">//参数为数组</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> param1,<span class="hljs-keyword">int</span> param2</span>)</span>{} <span class="hljs-comment">//参数为数组</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">Rect param</span>)</span>{} <span class="hljs-comment">//参数为结构体</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">KeyCode param</span>)</span>{} <span class="hljs-comment">//参数为列举形</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExample</span>(<span class="hljs-params">System.Array param</span>)</span>{} <span class="hljs-comment">//参数是没有继承Object类的类</span></code></pre></div>
 
 <h2 id="通过脚本设置事件"><a href="#通过脚本设置事件" class="headerlink" title="通过脚本设置事件"></a>通过脚本设置事件</h2><p>通过脚本设置事件需要使用交互组件事件属性中定义的AddListener方法，例如Button组件需要通过Button类的onClick属性的AddListener方法添加事件监听器</p>
-<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Button button;
-void Start()
+<div class="hljs"><pre><code class="hljs C#">[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Button button;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     button.onClick.AddListener(OnClickButton);
 }
-public void OnClickButton()
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnClickButton</span>(<span class="hljs-params"></span>)</span>
 {
-	Debug.Log("Button is clicked.");    
+	Debug.Log(<span class="hljs-string">"Button is clicked."</span>);    
 }</code></pre></div>
 
 <p>Button类的onClick属性是Button.ButtonClickedEvent类。在Button.ButtonClickedEvent类的AddListener方法中，不能将有参数的方法设置为事件监听器，如下</p>
-<div class="hljs"><pre><code class="hljs C#">//一个错误的示例
-[SerializeField] private Button button;
-void Start()
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-comment">//一个错误的示例</span>
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Button button;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     button.onClick.AddListener(OnClickButton);
 }
-public void OnClickButton(Button sender)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnClickButton</span>(<span class="hljs-params">Button sender</span>)</span>
 {
-	Debug.Log(sender.name + "is clicked");    
+	Debug.Log(sender.name + <span class="hljs-string">"is clicked"</span>);    
 }</code></pre></div>
 
 <p>在这种情况下，需要使用lambda表达式传递参数</p>
 <p>按照以下编写代码的话，有序lambda表达式本身没有参数，所以可以在Button.ButtonClickedEvent类的AddListener方法中，作为事件监听器设置，也能像有参数的方法传递参数了。</p>
-<div class="hljs"><pre><code class="hljs C#">//正确的示例
-[SerializeField] private Button button;
-void Start()
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-comment">//正确的示例</span>
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Button button;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     button.onClick.AddListener(()=OnClickButton);
 }
-public void OnClickButton(Button sender)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnClickButton</span>(<span class="hljs-params">Button sender</span>)</span>
 {
-	Debug.Log(sender.name + "is clicked");    
+	Debug.Log(sender.name + <span class="hljs-string">"is clicked"</span>);    
 }</code></pre></div>
 
 <p>而且，如陈述形式的lambda表达式编写，可以将运行的处理与AddListener方法编写在同一个区域里，虽然如果使用过多的话会让源代码看上去不那么清晰，但是可以让稍微复杂的处理编写简单</p>
-<div class="hljs"><pre><code class="hljs C#">//正确的示例
-[SerializeField] private Button button;
-void Start()
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-comment">//正确的示例</span>
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Button button;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     button.onClick.AddListener(()=>{
-        Debug.Log(button.name + "is clicked.");
+        Debug.Log(button.name + <span class="hljs-string">"is clicked."</span>);
     });
 }</code></pre></div>
 
@@ -1063,14 +1063,14 @@ void Start()
 </ul>
 <h3 id="Button的事件"><a href="#Button的事件" class="headerlink" title="Button的事件"></a>Button的事件</h3><p>当button被按下松开时，就会出发On Click()事件。只有当按下与松开都是在同一个按钮上进行的时候，才会触发OnClick()事件</p>
 <p>用脚本设置事件监听器的话，使用Button类的onClick属性(Button.ButtonClickedEvent 类)的AddListener方法。用~可以将没有参数的方法作为事件监听器来设置</p>
-<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Button button;
-void Start()
+<div class="hljs"><pre><code class="hljs C#">[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Button button;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     button.onClick.AddListener(OnClickButton);
 }
-public void OnClickButton()
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnClickButton</span>(<span class="hljs-params"></span>)</span>
 {
-	Debug.Log("Button is clicked.");    
+	Debug.Log(<span class="hljs-string">"Button is clicked."</span>);    
 }</code></pre></div>
 
 <h2 id="Toggle"><a href="#Toggle" class="headerlink" title="Toggle"></a>Toggle</h2><p>Toggle是一个很像按钮的UI元素，用户每次按压就会在ON和OFF两个状态之间切换，可以作为开关或者复选框</p>
@@ -1102,15 +1102,15 @@ public void OnClickButton()
 <p>例如GameObject的SetActive设置为世家年同期，就可以和toggle的On/Off联动，切换目标对象活动或者不活动的状态</p>
 <p>即使是相同的GameObject的SetActive方法，如果将Static Parameters设置为事件监听器的话，向事件监听器传递的值就与Is On的属性无关，而是将参数字段中设置的值传递过去</p>
 <h4 id="运用脚本设置事件监听器"><a href="#运用脚本设置事件监听器" class="headerlink" title="运用脚本设置事件监听器"></a>运用脚本设置事件监听器</h4><p>需要使用Toggle的onValueChanged的AddListener方法，能够将带有布尔型参数的方法设置为事件监听器，Is On属性的值就传递给参数</p>
-<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Toggle toggle;
+<div class="hljs"><pre><code class="hljs C#">[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Toggle toggle;
 
-void Start()
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
     toggle.onValueChanged.AddListener(OnToggle);
 }
-public void OnToggle(bool value)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnToggle</span>(<span class="hljs-params"><span class="hljs-keyword">bool</span> <span class="hljs-keyword">value</span></span>)</span>
 {
-    Debug.Log("Toggle value is " + value.ToString());
+    Debug.Log(<span class="hljs-string">"Toggle value is "</span> + <span class="hljs-keyword">value</span>.ToString());
 }</code></pre></div>
 
 <h3 id="切换开关组"><a href="#切换开关组" class="headerlink" title="切换开关组"></a>切换开关组</h3><p>使用Toggle Group组件将切换开关设置为组的话，当组内的任意一个切换开关为On时，其他的切换开关全部处于Off状态，也就是单选按钮</p>
@@ -1121,11 +1121,11 @@ public void OnToggle(bool value)
 <p>船舰为单选钮的toggle，设置为Toggle Group对象的子元素，同时在组件里绑定这些对象</p>
 <h4 id="属性-5"><a href="#属性-5" class="headerlink" title="属性"></a>属性</h4><p>Allow Switch Off，如果属性为O女的话，唯一为On的切换开关可以自由关闭</p>
 <h2 id="作为协同程序的事件方法（另）"><a href="#作为协同程序的事件方法（另）" class="headerlink" title="作为协同程序的事件方法（另）"></a>作为协同程序的事件方法（另）</h2><p>Start和Update等事件方法，通过将返回值类型设置为IEnumerator，就能作为协同程序执行，此时没有必要调用StartCorountine方法，还有，Awake方法不能当做协同程序执行。</p>
-<div class="hljs"><pre><code class="hljs C#">IEnumerator Start()
+<div class="hljs"><pre><code class="hljs C#"><span class="hljs-function">IEnumerator <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>
 {
-    yield return new WaitForSeconds(1.0f);
-    //最初等待一秒钟，显示“Start”
-    Debug.Log("Start");
+    <span class="hljs-function"><span class="hljs-keyword">yield</span> return new <span class="hljs-title">WaitForSeconds</span>(<span class="hljs-params"><span class="hljs-number">1.0f</span></span>)</span>;
+    <span class="hljs-comment">//最初等待一秒钟，显示“Start”</span>
+    Debug.Log(<span class="hljs-string">"Start"</span>);
 }</code></pre></div>
 
 <h2 id="Slider"><a href="#Slider" class="headerlink" title="Slider"></a>Slider</h2><p>Slider是用于调整BGM或效果音的音量等连续数值</p>
@@ -1170,14 +1170,14 @@ public void OnToggle(bool value)
 <h4 id="事件监听器的设置"><a href="#事件监听器的设置" class="headerlink" title="事件监听器的设置"></a>事件监听器的设置</h4><p>On Value Changed(single)列表分为Dynamic float和Static Parameters两类，在Dynamic float的一览表中，显示着处理float的方法和属性，将使用Dynamic float的方法和属性设置为事件监听器的话就能自动传递Value属性的值</p>
 <h4 id="运用脚本设置事件监听器-1"><a href="#运用脚本设置事件监听器-1" class="headerlink" title="运用脚本设置事件监听器"></a>运用脚本设置事件监听器</h4><p>同样使用AddListener方法</p>
 <p>使用此方法，可以将带有浮点型参数的方法设置为事件监听器</p>
-<div class="hljs"><pre><code class="hljs C#">[SerializeField] private Slider slider;
+<div class="hljs"><pre><code class="hljs C#">[<span class="hljs-meta">SerializeField</span>] <span class="hljs-keyword">private</span> Slider slider;
 
-void Start(){
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>(<span class="hljs-params"></span>)</span>{
     slider.onValueChanged.AddListener(OnSlide);
 }
-public void OnSlide(float value)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnSlide</span>(<span class="hljs-params"><span class="hljs-keyword">float</span> <span class="hljs-keyword">value</span></span>)</span>
 {
-    Debug.Log("Slider value is " + value.ToString());
+    Debug.Log(<span class="hljs-string">"Slider value is "</span> + <span class="hljs-keyword">value</span>.ToString());
 }</code></pre></div>
 
 <script>
@@ -1222,6 +1222,12 @@ public void OnSlide(float value)
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2021/01/15/angrybirds/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">愤怒的小鸟游戏实现</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

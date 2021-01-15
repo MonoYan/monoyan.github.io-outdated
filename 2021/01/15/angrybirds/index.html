@@ -16,7 +16,7 @@
   <meta name="description" content="Talk is cheap , Show me the code.">
   <meta name="author" content="Wang Yan">
   <meta name="keywords" content>
-  <title>联想小新13Pro 更换开机页面 - YanCC&#39;s Blog</title>
+  <title>愤怒的小鸟游戏实现 - YanCC&#39;s Blog</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -148,8 +148,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-24 17:50">
-      2020年6月24日 下午
+    <time datetime="2021-01-15 19:42">
+      2021年1月15日 晚上
     </time>
   </div>
 
@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      518 字
+      190 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      2
        分钟
     </span>
   
@@ -200,26 +200,28 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="为什么要修改？"><a href="#为什么要修改？" class="headerlink" title="为什么要修改？"></a>为什么要修改？</h2><p>联想小新的开机页面太丑了，找遍论坛也没有个替换方法。研究了一下，发现修改开机logo是要更改BIOS的，找遍网络发现一个开源工具<code>HackBGRT</code>，可以很快的实现。（请先看注意事项，再操作）</p>
+              <p>这是一个愤怒的小鸟的游戏实现记录</p>
 <a id="more"></a>
 
-<p><del>（原本的开机页面像天猫logo不说，还是七彩的）</del></p>
-<h2 id="步骤一：下载开源软件HackBGRT"><a href="#步骤一：下载开源软件HackBGRT" class="headerlink" title="步骤一：下载开源软件HackBGRT"></a>步骤一：下载开源软件HackBGRT</h2><p>在发布页面下好软件后，解压。</p>
-<p><img src="/img/thkj02.png" srcset="/img/loading.gif" alt="下载解压"></p>
-<blockquote>
-<ul>
-<li>GitHub地址 ：<a href="https://github.com/Metabolix/HackBGRT/releases" target="_blank" rel="noopener">https://github.com/Metabolix/HackBGRT/releases</a></li>
+<h1 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h1><ol>
+<li>小鸟的拖拽（最大距离限制）</li>
+<li>小鸟的飞出</li>
+<li>小鸟与猪、障碍物碰撞（死亡、受伤）</li>
+<li>皮筋的绘制</li>
+<li>一只小鸟的影分身</li>
+<li>effects</li>
+<li>镜头跟随</li>
+<li>游戏结束以及胜利的判定</li>
+<li>添加音效</li>
+</ol>
+<h1 id="UI制作"><a href="#UI制作" class="headerlink" title="UI制作"></a>UI制作</h1><ol>
+<li>关卡选择</li>
+<li>数据存储</li>
+</ol>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><ul>
+<li>Sprite Renderer组件中SortingLayer设置图层，Order In Layer实现层级</li>
 </ul>
-</blockquote>
-<h2 id="步骤二：安装软件"><a href="#步骤二：安装软件" class="headerlink" title="步骤二：安装软件"></a>步骤二：安装软件</h2><p>需要使用管理员权限来打开Setup.exe，在弹出的cmd窗口下，输入<strong>I (大写)</strong>，来进行安装，安装过后会弹出一个文本文档，我们选择关闭。</p>
-<p><img src="/img/thkj03.png" srcset="/img/loading.gif" alt="安装软件"></p>
-<h2 id="步骤三：修改图片"><a href="#步骤三：修改图片" class="headerlink" title="步骤三：修改图片"></a>步骤三：修改图片</h2><p>正常来说，上一步操作过后会弹出一个画图的窗口，这时候我们就可以把我们想要的开机图片提前修改好，然后<strong>拷贝</strong>到里面，覆盖掉原始图片，保存即可。</p>
-<p><img src="/img/thkj04.png" srcset="/img/loading.gif" alt="修改图片"></p>
-<h2 id="步骤四：完成-amp-注意事项"><a href="#步骤四：完成-amp-注意事项" class="headerlink" title="步骤四：完成&注意事项"></a>步骤四：完成&注意事项</h2><p>重启即可，我们可以看到现在的开机页面已经变成了我们修改的图片。<del>（果然联想电脑还是应该用联想的logo）</del></p>
-<p><img src="/img/thkj05.png" srcset="/img/loading.gif" alt="完成"></p>
-<hr>
-<h2 id="注意事项（请优先观看）"><a href="#注意事项（请优先观看）" class="headerlink" title="注意事项（请优先观看）"></a>注意事项（请优先观看）</h2><p>1.系统需要为UEFI引导，请提前查看Boot Mode启动方式<br>2.需要关闭Secure Boot (既把Secure Boot设置为Disabled)<br>3.请直接替换画图里的图片，并非软件目录中的splash.bmp<br>4.如果需要换回原来的的开机画面，只需要再次Setup.exe 输入 R 即可恢复<br>5.如果不走运无法开机，请使用系统恢复修复启动问题<br>6.系统更新后可能会失效，需要重新设置(2020.08.05补充)</p>
-<p>7.最新版的联想电脑管家已经可以实现此功能（2021.01.15）</p>
+<h2 id="实现拖拽效果"><a href="#实现拖拽效果" class="headerlink" title="实现拖拽效果"></a>实现拖拽效果</h2><p>使用SpringJoint2D来设置弹力，关闭Auto Configure Distance手动设定一个距离</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -248,9 +250,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/日常/">日常</a>
-                    
-                      <a class="hover-with-bg" href="/tags/小技巧/">小技巧</a>
+                      <a class="hover-with-bg" href="/tags/Unity/">Unity</a>
                     
                   </div>
                 
@@ -263,18 +263,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/07/Swift基础语法/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Swift基础语法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/07/22/从网易云导入音乐到AppleMusic/">
-                        <span class="hidden-mobile">从网易云导入音乐到Apple Music</span>
+                      <a href="/2021/01/04/UGUI 学习笔记/">
+                        <span class="hidden-mobile">UGUI 学习笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -471,7 +465,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "联想小新13Pro 更换开机页面&nbsp;",
+        "愤怒的小鸟游戏实现&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
