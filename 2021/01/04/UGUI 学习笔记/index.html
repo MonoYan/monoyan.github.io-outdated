@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.2k 字
+      11.6k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      128
+      132
        分钟
     </span>
   
@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录（最后更新：1.15），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能</p>
+              <p>UGUI 相关学习记录（最后更新：1.16），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -1220,7 +1220,49 @@ public void OnScroll(float value)
     Debug.Log("scrollbar value is " + value.ToString());
 }</code></pre></div>
 
-<script>
+<h2 id="滚动视图-Scroll-Rect"><a href="#滚动视图-Scroll-Rect" class="headerlink" title="滚动视图 Scroll Rect"></a>滚动视图 Scroll Rect</h2><p>屏幕内无法显示所有内容时使用的UI</p>
+<h3 id="创建-2"><a href="#创建-2" class="headerlink" title="创建"></a>创建</h3><p>创建一个EmptyObject作为Canvas的子元素，给他添加Scroll Rect组件</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><p>为了遮盖住一处部分使用Mask组件 ，勾选掉Show Mask Graphic，将被遮罩对象放置为遮罩的子元素</p>
+<h3 id="滚动条的设置"><a href="#滚动条的设置" class="headerlink" title="滚动条的设置"></a>滚动条的设置</h3><p>将Scrollbar对象拖拽到Scroll Rect组件的Horizontal Scrollbar 或 Vertical Scrollbar属性中就可以完成关联</p>
+<h3 id="属性-8"><a href="#属性-8" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>Content(Rect Transform)</p>
+</li>
+<li><p>Horizontal、Vertical</p>
+</li>
+<li><p>Movement Type</p>
+<ul>
+<li><p>Unrestricted</p>
+<p>即使滚动到顶端，也可以继续滚动，一直滚动会使得显示内容到边界</p>
+</li>
+<li><p>Elastic</p>
+<p>即使滚动到顶端，还能再滚动一定量，在这个状态下，停止拖拽后会通过弹性的动作，返回到内容显示的一段</p>
+<ul>
+<li><p>Elasticity </p>
+<p>可以设置弹力强度，数值越大弹性越强，0为instant</p>
+</li>
+</ul>
+</li>
+<li><p>Clamped</p>
+<p>滚动到顶端就不能再继续滚动了</p>
+</li>
+</ul>
+</li>
+<li><p>Inertia</p>
+<p>滚动中停止拖拽就会慢慢减速到停止</p>
+<ul>
+<li><p>Deceleration Rate</p>
+<p>可以设置为减弱速度，属性设置为0时就会立刻停止，设置为1时就不会减速，大于1时会加速</p>
+</li>
+</ul>
+</li>
+<li><p>Scroll Sensitivity</p>
+<p>设置使用鼠标滚轮儿或者触控板作为滚动时候的敏感度，拖拽操作不受影响</p>
+</li>
+<li><p>Horizontal Scrollbar / Vertical Scrollbar</p>
+</li>
+</ul>
+<h3 id="事件-4"><a href="#事件-4" class="headerlink" title="事件"></a>事件</h3><p>滚动操作Scroll Rect时会触发On Value Changed(Vector2) 事件</p>
+<h3 id="TODO-事件监听器的设置"><a href="#TODO-事件监听器的设置" class="headerlink" title="TODO:事件监听器的设置"></a>TODO:事件监听器的设置</h3><h3 id="TODO-用脚本设置事件监听器"><a href="#TODO-用脚本设置事件监听器" class="headerlink" title="TODO:用脚本设置事件监听器"></a>TODO:用脚本设置事件监听器</h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
