@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.6k 字
+      12.6k 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      132
+      145
        分钟
     </span>
   
@@ -1262,7 +1262,162 @@ public void OnScroll(float value)
 </li>
 </ul>
 <h3 id="事件-4"><a href="#事件-4" class="headerlink" title="事件"></a>事件</h3><p>滚动操作Scroll Rect时会触发On Value Changed(Vector2) 事件</p>
-<h3 id="TODO-事件监听器的设置"><a href="#TODO-事件监听器的设置" class="headerlink" title="TODO:事件监听器的设置"></a>TODO:事件监听器的设置</h3><h3 id="TODO-用脚本设置事件监听器"><a href="#TODO-用脚本设置事件监听器" class="headerlink" title="TODO:用脚本设置事件监听器"></a>TODO:用脚本设置事件监听器</h3><script>
+<h3 id="事件监听器的设置-1"><a href="#事件监听器的设置-1" class="headerlink" title="事件监听器的设置"></a>事件监听器的设置</h3><p>On Value Changed(Vector2)事件的监听器分为Dynamic Vector2和Static Parameters两类。</p>
+<p>Dynamic Vector2的一览表中，显示着处理二维向量(拥有xy的数据，Vector2)的方法喝属性</p>
+<p>船体给使用Dynamic Vector2的事件监听器的二维向量，x代表横向滚动的位置，y代表纵向滚动的位置，数值的范围均为0.0~1.0。由于纵向滚动位置的下端为0上端为1，左上方x=0，y=1，中央是x=0.5，y=0.5，右下方为1.0，y=0.0</p>
+<h3 id="用脚本设置事件监听器"><a href="#用脚本设置事件监听器" class="headerlink" title="用脚本设置事件监听器"></a>用脚本设置事件监听器</h3><p>同样使用AddListener方法</p>
+<p>能够将具有Vector的参数的方法设置为事件监听器。可以传递给参数的二维向量，X表示横向的滚动位置，y表示纵向的滚动位置，两个值均为0.0~1.0</p>
+<div class="hljs"><pre><code class="hljs C#">[serializeField]private ScrollRect scrollRect;
+
+void Start()
+{
+    scrollRect.onValueChanged.AddListener(OnScroll);
+}
+public void OnScroll(Vector2 Position)
+{
+    Debug.Log("Scroll position is" + position.ToString());
+}</code></pre></div>
+
+<h2 id="Input-Field"><a href="#Input-Field" class="headerlink" title="Input Field"></a>Input Field</h2><h3 id="构造-3"><a href="#构造-3" class="headerlink" title="构造"></a>构造</h3><p>输入栏是附加了Input Field组件的InputField对象，其构造包括两个文本对象，即附加了Text组件的Placeholder对象和Text对象</p>
+<p>InputField对象还附加了Image组件，是输入栏的背景图像</p>
+<p>Placeholder对象是在输入栏没有输入内容显示的文本，用于提示用户，一旦输入了什么内容Placeholder就会自动失效，Text对象是显示已输入字符的文本</p>
+<p>在Play模式中会自动创建InputField Input Caret对象以显示表示输入字符的光标</p>
+<h3 id="属性-9"><a href="#属性-9" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>Text Component</p>
+<p>指定文本以显示由用户输入的字符串</p>
+</li>
+<li><p>Text</p>
+<p>设置输入栏初始的字符串</p>
+</li>
+<li><p>Character Limit</p>
+<p>设置输入栏可以输入的限制，0表示无限</p>
+</li>
+<li><p>Content Type</p>
+<p>设置输入栏的类型</p>
+<ul>
+<li><p>Standard</p>
+<p>标准样式</p>
+</li>
+<li><p>Autocorrected</p>
+<p>设置为带有自动检测功能</p>
+</li>
+<li><p>Integer Number</p>
+<p>将输入栏设置为整数输入栏</p>
+</li>
+<li><p>Decimal Number</p>
+<p>将输入栏设置为数值输入栏</p>
+</li>
+<li><p>Alphanumeric</p>
+<p>字母数字输入</p>
+</li>
+<li><p>Name</p>
+<p>名字输入</p>
+</li>
+<li><p>Email Addres</p>
+</li>
+<li><p>Password</p>
+</li>
+<li><p>Pin（0~9）</p>
+</li>
+<li><p>Custom</p>
+<p>可以分别设置为Line Type、Input Type、Keyboard Type、Character Validation属性</p>
+</li>
+</ul>
+</li>
+<li><p>Line Type</p>
+<ul>
+<li><p>Single Line</p>
+<p>即使宽度超出了输入栏的空度也不会换行，Enter结束输入</p>
+</li>
+<li><p>Multi Line Submit</p>
+<p>宽度达到自动换行，Enter结束输入</p>
+</li>
+<li><p>Multi Line Newline</p>
+<p>宽度达到输入栏宽度就自动换行，Enter键换行</p>
+</li>
+</ul>
+</li>
+<li><p>Input Type</p>
+<ul>
+<li>Standary</li>
+<li>Auto Correct</li>
+<li>Password</li>
+</ul>
+</li>
+<li><p>Keyboard Type</p>
+<ul>
+<li>Default</li>
+<li>ASCIICapable</li>
+<li>Numbers And Punctuation</li>
+<li>URL</li>
+<li>Number Pad</li>
+<li>Phone Pad</li>
+<li>Name Phone Pad</li>
+<li>Email Address</li>
+</ul>
+</li>
+<li><p>Character Validation</p>
+<ul>
+<li><p>None</p>
+</li>
+<li><p>Integer 0~9 可以有负号</p>
+</li>
+<li><p>Decimal 数字加.</p>
+</li>
+<li><p>Alphanumeric 数字英文大小写</p>
+</li>
+<li><p>Name </p>
+</li>
+<li><p>Email Address</p>
+</li>
+<li><p>Placeholder</p>
+</li>
+<li><p>Caret BlinkPlaceholder</p>
+<p>设置当Hide Mobile Input属性时候为On时，在输入栏内的光标的山东苏速度</p>
+</li>
+<li><p>Selection Color</p>
+</li>
+<li><p>Hide Mobile Input</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件-5"><a href="#事件-5" class="headerlink" title="事件"></a>事件</h3><p>当在输入栏输入字符，Text属性发生变化的时候，就会触发On value Change(String)事件，而且其他UI被选择操作选中，或当Line Type属性为Single Line或Multi Line Submit并按下enter键时，就会触发End Edit(String)事件</p>
+<h4 id="设置-2"><a href="#设置-2" class="headerlink" title="设置"></a>设置</h4><p>On value Change(String)和End Edit(String)的监听器功能列表分为Dynamic string和Static Parameters两类，在Dynamic string的一览表中，显示处理字符串的方法和属性。将Dynamic string对应的方法和属性设置为事件监听器的话就会自动船体Text属性的值</p>
+<h4 id="脚本设置"><a href="#脚本设置" class="headerlink" title="脚本设置"></a>脚本设置</h4><p>用InputField.OnChangeEvent类的AddListener方法，End Edit则是用InputField.SubmitEvent类，这两个AddListewner方法，都可以将带有String型参数的方法设置为事件监听器，饼切由Text属性的值传递给事件监听器的参数</p>
+<div class="hljs"><pre><code class="hljs c#">[SerializeField]private InputField inputField;
+void Start()
+{
+    inputField.onValueChange.AddListener(onValueChange);
+    inputField.onEndEdit.AddListener(OnSubmit);
+}
+
+public void OnValueChange(string value)
+{
+    Debug.Log("Input Field value is " + value);
+}
+
+public void OnSubmit(string value)
+{
+    Debug.Log("Submit value is " + value);
+}</code></pre></div>
+
+<p>*虽然不是事件监听器，但是可以在InputField的onValidateInput属性中设置数据验证的方法，会在输入栏输入文字后调用，可以执行独立的数据验证处理</p>
+<p>*如果设置了onValidateInput属性，就可以忽略Character Validation属性的设置</p>
+<div class="hljs"><pre><code class="hljs c#">[SerializeField]private InputField inputField;
+void Start()
+{
+   	inputField.onValidateInput = (string text, int charIndex, char addedChar)=>{
+        char ret = addedChar;
+        if(addedChar >= 'a' && addedChar <= 'z')
+        {
+            ret = (char)(addedChar + ('A' - 'a'));
+        }
+        return ret;
+    };
+}</code></pre></div>
+
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
