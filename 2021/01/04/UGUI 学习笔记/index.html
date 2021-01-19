@@ -1417,6 +1417,31 @@ void Start()
     };
 }</code></pre></div>
 
+<h1 id="十四、交互组件的基本类"><a href="#十四、交互组件的基本类" class="headerlink" title="十四、交互组件的基本类"></a>十四、交互组件的基本类</h1><p>交互组件继承了基本类的Selectable类</p>
+<ul>
+<li>设置UI元素是否可以操作的时候需要使用Interactable属性</li>
+<li>可以设置UI元素状态迁移时效果</li>
+<li>可以设置在使用键盘和游戏控制器操作时的选择顺序</li>
+</ul>
+<h2 id="属性-10"><a href="#属性-10" class="headerlink" title="属性"></a>属性</h2><p>关闭Interactable会让交互UI元素呈不可用状态，操作和选择都会无效，并且事件监听器也不会执行</p>
+<p>Interactable属性是交互组件的属性Event Trigger组件不会受其影响，即使Interactable属性为Off状态，Event Trigger中设置的事件也会正常发生</p>
+<h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><p>交互UI元素有四种状态，分别为Normal、Highlighted、Pressed、Disabled，向各个状态时的效果为过度，过度可以通过Inspector属性来设置</p>
+<h3 id="Color-Tint"><a href="#Color-Tint" class="headerlink" title="Color Tint"></a>Color Tint</h3><p>会根据各种状态，改变Target Graphic属性中指定的图像元素的颜色，通过在Fade Duration属性中设置淡入淡出的持续时间可以稳定而和平的改变颜色</p>
+<h3 id="Sprite-Swap"><a href="#Sprite-Swap" class="headerlink" title="Sprite Swap"></a>Sprite Swap</h3><p>根据各种状态，插入Target Graphic属性中指定的图像元素精灵</p>
+<h3 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h3><p>运用Unity的mecanim动画系统生成动画，通过Auto Generate Animation可以自动生成Animator组件使用的Animator Controller</p>
+<p>自动创建的动画控制器分别与交互元素的四种状态相对应，受Mecanim的状态机控制</p>
+<p>Mecanim会顺应各个动画状态之间设置的过度效果，从某种状态的动画向另一种状态的动画平稳转移</p>
+<h2 id="Navigation-导航"><a href="#Navigation-导航" class="headerlink" title="Navigation 导航"></a>Navigation 导航</h2><p>在Play模式中，当操作控制器的时候，导航决定以什么顺序来选择UI元素的控制机制</p>
+<ul>
+<li>在Inspector面板中Naviation设置</li>
+</ul>
+<h3 id="属性-11"><a href="#属性-11" class="headerlink" title="属性"></a>属性</h3><ul>
+<li>None</li>
+<li>Horizontal 按左右时，选择所按键放下的下一个UI元素。而上下则会被忽略</li>
+<li>Vertical 按上下时，选择所按键放下的下一个UI元素。而左右则会被忽略</li>
+<li>Automatic 按上下左右时，选择各个方向下一个最适合选择的UI元素</li>
+<li>Explicit 设置当按上下左右时，各个方向下一个选择的UI元素</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
