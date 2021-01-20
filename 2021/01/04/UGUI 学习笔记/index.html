@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录（最后更新：1.19），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能；交互UI元素；交互组件的基本类</p>
+              <p>UGUI 相关学习记录（最后更新：1.19），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能；交互UI元素；交互组件的基本类；Layout Element</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -1441,6 +1441,33 @@ void Start()
 <li>Vertical 按上下时，选择所按键放下的下一个UI元素。而左右则会被忽略</li>
 <li>Automatic 按上下左右时，选择各个方向下一个最适合选择的UI元素</li>
 <li>Explicit 设置当按上下左右时，各个方向下一个选择的UI元素</li>
+</ul>
+<h1 id="十五、布局元素"><a href="#十五、布局元素" class="headerlink" title="十五、布局元素"></a>十五、布局元素</h1><p>为实现等间距设置、调整为相同大小等更为结构化和排列整齐的布局的话，需要使用Unity中搭载的自动布局功能</p>
+<h2 id="布局元素"><a href="#布局元素" class="headerlink" title="布局元素"></a>布局元素</h2><p>布局元素是指布局控制器来控制其位置和大小的元素，附加于Rect Transform组建的游戏对象，就是布局元素</p>
+<p>布局元素通过最小尺寸、推荐尺寸、自适应尺寸三项内容来决定自身尺寸</p>
+<ul>
+<li><p>Minimum size</p>
+<p>分配个布局元素的最小尺寸，默认值为0</p>
+</li>
+<li><p>Preferred size</p>
+<p>当有足够的空间时为布局元素的显示所分配的合适尺寸。默认值为0，在附加有图像和文本等组件时为其设置合适的值，为图像时设置Sprite的尺寸，为文本时设置字体中显示的字符串尺寸</p>
+</li>
+<li><p>Flexible size</p>
+<p>布局内有余白的时候，为布局元素所分配余白的相对尺寸，默认值为1</p>
+</li>
+</ul>
+<p>*布局元素虽拥有尺寸的决定信息，但却不直接变更自身的尺寸，布局元素的尺寸是基于布局元素所以提供的信息，由布局控制器计算并设置。</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>需要附加Layout Element组件</p>
+<ul>
+<li><p>Ignore Layout</p>
+<p>勾选后，布局控制器将不把他当作布局元素处理，而是作为布局控制器的子元素，并不受影响</p>
+</li>
+<li><p>Min Width、Min Height</p>
+</li>
+<li><p>Preferred Width、Preferred Height</p>
+</li>
+<li><p>Flexible Width、Flexible Height</p>
+</li>
 </ul>
 <script>
         document.querySelectorAll('.github-emoji')
