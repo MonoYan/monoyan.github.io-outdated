@@ -1457,7 +1457,7 @@ void Start()
 </li>
 </ul>
 <p>*布局元素虽拥有尺寸的决定信息，但却不直接变更自身的尺寸，布局元素的尺寸是基于布局元素所以提供的信息，由布局控制器计算并设置。</p>
-<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>需要附加Layout Element组件</p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>需要附加Layout Element组件</p>
 <ul>
 <li><p>Ignore Layout</p>
 <p>勾选后，布局控制器将不把他当作布局元素处理，而是作为布局控制器的子元素，并不受影响</p>
@@ -1469,6 +1469,56 @@ void Start()
 <li><p>Flexible Width、Flexible Height</p>
 </li>
 </ul>
+<h2 id="布局控制器"><a href="#布局控制器" class="headerlink" title="布局控制器"></a>布局控制器</h2><p>布局控制器可以自动控制布局元素的位置喝尺寸</p>
+<p>按照如下顺序来决定布局元素的尺寸</p>
+<ol>
+<li>首先分配布局元素的最小尺寸（宽高）</li>
+<li>空间足够时，分配布局元素的推荐尺寸（宽高）</li>
+<li>仍有富裕时，基于布局元素的自适应尺寸（宽高）分配空间</li>
+</ol>
+<h3 id="Content-Size-Fitter"><a href="#Content-Size-Fitter" class="headerlink" title="Content Size Fitter"></a>Content Size Fitter</h3><p>~是为所附加的布局元素设置尺寸限制的布局控制器，可以固定布局元素的最小尺寸或推荐尺寸</p>
+<p>用于设置为适合文本或布局组等内容的尺寸时，或将图像的Sprite替换为尺寸不同的内容时</p>
+<h4 id="Horizontal-Fit-、-Vertical-Fit"><a href="#Horizontal-Fit-、-Vertical-Fit" class="headerlink" title="Horizontal Fit 、 Vertical Fit"></a>Horizontal Fit 、 Vertical Fit</h4><p>分别用于制定适合布局元素的宽度高度的尺寸</p>
+<ul>
+<li>Unconstrained</li>
+<li>Min Size</li>
+<li>Preferred Size</li>
+</ul>
+<h3 id="Aspect-Ratio-Fitter"><a href="#Aspect-Ratio-Fitter" class="headerlink" title="Aspect Ratio Fitter"></a>Aspect Ratio Fitter</h3><p>~是为布局元素设置宽高比限制的布局控制器，可以固定元素的宽高比，可以忽略最小尺寸、推荐尺寸等布局信息</p>
+<h4 id="Aspect-Mode"><a href="#Aspect-Mode" class="headerlink" title="Aspect Mode"></a>Aspect Mode</h4><p>用于指定方法关于布局元素的尺寸和位置</p>
+<ul>
+<li><p>None</p>
+</li>
+<li><p>Width Controls Height、Height Controls Width</p>
+</li>
+<li><p>Fit In Parent</p>
+<p>自动调整宽度、高度、位置和锚点，使该矩形适合于父元素的内部，同时保持长宽比。父矩形内可能有一些空间没有被这个矩形覆盖</p>
+</li>
+<li><p>Envelope Parent</p>
+<p>自动调整宽度、高度、位置和锚点，使矩形覆盖父元素的外侧，同时保持纵横比。这个矩形可以比父矩形进一步延伸</p>
+</li>
+</ul>
+<h4 id="Aspect-Ratio"><a href="#Aspect-Ratio" class="headerlink" title="Aspect Ratio"></a>Aspect Ratio</h4><p>设置布局元素的宽高比（宽 / 高）</p>
+<h2 id="游戏对象的活动-不活动"><a href="#游戏对象的活动-不活动" class="headerlink" title="游戏对象的活动/不活动"></a>游戏对象的活动/不活动</h2><p>不活动的对象并不是不再显示，Update方法等事件方法也不再调用，也无法通过GameObject.Find方法实现列举，也无法通过GetComponent<t>方法来获取组件</t></p>
+<ul>
+<li><p>可以通过GameObject类的SetActive方法来切换活动/不活动状态</p>
+</li>
+<li><p>父级游戏对象不活跃时，子元素也同样不活跃，但是并不会变更子元素自身的活动状态，会随着父元素的恢复儿回复</p>
+</li>
+<li><p>GameObject类的activeSelf属性可以不借助父游戏对象的活动状态来恢复子游戏对象自身活动状态</p>
+</li>
+<li><p>activeInHierarchy属性为根据夫游戏对象的活动状态来恢复状态</p>
+</li>
+</ul>
+<div class="hljs"><pre><code class="hljs c#">void Start()
+{
+    gameObject.SetActive(true);
+    transform.parent.gameObject.SetActive(false);
+    
+    Debug.Log(gameObject.activeSelf);
+    Debug.Log(gameObject.activeInHierarchy);
+}</code></pre></div>
+
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
