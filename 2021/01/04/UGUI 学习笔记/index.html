@@ -200,7 +200,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>UGUI 相关学习记录（最后更新：1.19），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能；交互UI元素；交互组件的基本类；Layout Element</p>
+              <p>UGUI 相关学习记录（最后更新：1.21），目前：画布；Rect Transform 组件；Event System组件；Image；Sprite Editor；Sprite Packer；Sprite Atlas；Raw Image；Text；Mask；特效；UI元素的渲染与性能；交互UI元素；交互组件的基本类；Layout Element</p>
 <a id="more"></a>
 
 <h1 id="一、画布"><a href="#一、画布" class="headerlink" title="一、画布"></a>一、画布</h1><h2 id="UI元素的渲染顺序"><a href="#UI元素的渲染顺序" class="headerlink" title="UI元素的渲染顺序"></a>UI元素的渲染顺序</h2><ul>
@@ -1519,6 +1519,76 @@ void Start()
     Debug.Log(gameObject.activeInHierarchy);
 }</code></pre></div>
 
+<h2 id="布局组"><a href="#布局组" class="headerlink" title="布局组"></a>布局组</h2><p>布局组可以控制多个子元素的位置和尺寸布局控制器</p>
+<ul>
+<li>布局组本身也是一种布局元素，但并不控制自身尺寸。</li>
+<li>布局组的尺寸可以手动进行设置，也可以通过其他的布局控制器来控制</li>
+<li>布局组也可以任意嵌套</li>
+</ul>
+<h3 id="Horizontal、Vertical-Layout-Group"><a href="#Horizontal、Vertical-Layout-Group" class="headerlink" title="Horizontal、Vertical Layout Group"></a>Horizontal、Vertical Layout Group</h3><p>Horizontal、Vertical Layout Group是共同在Rect Transform范围内排列并放置子元素的布局组，分别排列并放置横列和纵列</p>
+<ul>
+<li><p>Padding</p>
+<p>设置布局组内测的边距</p>
+<p>Left、Right、Top、Bottom分别为到Rect Transform范围内的左、右、上、下</p>
+</li>
+<li><p>Spacing</p>
+<p>设置布局元素之间的间距</p>
+</li>
+<li><p>Child Alignment</p>
+<p>设置子布局元素的对齐位置</p>
+</li>
+<li><p>Child Force Expand</p>
+<p>勾选后将会扩大子元素布局的尺寸以消去布局内的余白，分配给各布局元素的余白是根据所设置的自适应尺寸来决定的</p>
+</li>
+</ul>
+<p>Horizontal、Vertical Layout Group的子布局元素的尺寸是分别由各自的最小尺寸、推荐尺寸、进行如下操作来决定的</p>
+<ol>
+<li>所有子布局元素的最小尺寸和padding以及各个元素间的Spacing相加的值即为布局组的最小尺寸</li>
+<li>所有子布局元素的推荐尺寸和Padding以及各个元素间的Spacing相加的值即为布局组的最小尺寸</li>
+<li>布局组的尺寸小于最小尺寸时，子布局元素的尺寸即为各个最小的尺寸</li>
+<li>布局组的尺寸越接近推荐尺寸，子布局元素的尺寸也越接近各自的推荐尺寸</li>
+<li>布局组的尺寸比推荐尺寸大时，将以子布局元素的各自适应尺寸来为比例分配余白</li>
+</ol>
+<h3 id="Grid-Layout-Group"><a href="#Grid-Layout-Group" class="headerlink" title="Grid Layout Group"></a>Grid Layout Group</h3><p>grid layout group是将子布局元素以何总网格来进行排列放置的布局组</p>
+<p>与其他的布局组不同，可以或略子布局元素的最小尺寸、推荐尺寸、自适应尺寸</p>
+<p>将为子布局元素设置Cell Size属性中指定的尺寸。Cell Size的X、Y表示宽高</p>
+<ul>
+<li><p>Padding</p>
+</li>
+<li><p>Spacing</p>
+<p>XY分别为横向纵向的间隔</p>
+</li>
+<li><p>Start Corner</p>
+<p>设置开始放置子元素的位置，可以从Upper Left、Upper Right、Lower Left、Lower Right中任选一项</p>
+</li>
+<li><p>Start Axis</p>
+<p>设置子布局元素的放置位置，可以指定Horizontal或Vertical，与Start Corner属性组合可以改变子布局元素的放置</p>
+</li>
+<li><p>Child Alignment</p>
+<p>设置子布局元素的对其位置。与其他的布局组的Child Alignment属性相同</p>
+</li>
+<li><p>Constraint</p>
+<p>为网络的列数和行数设置限制</p>
+<ul>
+<li>Flexible 没有限制</li>
+<li>Flixed Column Count 为网络的列数设置限制，通过Constraint Count属性指定列数</li>
+<li>Fixed Row Count 为网络的行数设置限制，通过Constraint Count属性指定行数</li>
+</ul>
+</li>
+</ul>
+<h3 id="Grid-Layout-Group-与-Content-Size-Fitter"><a href="#Grid-Layout-Group-与-Content-Size-Fitter" class="headerlink" title="Grid Layout Group 与 Content Size Fitter"></a>Grid Layout Group 与 Content Size Fitter</h3><p>Grid Layout Group 与 Content Size Fitter组合使用时，即使子布局元素的数目相同，列数和行数的组合中还存在有很多种图案，所以自动布局功能并不能唯一决定网格的尺寸</p>
+<p>如果要为网格设置特定特定的宽度和高度时，需对Grid Layout Group 与 Content Size Fitter进行以下设置</p>
+<ul>
+<li><p>固定宽度，高度可变时</p>
+<p>为网格设置固定宽度，添加子元素后需要扩大高度时，设置Grid Layout Group组建的Constraint属性为Fixed Column Count，并在其Constraint Count属性中指定固定的列数。将Content Size Fitter的Horizontal Fit属性设置为Preferred Size或Unconstrained将Vertical Fit属性设置为Preferred Size</p>
+</li>
+<li><p>宽度可变，高度固定时</p>
+<p>为网格设置固定的宽度，添加子元素需要扩大宽度时，设置Grid Layout Group组件的Constraint属性为Fixed Row Count，并在Constraint Count属性中指定固定的行数，另外，将Content Size Fitter的Horizontal Fit属性设置为Preferred Size，将Vertical Fit属性设置为Preferred Size或Unconstrained</p>
+</li>
+<li><p>宽度和高度都可变时</p>
+<p>宽高均可变，需要设置Grid Layout Group组件的Constraint属性为Flexible另外，将Content Size Fitter的Horizontal Fit属性和Vertical Fit属性都设置为Preferred Size</p>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
