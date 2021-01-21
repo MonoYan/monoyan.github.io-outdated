@@ -1537,6 +1537,9 @@ void Start()
 <li><p>Child Alignment</p>
 <p>设置子布局元素的对齐位置</p>
 </li>
+<li><p>Use Child Scale</p>
+<p>布局组在确定大小和布局元素时是否考虑其子布局元素的比例</p>
+</li>
 <li><p>Child Force Expand</p>
 <p>勾选后将会扩大子元素布局的尺寸以消去布局内的余白，分配给各布局元素的余白是根据所设置的自适应尺寸来决定的</p>
 </li>
@@ -1554,6 +1557,9 @@ void Start()
 <p>将为子布局元素设置Cell Size属性中指定的尺寸。Cell Size的X、Y表示宽高</p>
 <ul>
 <li><p>Padding</p>
+</li>
+<li><p>cell size</p>
+<p>给组内每个元素设定尺寸</p>
 </li>
 <li><p>Spacing</p>
 <p>XY分别为横向纵向的间隔</p>
@@ -1576,7 +1582,7 @@ void Start()
 </ul>
 </li>
 </ul>
-<h3 id="Grid-Layout-Group-与-Content-Size-Fitter"><a href="#Grid-Layout-Group-与-Content-Size-Fitter" class="headerlink" title="Grid Layout Group 与 Content Size Fitter"></a>Grid Layout Group 与 Content Size Fitter</h3><p>Grid Layout Group 与 Content Size Fitter组合使用时，即使子布局元素的数目相同，列数和行数的组合中还存在有很多种图案，所以自动布局功能并不能唯一决定网格的尺寸</p>
+<h3 id="Grid-Layout-Group-与-Content-Size-Fitter"><a href="#Grid-Layout-Group-与-Content-Size-Fitter" class="headerlink" title="Grid Layout Group 与 Content Size Fitter *"></a>Grid Layout Group 与 Content Size Fitter *</h3><p>Grid Layout Group 与 Content Size Fitter组合使用时，即使子布局元素的数目相同，列数和行数的组合中还存在有很多种图案，所以自动布局功能并不能唯一决定网格的尺寸</p>
 <p>如果要为网格设置特定特定的宽度和高度时，需对Grid Layout Group 与 Content Size Fitter进行以下设置</p>
 <ul>
 <li><p>固定宽度，高度可变时</p>
@@ -1587,6 +1593,53 @@ void Start()
 </li>
 <li><p>宽度和高度都可变时</p>
 <p>宽高均可变，需要设置Grid Layout Group组件的Constraint属性为Flexible另外，将Content Size Fitter的Horizontal Fit属性和Vertical Fit属性都设置为Preferred Size</p>
+</li>
+</ul>
+<h2 id="Drive-property驱动属性"><a href="#Drive-property驱动属性" class="headerlink" title="Drive property驱动属性"></a>Drive property驱动属性</h2><p>布局控制器中可以自动控制的属性称为驱动属性</p>
+<p>自动布局功能中，UI元素的位置和尺寸是由布局控制器自动控制的，手动无法变更，被称为驱动属性</p>
+<p><strong>例如</strong></p>
+<ul>
+<li>当Horizontal Fit属性为Min size时，Rect Transform的宽度将自动设置，其Width属性九尾驱动属性，为只读</li>
+<li>Render Mode属性设置为Screen Space-Overlay的画布，由于分辨率和game视图的尺寸而使布局可能发生改变的元素的属性也是驱动属性</li>
+</ul>
+<p>驱动属性的值不作为场景信息报错，因此变更Game视图的尺寸后即使这些值发生变化，场景也不会改变</p>
+<h2 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h2><p>准备单独的自动布局时，需要实现布局借口</p>
+<h3 id="布局接口"><a href="#布局接口" class="headerlink" title="布局接口"></a>布局接口</h3><ul>
+<li><p>ILayoutElement </p>
+<p>作为布局元素的组件中实现ILayoutElement 接口</p>
+</li>
+<li><p>ILayoutGroup</p>
+<p>控制子布局元素的位置和尺寸的组件实现ILayoutGroup接口</p>
+</li>
+<li><p>IlayoutSelfController </p>
+<p>控制自身位置和尺寸的组件中实现IlayoutSelfController 接口</p>
+</li>
+</ul>
+<h3 id="布局的计算"><a href="#布局的计算" class="headerlink" title="布局的计算"></a>布局的计算</h3><ol>
+<li>调用实现了ILayoutElement 接口的组件的CalculateLayoutInputHorizontal方法，计算布局元素的最小尺寸宽度、推荐尺寸的宽度、自适应尺寸的宽度。子元素宽度的计算优于父元素，基于子元素的信息来计算父元素的宽度</li>
+<li>调用实现了ILayoutController接口的SetLayoutHorizontal方法，计算布局元素实际宽度。由于是基于父元素内的整体宽度来分配子元素的宽度，因此子元素宽度的计算在父元素之后。各布局元素的Rect Transform在这设置为新的宽度</li>
+<li>调用实现了ILayoutElement接口的CalculateLayoutInputVertical方法，计算布局元素的最小尺寸的高度、推荐尺寸的高度、自适应尺寸的高度。子元素高度的计算要优于父元素，基于子元素的信息来计算父元素的高度。</li>
+<li>调用实现了ILayoutController接口的SetLayoutVertical方法，计算布局元素的实际高度，由于是基于父元素内的整体高度来分配子元素的高度，因此子元素高度的计算在父元素之后。各布局元素的Rect Transform在这设置为新的高度</li>
+</ol>
+<p>*自动布局的功能是首先估计宽度然后再估计高度。因此所计算的高度依存于宽度，而宽度并不依存高度</p>
+<h3 id="布局的重新构建"><a href="#布局的重新构建" class="headerlink" title="布局的重新构建"></a>布局的重新构建</h3><p>变更了当前布局有影响的属性时，就需要重新构建布局</p>
+<p>将LayoutRebuilder类的MarkLayoutForRebuild方法设置为对象Rect Transform组件的参数并进行调用，就可以触发布局的重新构建</p>
+<div class="hljs"><pre><code class="hljs c#">public static void MarkLayoutForRebuild(RectTransform rect);</code></pre></div>
+
+<p>即使调用了~方法也只是标记了需要重新构建的Rect Transform组件，而不是立刻重新构建。</p>
+<p>由于对布局有影响的属性在一帧内有可能发生多次变更，那时进行重新构建有可能降低性能。因此，布局的重新构建将会咋当前帧的最后集中进行</p>
+<ul>
+<li>MarkLayoutForRebuild 在如下位置调用<ul>
+<li>对布局有影响的属性设置</li>
+<li>以下的回调函数<ul>
+<li>OnEnable</li>
+<li>OnDisable</li>
+<li>OnRectTransformDimensionsChange</li>
+<li>OnVaildate（editor）</li>
+<li>OnDidApplyAnimationProperties</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <script>
