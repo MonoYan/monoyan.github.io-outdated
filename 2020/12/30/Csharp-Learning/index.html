@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      519 字
+      696 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        分钟
     </span>
   
@@ -238,6 +238,15 @@
 <li>字段变量一般用private修饰，以防止对外使用</li>
 <li>对外公布事物的状态信息，则使用属性</li>
 <li>属性一般与某个或某几个字段变量有对应关系</li>
+</ul>
+<h2 id="Static的真实含义"><a href="#Static的真实含义" class="headerlink" title="Static的真实含义"></a>Static的真实含义</h2><p>static是不属于某个实例的，而是属于整个类的，整个类的所有实例都共享的，</p>
+<p>static成员只能用类名来进行访问，不能用实例变量名进行访问</p>
+<p>static在内存中会存放在静态数据区</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>由于static的方法是属于整个类的，在内存中的代码段随着类的定义分配装在，不被任何一个对象转悠</li>
+<li>static方法只能处理static字段或调用static方法</li>
+<li>调用时候应该直接用类名访问，不能用具体的对象名 如Console.WriteLine();</li>
+<li>static方法中不能访问实例变量，且不能用使用this 或 base</li>
 </ul>
 <script>
         document.querySelectorAll('.github-emoji')
