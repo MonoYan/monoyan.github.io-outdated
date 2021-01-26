@@ -6,7 +6,7 @@
   <link href="http://yancc.cc/atom.xml" rel="self"/>
   
   <link href="http://yancc.cc/"/>
-  <updated>2021-01-23T15:12:17.097Z</updated>
+  <updated>2021-01-26T07:09:31.419Z</updated>
   <id>http://yancc.cc/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yancc.cc/2021/01/15/angrybirds/"/>
     <id>http://yancc.cc/2021/01/15/angrybirds/</id>
     <published>2021-01-15T11:42:28.000Z</published>
-    <updated>2021-01-23T15:12:17.097Z</updated>
+    <updated>2021-01-26T07:09:31.419Z</updated>
     
-    <content type="html"><![CDATA[<p>这是一个愤怒的小鸟的游戏实现记录</p><a id="more"></a><h1 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h1><ol><li>小鸟的拖拽（最大距离限制）</li><li>小鸟的飞出</li><li>小鸟与猪、障碍物碰撞（死亡、受伤）</li><li>皮筋的绘制</li><li>一只小鸟的影分身</li><li>effects</li><li>镜头跟随</li><li>游戏结束以及胜利的判定</li><li>添加音效</li></ol><h1 id="UI制作"><a href="#UI制作" class="headerlink" title="UI制作"></a>UI制作</h1><ol><li>关卡选择</li><li>数据存储</li></ol><h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><ul><li>Sprite Renderer组件中SortingLayer设置图层，Order In Layer实现层级</li></ul><h2 id="实现拖拽效果"><a href="#实现拖拽效果" class="headerlink" title="实现拖拽效果"></a>实现拖拽效果</h2><p>使用SpringJoint2D来设置弹力，关闭Auto Configure Distance手动设定一个距离</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    <content type="html"><![CDATA[<p>这是一个愤怒的小鸟的游戏实现记录</p><a id="more"></a><h1 id="游戏逻辑"><a href="#游戏逻辑" class="headerlink" title="游戏逻辑"></a>游戏逻辑</h1><ol><li>小鸟的拖拽（最大距离限制）</li><li>小鸟的飞出</li><li>小鸟与猪、障碍物碰撞（死亡、受伤）</li><li>皮筋的绘制</li><li>一只小鸟的影分身</li><li>effects</li><li>镜头跟随</li><li>游戏结束以及胜利的判定</li><li>添加音效</li></ol><h1 id="UI制作"><a href="#UI制作" class="headerlink" title="UI制作"></a>UI制作</h1><ol><li>关卡选择</li><li>数据存储</li></ol><h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><ul><li>Sprite Renderer组件中SortingLayer设置图层，Order In Layer实现层级</li><li>Toggle the visibility of the grid 在Screne视图下每个格子距离为1</li></ul><h2 id="实现拖拽效果"><a href="#实现拖拽效果" class="headerlink" title="实现拖拽效果"></a>实现拖拽效果</h2><p>使用SpringJoint2D来设置弹力，关闭Auto Configure Distance手动设定一个距离</p><h2 id="实现最大拖拽距离限制"><a href="#实现最大拖拽距离限制" class="headerlink" title="实现最大拖拽距离限制"></a>实现最大拖拽距离限制</h2><p>设定空物体取得拖拽点的位置</p><p>通过Vector3.Distance来计算小鸟位置与设定的空物体的位置的差是否大于最大拖拽距离</p><p>取得空物体到小鸟之间的向量（需要单位化，因为不需要长度）</p><p>求最大长度向量，把小鸟位置等于长度向量原点位置实现效果</p><h2 id="小鸟飞出"><a href="#小鸟飞出" class="headerlink" title="小鸟飞出"></a>小鸟飞出</h2><p>实现方法：通过让SpringJoint2D组件失活，完成小鸟飞出</p><p>优化：在鼠标按下时开启小鸟的rigidbody的Kinematic类型（需要给让SJ组件失活的方法延迟触发）</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
     
     <summary type="html">&lt;p&gt;这是一个愤怒的小鸟的游戏实现记录&lt;/p&gt;</summary>
