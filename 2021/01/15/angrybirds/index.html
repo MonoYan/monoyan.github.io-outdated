@@ -159,7 +159,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      655 字
+      845 字
     </span>
   
 
@@ -169,7 +169,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      9
        分钟
     </span>
   
@@ -250,6 +250,39 @@
 <h2 id="FixBug"><a href="#FixBug" class="headerlink" title="FixBug"></a>FixBug</h2><p>解决弹弓重复画线：在鼠标松手的时候关闭LineRenderer组件</p>
 <p>解决小鸟轮换速度过快：每次先将小鸟的位置赋值给下一只小鸟，这个动作在上一只小鸟死亡后进行</p>
 <p>解决添加背景后拖尾效果和画线效果失效：把背景层调整为-1</p>
+<h2 id="胜利-amp-失败-场景"><a href="#胜利-amp-失败-场景" class="headerlink" title="胜利&失败 场景"></a>胜利&失败 场景</h2><p>设置两个场景，有1秒钟的渐变效果</p>
+<h2 id="创建粒子效果"><a href="#创建粒子效果" class="headerlink" title="创建粒子效果"></a>创建粒子效果</h2><p>导入Source里yanhua，在Prefab文件夹提取Root中的sub和sub2作为粒子效果</p>
+<ul>
+<li>Scaling Mode 影响缩放模式</li>
+<li>Looping 循环</li>
+<li>Start Size 随机大小</li>
+</ul>
+<p>更改Canvas的渲染模式，改为Screen Space - Camera，同时创建渲染UI专用的摄像机完成联结</p>
+<p>UIcamera设置Culling Mask为Only UI，Projection改为Orthographic，删除Audio Listener组件 </p>
+<p>粒子效果renderer里的Sorting layer改写为最高层</p>
+<p><strong>Clear Flags</strong></p>
+<ul>
+<li>Skybox</li>
+<li>SolidColor</li>
+<li>Depth only √</li>
+<li>Don‘t Clear</li>
+</ul>
+<h2 id="渲染层级关系"><a href="#渲染层级关系" class="headerlink" title="渲染层级关系"></a>渲染层级关系</h2><ol>
+<li>Camera <ul>
+<li>Depth先绘制Depth低的物体</li>
+</ul>
+</li>
+<li>同一个Camera <ul>
+<li>Sorting layer</li>
+</ul>
+</li>
+<li>同一个Sorting layer <ul>
+<li>Order in layer</li>
+</ul>
+</li>
+</ol>
+<p>*大的挡住小的</p>
+<h2 id="评分系统"><a href="#评分系统" class="headerlink" title="评分系统"></a>评分系统</h2><p>让星星一颗颗出现，根据小鸟的数量完成评分</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
